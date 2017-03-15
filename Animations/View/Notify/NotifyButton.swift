@@ -45,9 +45,14 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   @IBOutlet weak var sendButton: UIButton! {
     didSet {
       sendButton.layer.cornerRadius = sendButton.bounds.height * 0.5
-      sendButton.layer.opacity = 0.0
+      sendButton.layer.opacity = 0.
       sendButton.setTitle(sendLabel, for: .normal)
       activateSendButton(activate: false)
+    }
+  }
+  @IBOutlet weak var background: UIView! {
+    didSet {
+      background.layer.cornerRadius = background.bounds.size.height * 0.5
     }
   }
   
@@ -57,7 +62,6 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   private let thanksLabel = "Thank you!"
   private let placeHolderLabel = "E-mail"
   private let sendLabel = "Send"
-  private let desiredMaxWith: CGFloat = 300.0
   
   private var state: NotifyButtonState = .AskForNotification
   private var animationRunning = false
@@ -90,18 +94,28 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     configure()
   }
   
+  private func configure() {
+    addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                action: #selector(expandButton)))
+  }
+  
   // *********************************************************************
   // MARK: - IBAction
+  func expandButton() {
+    if state == .AskForNotification {
+      animate(toState: .AskEmail)
+    }
+  }
+  
   @IBAction func sendButtonDidTap(_ sender: UIButton) {
-    
+    guard let email = inputLabel.text else {
+      return
+    }
+    delegate?.sendButtonDidTap(email: email)
   }
   
   // *********************************************************************
   // MARK: - Private Methods
-  private func configure() {
-    layer.cornerRadius = bounds.height * 0.5
-  }
-  
   private func buildKeyFrameAnimation(keyPath: String,
                                       values: [Any],
                                       keyTimes: [NSNumber]?,
@@ -154,21 +168,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                          keyTimes: [0, 0.2],
                                          duration: 1.0)
     
-    
-    var w: CGFloat = desiredMaxWith
-    if let superWidth = superview?.bounds.size.width {
-      w = min(desiredMaxWith, superWidth - 16)
-    }
-    let destBounds = CGRect(x: layer.bounds.origin.x,
-                            y: layer.bounds.origin.y,
-                            width: w,
-                            height: layer.bounds.size.height)
     let grow = buildKeyFrameAnimation(keyPath: "bounds",
-                                      values: [layer.bounds,
-                                               destBounds],
+                                      values: [background.layer.bounds,
+                                               layer.bounds],
                                       keyTimes: [0.2, 0.5],
                                       duration: 1.0)
-    layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    background.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
     let emailFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
                                              values: [0, 0.5],
@@ -181,16 +186,13 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                              duration: 1.0,
                                              delegate: self)
     
-    let offsetWidth = w - layer.bounds.size.width
-    sendButton.layer.position.x += offsetWidth
     let sendButtonFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
                                                   values: [0, 1],
                                                   keyTimes: [0.5, 0.7],
                                                   duration: 1.0)
-    inputLabel.layer.frame.size.width += offsetWidth
     
     label.layer.add(labelFadeOut, forKey: "labelFadeOut")
-    layer.add(grow, forKey: "grow")
+    background.layer.add(grow, forKey: "grow")
     placeholder.layer.add(emailFadeIn, forKey: "emailFadeIn")
     inputLabel.layer.add(inputFadeIn, forKey: "inputFadeIn")
     sendButton.layer.add(sendButtonFadeIn, forKey: "sendButtonFadeIn")
@@ -210,12 +212,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   // *********************************************************************
   // MARK: - Touch
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    super.touchesEnded(touches, with: event)
-    if state == .AskForNotification {
-      animate(toState: .AskEmail)
-    }
-  }
+//  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//    super.touchesEnded(touches, with: event)
+//    if state == .AskForNotification {
+//      animate(toState: .AskEmail)
+//    }
+//  }
   
   private func updateState() {
     switch state {
@@ -237,6 +239,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   private func activateSendButton(activate: Bool) {
     sendButton.isEnabled = activate
+    sendButton.isUserInteractionEnabled = true
     sendButton.titleLabel?.layer.opacity = activate ? 1.0 : 0.5
   }
   
