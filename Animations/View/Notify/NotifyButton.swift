@@ -45,7 +45,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   @IBOutlet weak var sendButton: UIButton! {
     didSet {
       sendButton.layer.cornerRadius = sendButton.bounds.height * 0.5
-      sendButton.layer.opacity = 0.
+      sendButton.layer.opacity = 0.0
       sendButton.setTitle(sendLabel, for: .normal)
       activateSendButton(activate: false)
     }
