@@ -121,11 +121,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                       keyTimes: [NSNumber]?,
                                       duration: CFTimeInterval = 0,
                                       delegate: CAAnimationDelegate? = nil,
-                                      calculationMode: String? = kCAAnimationLinear) -> CAKeyframeAnimation {
+                                      calculationMode: String = kCAAnimationLinear) -> CAKeyframeAnimation {
     let anim = CAKeyframeAnimation(keyPath: keyPath)
     anim.values = values
     anim.keyTimes = keyTimes
     anim.delegate = delegate
+    anim.calculationMode = calculationMode
     anim.fillMode = kCAFillModeForwards
     anim.isRemovedOnCompletion = false
     anim.duration = duration
