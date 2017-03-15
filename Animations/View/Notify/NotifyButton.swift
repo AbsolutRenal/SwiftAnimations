@@ -32,12 +32,14 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     didSet {
       placeholder.text = placeHolderLabel
       placeholder.layer.opacity = 0.0
+      placeholder.sizeToFit()
     }
   }
   @IBOutlet weak var inputLabel: UITextField! {
     didSet {
       inputLabel.layer.opacity = 0.0
       inputLabel.isHidden = true
+      inputLabel.delegate = self
     }
   }
   @IBOutlet weak var sendButton: UIButton! {
@@ -45,7 +47,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       sendButton.layer.cornerRadius = sendButton.bounds.height * 0.5
       sendButton.layer.opacity = 0.0
       sendButton.setTitle(sendLabel, for: .normal)
-      sendButton.isEnabled = false
+      activateSendButton(activate: false)
     }
   }
   
@@ -86,6 +88,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   override func awakeFromNib() {
     super.awakeFromNib()
     configure()
+  }
+  
+  // *********************************************************************
+  // MARK: - IBAction
+  @IBAction func sendButtonDidTap(_ sender: UIButton) {
+    
   }
   
   // *********************************************************************
@@ -163,7 +171,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
     let emailFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
-                                             values: [0, 1],
+                                             values: [0, 0.5],
                                              keyTimes: [0.5, 0.7],
                                              duration: 1.0)
     
@@ -179,10 +187,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                   values: [0, 1],
                                                   keyTimes: [0.5, 0.7],
                                                   duration: 1.0)
-//    inputLabel.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
-//    inputLabel.layer.frame.size.width += offsetWidth
-//    placeholder.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
-//    placeholder.layer.frame.size.width += offsetWidth
+    inputLabel.layer.frame.size.width += offsetWidth
     
     label.layer.add(labelFadeOut, forKey: "labelFadeOut")
     layer.add(grow, forKey: "grow")
@@ -210,84 +215,6 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     if state == .AskForNotification {
       animate(toState: .AskEmail)
     }
-    /*
-      let group = CAAnimationGroup()
-      let fadeOut = buildAnimation(keyPath: "opacity",
-                                   values: [1, 0],
-                                   keyTimes: [0, 0.1],
-                                   timingFunctions: nil)
-      
-      var w: CGFloat = desiredMaxWith
-      if let superWidth = superview?.bounds.size.width {
-        w = min(desiredMaxWith, superWidth - 16)
-      }
-      let grow = buildAnimation(keyPath: "bounds",
-                                values: [
-                                  CGRect(x: layer.bounds.origin.x,
-                                         y: layer.bounds.origin.y,
-                                         width: layer.bounds.size.width,
-                                         height: layer.bounds.size.height),
-                                  CGRect(x: layer.bounds.origin.x,
-                                         y: layer.bounds.origin.y,
-                                         width: w,
-                                         height: layer.bounds.size.height)
-        ],
-                                keyTimes: [0.15, 0.30],
-                                timingFunctions: [
-                                  CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        ])
-      group.animations = [
-        fadeOut,
-        grow
-      ]
-      group.duration = 2
-      group.delegate = self
-      layer.add(group, forKey: "askForEmail")
-      /*animate(layer: label.layer,w
-              key: "opacity",
-              toValue: 0.0,
-              duration: 0.1,
-              name: "fadeOut")
-      
-      var w: CGFloat = desiredMaxWith
-      if let superWidth = superview?.bounds.size.width {
-        w = min(desiredMaxWith, superWidth - 16)
-      }
-      animate(layer: layer,
-              key: "bounds",
-              toValue: CGRect(x: layer.bounds.origin.x,
-                              y: layer.bounds.origin.y,
-                              width: w,
-                              height: layer.bounds.size.height),
-              duration: 0.2,
-              name: "grow",
-              easing: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),
-              delay: 0.1)
-      
-      animate(layer: placeholder.layer,
-              key: "opacity",
-              toValue: 0.5,
-              duration: 0.1,
-              name: "fadeIn",
-              easing: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut),
-              delay: 0.3)
-      
-      animate(layer: inputLabel.layer,
-              key: "opacity",
-              toValue: 1.0,
-              duration: 0.1,
-              name: "fadeIn",
-              easing: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut),
-              delay: 0.3)
-      
-      animate(layer: sendButton.layer,
-              key: "opacity",
-              toValue: 1.0,
-              duration: 0.1,
-              name: "fadeIn",
-              easing: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut),
-              delay: 0.3)*/
-//    }*/
   }
   
   private func updateState() {
@@ -301,8 +228,26 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     }
   }
   
+  private func isValidEmail(_ email: String) -> Bool {
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+    
+    let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    return emailTest.evaluate(with: email)
+  }
+  
+  private func activateSendButton(activate: Bool) {
+    sendButton.isEnabled = activate
+    sendButton.titleLabel?.layer.opacity = activate ? 1.0 : 0.5
+  }
+  
   // *********************************************************************
   // MARK: - UITextFieldDelegate Methods
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let email = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+    placeholder.isHidden = email.characters.count > 0
+    activateSendButton(activate: isValidEmail(email))
+    return true
+  }
   
   
   // *********************************************************************
