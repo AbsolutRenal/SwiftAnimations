@@ -163,10 +163,14 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   }
   
   private func animateToEmail() {
-    let labelFadeOut = buildKeyFrameAnimation(keyPath: "opacity",
-                                         values: [1, 0],
-                                         keyTimes: [0, 0.2],
-                                         duration: 1.0)
+    placeholder.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    let labelFadeOut = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                               values: [1, 0],
+                                                                               keyTimes: [0, 0.2]),
+                                                        buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                               values: [1.0, 0.5],
+                                                                               keyTimes: [0, 0.2])],
+                                           duration: 1.0)
     
     let grow = buildKeyFrameAnimation(keyPath: "bounds",
                                       values: [background.layer.bounds,
@@ -175,10 +179,14 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                       duration: 1.0)
     background.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
-    let emailFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
-                                             values: [0, 0.5],
-                                             keyTimes: [0.5, 0.7],
-                                             duration: 1.0)
+    placeholder.layer.transform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
+    let emailDisplay = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                               values: [0, 0.5],
+                                                                               keyTimes: [0.5, 0.7]),
+                                                        buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                               values: [0.5, 1.0],
+                                                                               keyTimes: [0.5, 0.7])],
+                                           duration: 1.0)
     
     let inputFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
                                              values: [0, 1],
@@ -186,16 +194,20 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                              duration: 1.0,
                                              delegate: self)
     
-    let sendButtonFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
-                                                  values: [0, 1],
-                                                  keyTimes: [0.5, 0.7],
-                                                  duration: 1.0)
+    sendButton.layer.transform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
+    let sendButtonDisplay = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                                    values: [0, 1],
+                                                                                    keyTimes: [0.5, 0.7]),
+                                                             buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                                    values: [0.5, 1.0],
+                                                                                    keyTimes: [0.5, 0.7])],
+                                                duration: 1.0)
     
     label.layer.add(labelFadeOut, forKey: "labelFadeOut")
     background.layer.add(grow, forKey: "grow")
-    placeholder.layer.add(emailFadeIn, forKey: "emailFadeIn")
+    placeholder.layer.add(emailDisplay, forKey: "emailDisplay")
     inputLabel.layer.add(inputFadeIn, forKey: "inputFadeIn")
-    sendButton.layer.add(sendButtonFadeIn, forKey: "sendButtonFadeIn")
+    sendButton.layer.add(sendButtonDisplay, forKey: "sendButtonDisplay")
     
     completion = activateEmailState
   }
