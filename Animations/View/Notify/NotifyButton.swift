@@ -37,6 +37,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   @IBOutlet weak var inputLabel: UITextField! {
     didSet {
       inputLabel.layer.opacity = 0.0
+      inputLabel.isHidden = true
     }
   }
   @IBOutlet weak var sendButton: UIButton! {
@@ -44,6 +45,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       sendButton.layer.cornerRadius = sendButton.bounds.height * 0.5
       sendButton.layer.opacity = 0.0
       sendButton.setTitle(sendLabel, for: .normal)
+      sendButton.isEnabled = false
     }
   }
   
@@ -57,6 +59,15 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   private var state: NotifyButtonState = .AskForNotification
   private var animationRunning = false
+  private var animCompletion: [NotifyButtonState: (() -> Void)] = [NotifyButtonState: (() -> Void)]()
+  private var completion: (() -> Void)? {
+    set {
+      animCompletion[state] = newValue
+    }
+    get {
+      return animCompletion[state]
+    }
+  }
   
   weak var delegate: NotifyButtonDelegate?
   
@@ -83,20 +94,31 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     layer.cornerRadius = bounds.height * 0.5
   }
   
-  private func buildAnimation(keyPath: String,
-                              values: [Any],
-                              keyTimes: [NSNumber],
-                              delegate: CAAnimationDelegate? = nil,
-                              timingFunctions: [CAMediaTimingFunction]?,
-                              calculationMode: String? = kCAAnimationLinear) -> CAKeyframeAnimation {
+  private func buildKeyFrameAnimation(keyPath: String,
+                                      values: [Any],
+                                      keyTimes: [NSNumber]?,
+                                      duration: CFTimeInterval = 0,
+                                      delegate: CAAnimationDelegate? = nil,
+                                      calculationMode: String? = kCAAnimationLinear) -> CAKeyframeAnimation {
     let anim = CAKeyframeAnimation(keyPath: keyPath)
     anim.values = values
     anim.keyTimes = keyTimes
-    anim.timingFunctions = timingFunctions
-    anim.calculationMode = calculationMode!
     anim.delegate = delegate
-    anim.isRemovedOnCompletion = false
     anim.fillMode = kCAFillModeForwards
+    anim.isRemovedOnCompletion = false
+    anim.duration = duration
+    return anim
+  }
+  
+  private func buildAnimationGroup(animations: [CAAnimation],
+                                   duration: CFTimeInterval,
+                                   delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
+    let anim = CAAnimationGroup()
+    anim.animations = animations
+    anim.duration = duration
+    anim.delegate = delegate
+    anim.fillMode = kCAFillModeForwards
+    anim.isRemovedOnCompletion = false
     return anim
   }
   
@@ -115,31 +137,69 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   }
   
   private func animateToNotify() {
-    let fadeOut = buildAnimation(keyPath: "opacity",
-                                 values: [1, 0],
-                                 keyTimes: [0, 0.1])
+    
+  }
+  
+  private func animateToEmail() {
+    let labelFadeOut = buildKeyFrameAnimation(keyPath: "opacity",
+                                         values: [1, 0],
+                                         keyTimes: [0, 0.2],
+                                         duration: 1.0)
+    
     
     var w: CGFloat = desiredMaxWith
     if let superWidth = superview?.bounds.size.width {
       w = min(desiredMaxWith, superWidth - 16)
     }
-    let grow = buildAnimation(keyPath: "bounds",
-                              values: [
-                                layer.position,
-                                CGRect(x: layer.bounds.origin.x,
-                                       y: layer.bounds.origin.y,
-                                       width: w,
-                                       height: layer.bounds.size.height)
-      ],
-                              keyTimes: [0.15, 0.30])
-  }
-  
-  private func animateToEmail() {
+    let destBounds = CGRect(x: layer.bounds.origin.x,
+                            y: layer.bounds.origin.y,
+                            width: w,
+                            height: layer.bounds.size.height)
+    let grow = buildKeyFrameAnimation(keyPath: "bounds",
+                                      values: [layer.bounds,
+                                               destBounds],
+                                      keyTimes: [0.2, 0.5],
+                                      duration: 1.0)
+    layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
+    let emailFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
+                                             values: [0, 1],
+                                             keyTimes: [0.5, 0.7],
+                                             duration: 1.0)
+    
+    let inputFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
+                                             values: [0, 1],
+                                             keyTimes: [0.5, 0.7],
+                                             duration: 1.0,
+                                             delegate: self)
+    
+    let offsetWidth = w - layer.bounds.size.width
+    sendButton.layer.position.x += offsetWidth
+    let sendButtonFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
+                                                  values: [0, 1],
+                                                  keyTimes: [0.5, 0.7],
+                                                  duration: 1.0)
+//    inputLabel.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
+//    inputLabel.layer.frame.size.width += offsetWidth
+//    placeholder.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
+//    placeholder.layer.frame.size.width += offsetWidth
+    
+    label.layer.add(labelFadeOut, forKey: "labelFadeOut")
+    layer.add(grow, forKey: "grow")
+    placeholder.layer.add(emailFadeIn, forKey: "emailFadeIn")
+    inputLabel.layer.add(inputFadeIn, forKey: "inputFadeIn")
+    sendButton.layer.add(sendButtonFadeIn, forKey: "sendButtonFadeIn")
+    
+    completion = activateEmailState
   }
   
   private func animateToThanks() {
     
+  }
+  
+  private func activateEmailState() {
+    inputLabel.isHidden = false
+    inputLabel.becomeFirstResponder()
   }
   
   
@@ -150,7 +210,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     if state == .AskForNotification {
       animate(toState: .AskEmail)
     }
-    
+    /*
       let group = CAAnimationGroup()
       let fadeOut = buildAnimation(keyPath: "opacity",
                                    values: [1, 0],
@@ -227,7 +287,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
               name: "fadeIn",
               easing: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut),
               delay: 0.3)*/
-//    }
+//    }*/
   }
   
   private func updateState() {
@@ -248,6 +308,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   // *********************************************************************
   // MARK: - CAAnimationDelegate Methods
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    completion?()
     animationRunning = false
     updateState()
   }
