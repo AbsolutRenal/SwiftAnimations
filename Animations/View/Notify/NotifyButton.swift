@@ -23,9 +23,15 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   // *********************************************************************
   // MARK: - IBOutlet
-  @IBOutlet weak var label: UILabel! {
+  @IBOutlet weak var label: UIButton! {
     didSet {
-      label.text = notifyLabel
+      label.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
+      label.setTitleColor(UIColor(red: 255.0/255.0,
+                                  green: 145.0/255.0,
+                                  blue: 133.0/255.0,
+                                  alpha: 255.0/255.0),
+                          for: .normal)
+      label.setTitle(notifyLabel, for: .normal)
     }
   }
   @IBOutlet weak var placeholder: UILabel! {
@@ -76,11 +82,6 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       return animCompletion[state]
     }
   }
-  private lazy var tapGesture: UITapGestureRecognizer = {
-    return UITapGestureRecognizer(target: self,
-                                  action: #selector(expandButton))
-  }()
-  
   weak var delegate: NotifyButtonDelegate?
   
   // *********************************************************************
@@ -101,20 +102,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   }
   
   private func configure() {
-    addTapGesture()
-  }
-  
-  private func addTapGesture() {
-    addGestureRecognizer(tapGesture)
-  }
-  
-  private func removeTapGesture() {
-    removeGestureRecognizer(tapGesture)
+    
   }
   
   // *********************************************************************
   // MARK: - IBAction
-  func expandButton() {
+  @IBAction func expandButton(_ sender: UIButton) {
     if state == .AskForNotification {
       animate(toState: .AskEmail)
     }
@@ -278,7 +271,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                         delegate: nil,
                                         timingFunctions: [easeInOut()])
 
-    label.text = thanksLabel
+//    label.text = thanksLabel
     let labelFadeIn = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                               values: [0, 1],
                                                                               keyTimes: [0.2, 0.4],
@@ -300,18 +293,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   private func activateEmailState() {
     inputLabel.isHidden = false
     inputLabel.becomeFirstResponder()
-    removeTapGesture()
+    label.isEnabled = false
   }
-  
-  
-  // *********************************************************************
-  // MARK: - Touch
-//  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    super.touchesEnded(touches, with: event)
-//    if state == .AskForNotification {
-//      animate(toState: .AskEmail)
-//    }
-//  }
   
   private func updateState() {
     switch state {

@@ -38,12 +38,13 @@
                                                     <constraint firstAttribute="width" constant="120" id="giy-qa-p0o"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qn7-aV-c8M">
-                                                <rect key="frame" x="8" y="11" width="327" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" red="1" green="0.56671130657196045" blue="0.52343326807022095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7h-27-GLS">
+                                                <rect key="frame" x="16" y="7" width="311" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="expandButton:" destination="lR4-YJ-EvR" eventType="touchUpInside" id="RiT-gx-o7t"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJL-wS-BGo">
                                                 <rect key="frame" x="14" y="11" width="44" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -77,9 +78,9 @@
                                             <constraint firstItem="wJL-wS-BGo" firstAttribute="height" secondItem="Spm-QN-wyz" secondAttribute="height" id="1xU-5g-9ZY"/>
                                             <constraint firstItem="Spm-QN-wyz" firstAttribute="centerY" secondItem="lR4-YJ-EvR" secondAttribute="centerY" id="C0D-0M-3yM"/>
                                             <constraint firstAttribute="bottom" secondItem="ySc-ia-340" secondAttribute="bottom" constant="2" id="CX3-tP-LFm"/>
+                                            <constraint firstItem="z7h-27-GLS" firstAttribute="centerY" secondItem="lR4-YJ-EvR" secondAttribute="centerY" id="Cvb-8e-Ig9"/>
                                             <constraint firstAttribute="bottom" secondItem="ySc-ia-340" secondAttribute="bottom" constant="2" id="FFC-sN-wiV"/>
                                             <constraint firstItem="wJL-wS-BGo" firstAttribute="leading" secondItem="Spm-QN-wyz" secondAttribute="leading" id="HxH-UJ-Ekh"/>
-                                            <constraint firstItem="qn7-aV-c8M" firstAttribute="leading" secondItem="lR4-YJ-EvR" secondAttribute="leading" constant="8" id="LWe-J4-pux"/>
                                             <constraint firstItem="ySc-ia-340" firstAttribute="leading" secondItem="Spm-QN-wyz" secondAttribute="trailing" constant="8" id="RxJ-ax-e9e"/>
                                             <constraint firstAttribute="trailing" secondItem="ySc-ia-340" secondAttribute="trailing" constant="2" id="TcF-nZ-pqz"/>
                                             <constraint firstAttribute="bottom" secondItem="8Ji-a1-o3g" secondAttribute="bottom" id="UtF-8o-tLZ"/>
@@ -87,9 +88,9 @@
                                             <constraint firstItem="ySc-ia-340" firstAttribute="top" secondItem="lR4-YJ-EvR" secondAttribute="top" constant="2" id="bwT-du-1dl"/>
                                             <constraint firstAttribute="trailing" secondItem="ySc-ia-340" secondAttribute="trailing" constant="2" id="cVr-Nm-lYF"/>
                                             <constraint firstItem="ySc-ia-340" firstAttribute="top" secondItem="lR4-YJ-EvR" secondAttribute="top" constant="2" id="h1g-P1-xuf"/>
-                                            <constraint firstItem="qn7-aV-c8M" firstAttribute="centerY" secondItem="lR4-YJ-EvR" secondAttribute="centerY" id="ihw-Mn-0wT"/>
+                                            <constraint firstItem="z7h-27-GLS" firstAttribute="leading" secondItem="lR4-YJ-EvR" secondAttribute="leading" constant="16" id="oO4-GS-YTv"/>
+                                            <constraint firstAttribute="trailing" secondItem="z7h-27-GLS" secondAttribute="trailing" constant="16" id="ofc-sJ-F07"/>
                                             <constraint firstItem="8Ji-a1-o3g" firstAttribute="centerX" secondItem="lR4-YJ-EvR" secondAttribute="centerX" id="reN-xe-eX5"/>
-                                            <constraint firstAttribute="trailing" secondItem="qn7-aV-c8M" secondAttribute="trailing" constant="8" id="ryQ-bZ-M57"/>
                                             <constraint firstAttribute="height" constant="44" id="tQX-UM-sM9"/>
                                             <constraint firstItem="8Ji-a1-o3g" firstAttribute="top" secondItem="lR4-YJ-EvR" secondAttribute="top" id="ww8-WM-RyR"/>
                                             <constraint firstItem="wJL-wS-BGo" firstAttribute="baseline" secondItem="Spm-QN-wyz" secondAttribute="baseline" id="zEh-V1-WpY"/>
@@ -97,7 +98,7 @@
                                         <connections>
                                             <outlet property="background" destination="8Ji-a1-o3g" id="bF1-RM-iGf"/>
                                             <outlet property="inputLabel" destination="Spm-QN-wyz" id="htc-Of-HnB"/>
-                                            <outlet property="label" destination="qn7-aV-c8M" id="dly-YU-1Tk"/>
+                                            <outlet property="label" destination="z7h-27-GLS" id="Wnj-xf-cte"/>
                                             <outlet property="placeholder" destination="wJL-wS-BGo" id="vnQ-TC-QYS"/>
                                             <outlet property="sendButton" destination="ySc-ia-340" id="jHY-c0-7g1"/>
                                         </connections>
