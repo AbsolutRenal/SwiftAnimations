@@ -282,11 +282,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                                               keyTimes: [0.2, 0.4],
                                                                               delegate: nil,
                                                                               timingFunctions: [easeInOut()])],
-                                          duration: 1.0)
+                                          duration: 1.0,
+                                          delegate: self)
     
     inputLabel.layer.add(inputLabelDisappear, forKey: "inputLabelDisappear")
     sendButton.layer.add(sendButtonDisappear, forKey: "sendButtonDisappear")
-    background.layer.add(shrink, forKey: "shrink")
+//    background.layer.add(shrink, forKey: "shrink")
     label.layer.add(labelFadeIn, forKey: "labelFadeIn")
   }
   
@@ -294,8 +295,6 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     inputLabel.isHidden = false
     inputLabel.becomeFirstResponder()
     label.isEnabled = false
-//    sendButton.layer.transform = CATransform3DIdentity
-//    sendButton.layer.opacity = 1.0
   }
   
   private func updateState() {
