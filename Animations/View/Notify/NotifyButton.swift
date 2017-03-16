@@ -63,7 +63,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   private let thanksLabel = "Thank you!"
   private let placeHolderLabel = "E-mail"
   private let sendLabel = "Send"
-  private let backgroundStartWidth = 120
+  private let backgroundStartWidth: CGFloat = 120.0
   
   private var state: NotifyButtonState = .AskForNotification
   private var animationRunning = false
@@ -241,7 +241,60 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   }
   
   private func animateToThanks() {
+    inputLabel.sizeToFit()
+    inputLabel.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    let inputLabelDisappear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                                      values: [1, 0],
+                                                                                      keyTimes: [0.0, 0.15],
+                                                                                      delegate: nil,
+                                                                                      timingFunctions: [easeInOut()]),
+                                                               buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                                      values: [1.0, 0.5],
+                                                                                      keyTimes: [0.0, 0.15],
+                                                                                      delegate: nil,
+                                                                                      timingFunctions: [easeInOut()])],
+                                                  duration: 1.0)
     
+    let sendButtonDisappear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                                      values: [1, 0],
+                                                                                      keyTimes: [0.0, 0.15],
+                                                                                      delegate: nil,
+                                                                                      timingFunctions: [easeInOut()]),
+                                                               buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                                      values: [1.0, 0.5],
+                                                                                      keyTimes: [0.0, 0.15],
+                                                                                      delegate: nil,
+                                                                                      timingFunctions: [easeInOut()])],
+                                                  duration: 1.0)
+    
+    let shrink = buildKeyFrameAnimation(keyPath: "bounds",
+                                        values: [background.layer.bounds,
+                                                 CGRect(x: layer.bounds.width - backgroundStartWidth * 0.5,
+                                                        y: background.layer.bounds.origin.y,
+                                                        width: backgroundStartWidth,
+                                                        height: background.layer.bounds.height)],
+                                        keyTimes: [0.2, 0.4],
+                                        duration: 1.0,
+                                        delegate: nil,
+                                        timingFunctions: [easeInOut()])
+
+    label.text = thanksLabel
+    let labelFadeIn = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                              values: [0, 1],
+                                                                              keyTimes: [0.2, 0.4],
+                                                                              delegate: nil,
+                                                                              timingFunctions: [easeInOut()]),
+                                                       buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                              values: [0.5, 1.0],
+                                                                              keyTimes: [0.2, 0.4],
+                                                                              delegate: nil,
+                                                                              timingFunctions: [easeInOut()])],
+                                          duration: 1.0)
+    
+    inputLabel.layer.add(inputLabelDisappear, forKey: "inputLabelDisappear")
+    sendButton.layer.add(sendButtonDisappear, forKey: "sendButtonDisappear")
+    background.layer.add(shrink, forKey: "shrink")
+    label.layer.add(labelFadeIn, forKey: "labelFadeIn")
   }
   
   private func activateEmailState() {
