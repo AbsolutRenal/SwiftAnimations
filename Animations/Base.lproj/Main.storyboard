@@ -28,18 +28,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zS-pl-Smx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-YJ-EvR" customClass="NotifyButton" customModule="Animations" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="89" width="359" height="44"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-YJ-EvR" customClass="NotifyButton" customModule="Animations" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="89" width="343" height="44"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ji-a1-o3g">
-                                                <rect key="frame" x="119.5" y="0.0" width="120" height="44"/>
+                                                <rect key="frame" x="111.5" y="0.0" width="120" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="giy-qa-p0o"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qn7-aV-c8M">
-                                                <rect key="frame" x="8" y="11" width="343" height="21"/>
+                                                <rect key="frame" x="8" y="11" width="327" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.56671130657196045" blue="0.52343326807022095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -51,13 +51,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Spm-QN-wyz">
-                                                <rect key="frame" x="14" y="11.5" width="281" height="21"/>
+                                                <rect key="frame" x="14" y="11.5" width="265" height="21"/>
                                                 <color key="textColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-ia-340">
-                                                <rect key="frame" x="303" y="2" width="54" height="40"/>
+                                                <rect key="frame" x="287" y="2" width="54" height="40"/>
                                                 <color key="backgroundColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="54" id="xIl-le-jBf"/>
@@ -106,9 +106,9 @@
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="lR4-YJ-EvR" firstAttribute="centerY" secondItem="5zS-pl-Smx" secondAttribute="centerY" id="09I-d3-2Yb"/>
-                                    <constraint firstAttribute="trailing" secondItem="lR4-YJ-EvR" secondAttribute="trailing" constant="8" id="IrH-gz-DOM"/>
+                                    <constraint firstAttribute="trailing" secondItem="lR4-YJ-EvR" secondAttribute="trailing" constant="16" id="IrH-gz-DOM"/>
                                     <constraint firstItem="lR4-YJ-EvR" firstAttribute="centerX" secondItem="5zS-pl-Smx" secondAttribute="centerX" id="Qor-pY-88f"/>
-                                    <constraint firstItem="lR4-YJ-EvR" firstAttribute="leading" secondItem="5zS-pl-Smx" secondAttribute="leading" constant="8" id="XXV-2P-zVW"/>
+                                    <constraint firstItem="lR4-YJ-EvR" firstAttribute="leading" secondItem="5zS-pl-Smx" secondAttribute="leading" constant="16" id="XXV-2P-zVW"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ceh-oU-fSA">

@@ -47,6 +47,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       sendButton.layer.cornerRadius = sendButton.bounds.height * 0.5
       sendButton.layer.opacity = 0.0
       sendButton.setTitle(sendLabel, for: .normal)
+      sendButton.setTitleColor(UIColor.white, for: .normal)
+      sendButton.setTitleColor(UIColor(white: 1.0, alpha: 0.5), for: .disabled)
       activateSendButton(activate: false)
     }
   }
@@ -74,6 +76,10 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       return animCompletion[state]
     }
   }
+  private lazy var tapGesture: UITapGestureRecognizer = {
+    return UITapGestureRecognizer(target: self,
+                                  action: #selector(expandButton))
+  }()
   
   weak var delegate: NotifyButtonDelegate?
   
@@ -95,8 +101,15 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   }
   
   private func configure() {
-    addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                action: #selector(expandButton)))
+    addTapGesture()
+  }
+  
+  private func addTapGesture() {
+    addGestureRecognizer(tapGesture)
+  }
+  
+  private func removeTapGesture() {
+    removeGestureRecognizer(tapGesture)
   }
   
   // *********************************************************************
@@ -121,13 +134,13 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                       keyTimes: [NSNumber]?,
                                       duration: CFTimeInterval = 0,
                                       delegate: CAAnimationDelegate? = nil,
-                                      calculationMode: String = kCAAnimationLinear) -> CAKeyframeAnimation {
+                                      timingFunctions: [CAMediaTimingFunction]? = nil) -> CAKeyframeAnimation {
     let anim = CAKeyframeAnimation(keyPath: keyPath)
     anim.values = values
     anim.keyTimes = keyTimes
     anim.delegate = delegate
-    anim.calculationMode = calculationMode
     anim.fillMode = kCAFillModeForwards
+    anim.timingFunctions = timingFunctions
     anim.isRemovedOnCompletion = false
     anim.duration = duration
     return anim
@@ -159,6 +172,10 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     }
   }
   
+  private func easeInOut() -> CAMediaTimingFunction {
+    return CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1)
+  }
+  
   private func animateToNotify() {
     
   }
@@ -167,41 +184,56 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     placeholder.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     let labelFadeOut = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                values: [1, 0],
-                                                                               keyTimes: [0, 0.2]),
+                                                                               keyTimes: [0, 0.2],
+                                                                               delegate: nil,
+                                                                               timingFunctions: [easeInOut()]),
                                                         buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                values: [1.0, 0.5],
-                                                                               keyTimes: [0, 0.2])],
+                                                                               keyTimes: [0, 0.2],
+                                                                               delegate: nil,
+                                                                               timingFunctions: [easeInOut()])],
                                            duration: 1.0)
     
     let grow = buildKeyFrameAnimation(keyPath: "bounds",
                                       values: [background.layer.bounds,
                                                layer.bounds],
                                       keyTimes: [0.2, 0.5],
-                                      duration: 1.0)
+                                      duration: 1.0,
+                                      delegate: nil,
+                                      timingFunctions: [easeInOut()])
     background.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
     placeholder.layer.transform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
     let emailDisplay = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                values: [0, 0.5],
-                                                                               keyTimes: [0.5, 0.7]),
+                                                                               keyTimes: [0.5, 0.7],
+                                                                               delegate: nil,
+                                                                               timingFunctions: [easeInOut()]),
                                                         buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                values: [0.5, 1.0],
-                                                                               keyTimes: [0.5, 0.7])],
+                                                                               keyTimes: [0.5, 0.7],
+                                                                               delegate: nil,
+                                                                               timingFunctions: [easeInOut()])],
                                            duration: 1.0)
     
     let inputFadeIn = buildKeyFrameAnimation(keyPath: "opacity",
                                              values: [0, 1],
                                              keyTimes: [0.5, 0.7],
                                              duration: 1.0,
-                                             delegate: self)
+                                             delegate: self,
+                                             timingFunctions: [easeInOut()])
     
     sendButton.layer.transform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
     let sendButtonDisplay = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                     values: [0, 1],
-                                                                                    keyTimes: [0.5, 0.7]),
+                                                                                    keyTimes: [0.5, 0.7],
+                                                                                    delegate: nil,
+                                                                                    timingFunctions: [easeInOut()]),
                                                              buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                     values: [0.5, 1.0],
-                                                                                    keyTimes: [0.5, 0.7])],
+                                                                                    keyTimes: [0.5, 0.7],
+                                                                                    delegate: nil,
+                                                                                    timingFunctions: [easeInOut()])],
                                                 duration: 1.0)
     
     label.layer.add(labelFadeOut, forKey: "labelFadeOut")
@@ -220,6 +252,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   private func activateEmailState() {
     inputLabel.isHidden = false
     inputLabel.becomeFirstResponder()
+    removeTapGesture()
   }
   
   
@@ -252,8 +285,9 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   private func activateSendButton(activate: Bool) {
     sendButton.isEnabled = activate
-    sendButton.isUserInteractionEnabled = true
     sendButton.titleLabel?.layer.opacity = activate ? 1.0 : 0.5
+    sendButton.titleLabel?.setNeedsLayout()
+    sendButton.titleLabel?.layoutIfNeeded()
   }
   
   // *********************************************************************
