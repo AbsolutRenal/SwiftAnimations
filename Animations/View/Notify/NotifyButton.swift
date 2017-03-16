@@ -16,6 +16,7 @@ protocol NotifyButtonDelegate: class {
 
 class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   enum NotifyButtonState {
+    case HideThanks
     case AskForNotification
     case AskEmail
     case Thanks
@@ -111,6 +112,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       return
     }
     delegate?.sendButtonDidTap(email: email)
+    sendButton.resignFirstResponder()
     activateSendButton(activate: false)
     animate(toState: .Thanks)
   }
@@ -158,6 +160,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
         animateToEmail()
       case .Thanks:
         animateToThanks()
+      case .HideThanks:
+        animateHideThanks()
       }
     }
   }
@@ -166,8 +170,62 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     return CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1)
   }
   
+  private func animateHideThanks() {
+    let destScale = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
+    let labelDisappear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                                 values: [1.0, 0.0],
+                                                                                 keyTimes: [0.0, 1.0],
+                                                                                 delegate: nil,
+                                                                                 timingFunctions: [easeInOut()],
+                                                                                 removeOnCompletion: true),
+                                                          buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                                 values: [1.0,
+                                                                                          0.5],
+                                                                                 keyTimes: [0.0, 1.0],
+                                                                                 duration: 0.0,
+                                                                                 delegate: nil,
+                                                                                 timingFunctions: [easeInOut()],
+                                                                                 removeOnCompletion: true)],
+                                             duration: 0.2,
+                                             delegate: self,
+                                             removeOnCompletion: true)
+    completion = { [weak self] in
+      self?.label.setTitle(self?.notifyLabel, for: .normal)
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.1,
+                                    execute: { 
+                                      self?.animate(toState: .AskForNotification)
+      })
+    }
+    label.layer.add(labelDisappear, forKey: "labelDisappear")
+    label.layer.opacity = 0.0
+    label.layer.transform = destScale
+  }
+  
   private func animateToNotify() {
-    
+    let labelAppear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
+                                                                              values: [0.0, 1.0],
+                                                                              keyTimes: [0.0, 1.0],
+                                                                              duration: 0.0,
+                                                                              delegate: nil,
+                                                                              timingFunctions: [easeInOut()],
+                                                                              removeOnCompletion: true),
+                                                       buildKeyFrameAnimation(keyPath: "transform.scale",
+                                                                              values: [0.5,
+                                                                                       1.0],
+                                                                              keyTimes: [0.0, 1.0],
+                                                                              duration: 0.0,
+                                                                              delegate: nil,
+                                                                              timingFunctions: [easeInOut()],
+                                                                              removeOnCompletion: true)],
+                                          duration: 0.2,
+                                          delegate: self,
+                                          removeOnCompletion: true)
+    completion = { [weak self] in
+      self?.label.isEnabled = true
+    }
+    label.layer.add(labelAppear, forKey: "labelAppear")
+    label.layer.opacity = 1.0
+    label.layer.transform = CATransform3DIdentity
   }
   
   private func animateToEmail() {
@@ -190,7 +248,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                       keyTimes: [0.2, 0.5],
                                       duration: 1.0,
                                       delegate: nil,
-                                      timingFunctions: [easeInOut()])
+                                      timingFunctions: [easeInOut()],
+                                      removeOnCompletion: true)
     
     placeholder.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     placeholder.layer.transform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
@@ -225,6 +284,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     
     label.layer.add(labelFadeOut, forKey: "labelFadeOut")
     background.layer.add(grow, forKey: "grow")
+    background.layer.bounds = layer.bounds
+    
     placeholder.layer.add(placeholderDisplay, forKey: "placeholderDisplay")
     sendButton.layer.add(sendButtonDisplay, forKey: "sendButtonDisplay")
     sendButton.layer.opacity = 1.0
@@ -260,26 +321,28 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                                                       timingFunctions: [easeInOut()])],
                                                   duration: 1.0)
     
+    let destBackgroundBounds = CGRect(x: layer.bounds.width - backgroundStartWidth * 0.5,
+                                      y: background.layer.bounds.origin.y,
+                                      width: backgroundStartWidth,
+                                      height: background.layer.bounds.height)
     let shrink = buildKeyFrameAnimation(keyPath: "bounds",
                                         values: [background.layer.bounds,
-                                                 CGRect(x: layer.bounds.width - backgroundStartWidth * 0.5,
-                                                        y: background.layer.bounds.origin.y,
-                                                        width: backgroundStartWidth,
-                                                        height: background.layer.bounds.height)],
-                                        keyTimes: [0.2, 0.4],
+                                                 destBackgroundBounds],
+                                        keyTimes: [0.2, 0.5],
                                         duration: 1.0,
                                         delegate: nil,
-                                        timingFunctions: [easeInOut()])
+                                        timingFunctions: [easeInOut()],
+                                        removeOnCompletion: true)
 
     label.setTitle(thanksLabel, for: .normal)
     let labelFadeIn = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                               values: [0, 1],
-                                                                              keyTimes: [0.2, 0.4],
+                                                                              keyTimes: [0.2, 0.5],
                                                                               delegate: nil,
                                                                               timingFunctions: [easeInOut()]),
                                                        buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                               values: [0.5, 1.0],
-                                                                              keyTimes: [0.2, 0.4],
+                                                                              keyTimes: [0.2, 0.5],
                                                                               delegate: nil,
                                                                               timingFunctions: [easeInOut()])],
                                           duration: 1.0,
@@ -287,8 +350,17 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     
     inputLabel.layer.add(inputLabelDisappear, forKey: "inputLabelDisappear")
     sendButton.layer.add(sendButtonDisappear, forKey: "sendButtonDisappear")
-//    background.layer.add(shrink, forKey: "shrink")
+    background.layer.add(shrink, forKey: "shrink")
+    background.layer.bounds = destBackgroundBounds
     label.layer.add(labelFadeIn, forKey: "labelFadeIn")
+    
+    completion = { [weak self] in
+      self?.inputLabel.isHidden = true
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2.0,
+                                    execute: { [weak self] in
+                                      self?.animate(toState: .HideThanks)
+      })
+    }
   }
   
   private func activateEmailState() {
@@ -304,6 +376,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     case .AskEmail:
       state = .Thanks
     case .Thanks:
+      state = .HideThanks
+    case .HideThanks:
       state = .AskForNotification
     }
   }
@@ -332,8 +406,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   // *********************************************************************
   // MARK: - CAAnimationDelegate Methods
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-    completion?()
     animationRunning = false
+    completion?()
     updateState()
   }
 }
