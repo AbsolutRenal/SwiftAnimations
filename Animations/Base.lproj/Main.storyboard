@@ -57,7 +57,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-ia-340">
+                                            <button contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-ia-340">
                                                 <rect key="frame" x="263" y="2" width="78" height="40"/>
                                                 <color key="backgroundColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
