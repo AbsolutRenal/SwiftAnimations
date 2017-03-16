@@ -104,6 +104,9 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstItem="lR4-YJ-EvR" firstAttribute="centerY" secondItem="5zS-pl-Smx" secondAttribute="centerY" id="09I-d3-2Yb"/>
                                     <constraint firstAttribute="trailing" secondItem="lR4-YJ-EvR" secondAttribute="trailing" constant="16" id="IrH-gz-DOM"/>
