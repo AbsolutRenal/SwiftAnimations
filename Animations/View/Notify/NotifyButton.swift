@@ -333,7 +333,6 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   private func activateSendButton(activate: Bool) {
     sendButton.isEnabled = activate
-    sendButton.titleLabel?.layer.opacity = activate ? 1.0 : 0.5
     sendButton.titleLabel?.setNeedsLayout()
     sendButton.titleLabel?.layoutIfNeeded()
   }

@@ -22,17 +22,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvW-QN-wQ5">
-                                <rect key="frame" x="0.0" y="445" width="375" height="222"/>
+                                <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.15686274510000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zS-pl-Smx">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-YJ-EvR" customClass="NotifyButton" customModule="Animations" customModuleProvider="target">
                                         <rect key="frame" x="16" y="89" width="343" height="44"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ji-a1-o3g">
-                                                <rect key="frame" x="111.5" y="0.0" width="120" height="44"/>
+                                                <rect key="frame" x="112" y="0.0" width="120" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="giy-qa-p0o"/>
@@ -45,25 +45,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJL-wS-BGo">
-                                                <rect key="frame" x="14" y="11" width="43.5" height="21"/>
+                                                <rect key="frame" x="14" y="11" width="44" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Spm-QN-wyz">
-                                                <rect key="frame" x="14" y="11.5" width="265" height="21"/>
+                                                <rect key="frame" x="14" y="11" width="241" height="21"/>
                                                 <color key="textColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-ia-340">
-                                                <rect key="frame" x="287" y="2" width="54" height="40"/>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-ia-340">
+                                                <rect key="frame" x="263" y="2" width="78" height="40"/>
                                                 <color key="backgroundColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="54" id="xIl-le-jBf"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="xIl-le-jBf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -115,7 +115,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ceh-oU-fSA">
-                                <rect key="frame" x="0.0" y="222.5" width="375" height="222.5"/>
+                                <rect key="frame" x="0.0" y="222.5" width="375" height="222"/>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.60392156860000001" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
