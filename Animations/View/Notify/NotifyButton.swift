@@ -113,7 +113,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
       return
     }
     delegate?.sendButtonDidTap(email: email)
-    sendButton.resignFirstResponder()
+    inputLabel.resignFirstResponder()
     activateSendButton(activate: false)
     animate(toState: .Thanks)
   }
