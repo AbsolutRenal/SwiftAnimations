@@ -125,29 +125,25 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                       keyTimes: [NSNumber]?,
                                       duration: CFTimeInterval = 0,
                                       delegate: CAAnimationDelegate? = nil,
-                                      timingFunctions: [CAMediaTimingFunction]? = nil,
-                                      removeOnCompletion: Bool = true) -> CAKeyframeAnimation {
+                                      timingFunctions: [CAMediaTimingFunction]? = nil) -> CAKeyframeAnimation {
     let anim = CAKeyframeAnimation(keyPath: keyPath)
     anim.values = values
     anim.keyTimes = keyTimes
     anim.delegate = delegate
     anim.fillMode = kCAFillModeForwards
     anim.timingFunctions = timingFunctions
-    anim.isRemovedOnCompletion = removeOnCompletion
     anim.duration = duration
     return anim
   }
   
   private func buildAnimationGroup(animations: [CAAnimation],
                                    duration: CFTimeInterval,
-                                   delegate: CAAnimationDelegate? = nil,
-                                   removeOnCompletion: Bool = false) -> CAAnimationGroup {
+                                   delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
     let anim = CAAnimationGroup()
     anim.animations = animations
     anim.duration = duration
     anim.delegate = delegate
     anim.fillMode = kCAFillModeForwards
-    anim.isRemovedOnCompletion = removeOnCompletion
     return anim
   }
   
@@ -176,19 +172,16 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                                                  values: [1.0, 0.0],
                                                                                  keyTimes: [0.0, 1.0],
                                                                                  delegate: nil,
-                                                                                 timingFunctions: [easeInOut()],
-                                                                                 removeOnCompletion: true),
+                                                                                 timingFunctions: [easeInOut()]),
                                                           buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                  values: [1.0,
                                                                                           0.5],
                                                                                  keyTimes: [0.0, 1.0],
                                                                                  duration: 0.0,
                                                                                  delegate: nil,
-                                                                                 timingFunctions: [easeInOut()],
-                                                                                 removeOnCompletion: true)],
+                                                                                 timingFunctions: [easeInOut()])],
                                              duration: 0.2,
-                                             delegate: self,
-                                             removeOnCompletion: true)
+                                             delegate: self)
     completion = { [weak self] in
       self?.label.setTitle(self?.notifyLabel, for: .normal)
       DispatchQueue.main.asyncAfter(deadline: .now() + 0.1,
@@ -207,18 +200,15 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                                               keyTimes: [0.0, 1.0],
                                                                               duration: 0.0,
                                                                               delegate: nil,
-                                                                              timingFunctions: [easeInOut()],
-                                                                              removeOnCompletion: true),
+                                                                              timingFunctions: [easeInOut()]),
                                                        buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                               values: [0.5, 1.0],
                                                                               keyTimes: [0.0, 1.0],
                                                                               duration: 0.0,
                                                                               delegate: nil,
-                                                                              timingFunctions: [easeInOut()],
-                                                                              removeOnCompletion: true)],
+                                                                              timingFunctions: [easeInOut()])],
                                           duration: 0.2,
-                                          delegate: self,
-                                          removeOnCompletion: true)
+                                          delegate: self)
     completion = { [weak self] in
       self?.label.isEnabled = true
     }
@@ -247,11 +237,11 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                       keyTimes: [0.2, 0.5],
                                       duration: 1.0,
                                       delegate: nil,
-                                      timingFunctions: [easeInOut()],
-                                      removeOnCompletion: true)
+                                      timingFunctions: [easeInOut()])
     
     placeholder.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     placeholder.layer.transform = halfScaleTransform
+    placeholder.isHidden = false
     let placeholderDisplay = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                      values: [0, 0.5],
                                                                                      keyTimes: [0.5, 0.7],
@@ -269,17 +259,14 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                                                     values: [0, 1],
                                                                                     keyTimes: [0.5, 0.7],
                                                                                     delegate: nil,
-                                                                                    timingFunctions: [easeInOut()],
-                                                                                    removeOnCompletion: true),
+                                                                                    timingFunctions: [easeInOut()]),
                                                              buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                     values: [0.5, 1.0],
                                                                                     keyTimes: [0.5, 0.7],
                                                                                     delegate: nil,
-                                                                                    timingFunctions: [easeInOut()],
-                                                                                    removeOnCompletion: true)],
+                                                                                    timingFunctions: [easeInOut()])],
                                                 duration: 1.0,
-                                                delegate: self,
-                                                removeOnCompletion: true)
+                                                delegate: self)
     
     label.layer.add(labelFadeOut, forKey: "labelFadeOut")
     label.layer.opacity = 0.0
@@ -297,6 +284,8 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     sendButton.layer.transform = CATransform3DIdentity
     
     completion = { [weak self] in
+      self?.inputLabel.layer.transform = CATransform3DIdentity
+      self?.inputLabel.layer.opacity = 1.0
       self?.inputLabel.text = ""
       self?.inputLabel.isHidden = false
       self?.inputLabel.becomeFirstResponder()
@@ -341,8 +330,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                         keyTimes: [0.2, 0.5],
                                         duration: 1.0,
                                         delegate: nil,
-                                        timingFunctions: [easeInOut()],
-                                        removeOnCompletion: true)
+                                        timingFunctions: [easeInOut()])
 
     label.setTitle(thanksLabel, for: .normal)
     let labelFadeIn = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
