@@ -167,6 +167,10 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     return CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1)
   }
   
+  private func easeInOutBump() -> CAMediaTimingFunction {
+    return CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1.5)
+  }
+  
   private func animateHideThanks() {
     let labelDisappear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                  values: [1.0, 0.0],
@@ -231,9 +235,10 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                            duration: 1.0)
     
     background.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    let destBackgroundBounds = layer.bounds
     let grow = buildKeyFrameAnimation(keyPath: "bounds",
                                       values: [background.layer.bounds,
-                                               layer.bounds],
+                                               destBackgroundBounds],
                                       keyTimes: [0.2, 0.5],
                                       duration: 1.0,
                                       delegate: nil,
@@ -264,7 +269,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
                                                                                     values: [0.5, 1.0],
                                                                                     keyTimes: [0.5, 0.7],
                                                                                     delegate: nil,
-                                                                                    timingFunctions: [easeInOut()])],
+                                                                                    timingFunctions: [easeInOutBump()])],
                                                 duration: 1.0,
                                                 delegate: self)
     
@@ -273,7 +278,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
     label.layer.transform = halfScaleTransform
     
     background.layer.add(grow, forKey: "grow")
-    background.layer.bounds = layer.bounds
+    background.layer.bounds = destBackgroundBounds
     
     placeholder.layer.add(placeholderDisplay, forKey: "placeholderDisplay")
     placeholder.layer.opacity = 0.5
