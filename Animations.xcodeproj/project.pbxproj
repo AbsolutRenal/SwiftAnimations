@@ -14,6 +14,7 @@
 		E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F81E66D1BC0058FFFD /* Assets.xcassets */; };
 		E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349FA1E66D1BC0058FFFD /* LaunchScreen.storyboard */; };
 		E2A34A071E66D1BC0058FFFD /* AnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A34A061E66D1BC0058FFFD /* AnimationsTests.swift */; };
+		E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F608921E7FED2F00E374D9 /* Animatable.swift */; };
 		E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB82751E66DD1600F5F15C /* NotifyButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		E2A34A021E66D1BC0058FFFD /* AnimationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A34A061E66D1BC0058FFFD /* AnimationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsTests.swift; sourceTree = "<group>"; };
 		E2A34A081E66D1BC0058FFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2F608921E7FED2F00E374D9 /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		E2FB82751E66DD1600F5F15C /* NotifyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,9 +111,18 @@
 			path = AnimationsTests;
 			sourceTree = "<group>";
 		};
+		E2F608911E7FECC200E374D9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E2F608921E7FED2F00E374D9 /* Animatable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		E2FB82771E66DE0800F5F15C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2F608911E7FECC200E374D9 /* Protocols */,
 				E215EF181E7C34AB00B29E9F /* Share */,
 				E2FB82781E66DE0D00F5F15C /* Notify */,
 			);
@@ -235,6 +246,7 @@
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
+				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
