@@ -14,7 +14,7 @@ protocol NotifyButtonDelegate: class {
   func sendButtonDidTap(email: String)
 }
 
-class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
+class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable {
   enum NotifyButtonState {
     case HideThanks
     case AskForNotification
@@ -120,33 +120,6 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate {
   
   // *********************************************************************
   // MARK: - Private Methods
-  private func buildKeyFrameAnimation(keyPath: String,
-                                      values: [Any],
-                                      keyTimes: [NSNumber]?,
-                                      duration: CFTimeInterval = 0,
-                                      delegate: CAAnimationDelegate? = nil,
-                                      timingFunctions: [CAMediaTimingFunction]? = nil) -> CAKeyframeAnimation {
-    let anim = CAKeyframeAnimation(keyPath: keyPath)
-    anim.values = values
-    anim.keyTimes = keyTimes
-    anim.delegate = delegate
-    anim.fillMode = kCAFillModeForwards
-    anim.timingFunctions = timingFunctions
-    anim.duration = duration
-    return anim
-  }
-  
-  private func buildAnimationGroup(animations: [CAAnimation],
-                                   duration: CFTimeInterval,
-                                   delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
-    let anim = CAAnimationGroup()
-    anim.animations = animations
-    anim.duration = duration
-    anim.delegate = delegate
-    anim.fillMode = kCAFillModeForwards
-    return anim
-  }
-  
   private func animate(toState state: NotifyButtonState) {
     if !animationRunning {
       animationRunning = true

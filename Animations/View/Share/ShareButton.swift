@@ -13,7 +13,7 @@ protocol ShareButtonDelegate: class {
   
 }
 
-class ShareButton: UIView {
+class ShareButton: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
   private let shareLabel = "Share"
