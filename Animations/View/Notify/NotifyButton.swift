@@ -14,7 +14,7 @@ protocol NotifyButtonDelegate: class {
   func sendButtonDidTap(email: String)
 }
 
-class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable {
+class NotifyButton: UIView, UITextFieldDelegate, Animatable {
   enum NotifyButtonState {
     case HideThanks
     case AskForNotification
@@ -72,6 +72,9 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
   private let sendLabel = "Send"
   private let backgroundStartWidth: CGFloat = 120.0
   private let halfScaleTransform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
+  
+  private let easeInOut = CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1)
+  private let easeInOutBump = CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1.5)
   
   private var state: NotifyButtonState = .AskForNotification
   private var animationRunning = false
@@ -136,27 +139,19 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
     }
   }
   
-  private func easeInOut() -> CAMediaTimingFunction {
-    return CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1)
-  }
-  
-  private func easeInOutBump() -> CAMediaTimingFunction {
-    return CAMediaTimingFunction(controlPoints: 0.65, 0, 0.35, 1.5)
-  }
-  
   private func animateHideThanks() {
     let labelDisappear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                  values: [1.0, 0.0],
                                                                                  keyTimes: [0.0, 1.0],
                                                                                  delegate: nil,
-                                                                                 timingFunctions: [easeInOut()]),
+                                                                                 timingFunctions: [easeInOut]),
                                                           buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                  values: [1.0,
                                                                                           0.5],
                                                                                  keyTimes: [0.0, 1.0],
                                                                                  duration: 0.0,
                                                                                  delegate: nil,
-                                                                                 timingFunctions: [easeInOut()])],
+                                                                                 timingFunctions: [easeInOut])],
                                              duration: 0.2,
                                              delegate: self)
     completion = { [weak self] in
@@ -177,13 +172,13 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                                                               keyTimes: [0.0, 1.0],
                                                                               duration: 0.0,
                                                                               delegate: nil,
-                                                                              timingFunctions: [easeInOut()]),
+                                                                              timingFunctions: [easeInOut]),
                                                        buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                               values: [0.5, 1.0],
                                                                               keyTimes: [0.0, 1.0],
                                                                               duration: 0.0,
                                                                               delegate: nil,
-                                                                              timingFunctions: [easeInOut()])],
+                                                                              timingFunctions: [easeInOut])],
                                           duration: 0.2,
                                           delegate: self)
     completion = { [weak self] in
@@ -199,12 +194,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                                                                values: [1, 0],
                                                                                keyTimes: [0, 0.2],
                                                                                delegate: nil,
-                                                                               timingFunctions: [easeInOut()]),
+                                                                               timingFunctions: [easeInOut]),
                                                         buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                values: [1.0, 0.5],
                                                                                keyTimes: [0, 0.2],
                                                                                delegate: nil,
-                                                                               timingFunctions: [easeInOut()])],
+                                                                               timingFunctions: [easeInOut])],
                                            duration: 1.0)
     
     background.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -215,7 +210,7 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                       keyTimes: [0.2, 0.5],
                                       duration: 1.0,
                                       delegate: nil,
-                                      timingFunctions: [easeInOut()])
+                                      timingFunctions: [easeInOut])
     
     placeholder.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     placeholder.layer.transform = halfScaleTransform
@@ -224,12 +219,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                                                                      values: [0, 0.5],
                                                                                      keyTimes: [0.5, 0.7],
                                                                                      delegate: nil,
-                                                                                     timingFunctions: [easeInOut()]),
+                                                                                     timingFunctions: [easeInOut]),
                                                               buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                      values: [0.5, 1.0],
                                                                                      keyTimes: [0.5, 0.7],
                                                                                      delegate: nil,
-                                                                                     timingFunctions: [easeInOut()])],
+                                                                                     timingFunctions: [easeInOut])],
                                                  duration: 1.0)
     
     sendButton.layer.transform = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1.0)
@@ -237,12 +232,12 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                                                                     values: [0, 1],
                                                                                     keyTimes: [0.5, 0.7],
                                                                                     delegate: nil,
-                                                                                    timingFunctions: [easeInOut()]),
+                                                                                    timingFunctions: [easeInOut]),
                                                              buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                     values: [0.5, 1.0],
                                                                                     keyTimes: [0.5, 0.7],
                                                                                     delegate: nil,
-                                                                                    timingFunctions: [easeInOutBump()])],
+                                                                                    timingFunctions: [easeInOutBump])],
                                                 duration: 1.0,
                                                 delegate: self)
     
@@ -278,24 +273,24 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                                                                       values: [1, 0],
                                                                                       keyTimes: [0.0, 0.15],
                                                                                       delegate: nil,
-                                                                                      timingFunctions: [easeInOut()]),
+                                                                                      timingFunctions: [easeInOut]),
                                                                buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                       values: [1.0, 0.5],
                                                                                       keyTimes: [0.0, 0.15],
                                                                                       delegate: nil,
-                                                                                      timingFunctions: [easeInOut()])],
+                                                                                      timingFunctions: [easeInOut])],
                                                   duration: 1.0)
     
     let sendButtonDisappear = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                                       values: [1, 0],
                                                                                       keyTimes: [0.0, 0.15],
                                                                                       delegate: nil,
-                                                                                      timingFunctions: [easeInOut()]),
+                                                                                      timingFunctions: [easeInOut]),
                                                                buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                                       values: [1.0, 0.5],
                                                                                       keyTimes: [0.0, 0.15],
                                                                                       delegate: nil,
-                                                                                      timingFunctions: [easeInOut()])],
+                                                                                      timingFunctions: [easeInOut])],
                                                   duration: 1.0)
     
     let destBackgroundBounds = CGRect(x: layer.bounds.width - backgroundStartWidth * 0.5,
@@ -308,19 +303,19 @@ class NotifyButton: UIView, UITextFieldDelegate, CAAnimationDelegate, Animatable
                                         keyTimes: [0.2, 0.5],
                                         duration: 1.0,
                                         delegate: nil,
-                                        timingFunctions: [easeInOut()])
+                                        timingFunctions: [easeInOut])
 
     label.setTitle(thanksLabel, for: .normal)
     let labelFadeIn = buildAnimationGroup(animations: [buildKeyFrameAnimation(keyPath: "opacity",
                                                                               values: [0, 1],
                                                                               keyTimes: [0.2, 0.5],
                                                                               delegate: nil,
-                                                                              timingFunctions: [easeInOut()]),
+                                                                              timingFunctions: [easeInOut]),
                                                        buildKeyFrameAnimation(keyPath: "transform.scale",
                                                                               values: [0.5, 1.0],
                                                                               keyTimes: [0.2, 0.5],
                                                                               delegate: nil,
-                                                                              timingFunctions: [easeInOut()])],
+                                                                              timingFunctions: [easeInOut])],
                                           duration: 1.0,
                                           delegate: self)
     

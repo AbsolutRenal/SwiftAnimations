@@ -17,6 +17,7 @@ class ShareButton: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
   private let shareLabel = "Share"
+  private let openningEase = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.7, 1)
   
   // *********************************************************************
   // MARK: - IBOutlet
@@ -57,10 +58,22 @@ class ShareButton: UIView, Animatable {
   }
   
   private func openBox() {
-    whiteButton.layer.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-    
+    whiteButton.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+    whiteButton.layer.position = CGPoint(x: whiteButton.layer.position.x,
+                                         y: 0)
+    let open = buildKeyFrameAnimation(keyPath: "transform.rotation.x",
+                                      values: [0.0, M_PI_2],
+                                      keyTimes: [0.0, 1.0],
+                                      duration: 0.5,
+                                      delegate: self,
+                                      timingFunctions: [openningEase])
+    whiteButton.layer.add(open, forKey: "open")
+    whiteButton.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(M_PI_2), 1.0, 0.0, 0.0)
   }
   
   // *********************************************************************
   // MARK: - IBAction
+  @IBAction func whiteButtonDidTap(_ sender: UIButton) {
+    openBox()
+  }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import QuartzCore
 
-protocol Animatable {
+protocol Animatable: CAAnimationDelegate {
   func buildKeyFrameAnimation(keyPath: String,
                               values: [Any],
                               keyTimes: [NSNumber]?,
