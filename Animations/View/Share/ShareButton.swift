@@ -21,7 +21,7 @@ enum ShareType {
   case Viadeo
   case Mail
   
-  func imageName() -> UIImage {
+  func icon() -> UIImage {
     let image: UIImage
     switch self {
     case .Facebook:
@@ -43,7 +43,13 @@ enum ShareType {
   }
 }
 
-class ShareButton: UIView, Animatable {
+class ShareButton: UIView, Animatable, UIScrollViewDelegate {
+  private enum AnimState {
+    case Closed
+    case DisplayButtons
+    case Openned
+  }
+  
   // *********************************************************************
   // MARK: - Constants
   private let shareLabel = "Share"
@@ -59,21 +65,53 @@ class ShareButton: UIView, Animatable {
       whiteButton.layer.cornerRadius = whiteButton.layer.bounds.height * 0.5
     }
   }
+  @IBOutlet weak var container: UIScrollView! {
+    didSet {
+      container.delegate = self
+      container.layer.cornerRadius = container.layer.bounds.height * 0.5
+      container.layer.masksToBounds = true
+      container.contentInset = UIEdgeInsets(top: 4,
+                                            left: 4,
+                                            bottom: 4,
+                                            right: 4)
+    }
+  }
   
   // *********************************************************************
   // MARK: - Properties
   weak var delegate: ShareButtonDelegate?
   
-  private var shareItems: [ShareType] {
+  lazy private var shareItems: [ShareType] = {
+    if let itemsToDisplay = self.items, itemsToDisplay.count > 0 {
+      return itemsToDisplay
+    } else {
+      return ShareType.all()
+    }
+  }()
+  var items: [ShareType]?
+  lazy private var containerButtons: [CALayer] = {
+    var buttons = [CALayer]()
+    var l: CALayer
+    let cornerRadius = (self.container.bounds.height - self.container.contentInset.top - self.container.contentInset.bottom) * 0.5
+    for type in self.shareItems {
+      l = self.layerButton(withRadius: cornerRadius, type: type)
+      self.container.layer.addSublayer(l)
+      buttons.append(l)
+    }
+    return buttons
+  }()
+  
+  private var animationRunning = false
+  private var state: AnimState = .Closed
+  private var animCompletion: [AnimState: (() -> Void)] = [AnimState: (() -> Void)]()
+  private var completion: (() -> Void)? {
     get {
-      if let itemsToDisplay = items, itemsToDisplay.count > 0 {
-        return itemsToDisplay
-      } else {
-        return ShareType.all()
-      }
+      return animCompletion[state]
+    }
+    set {
+      animCompletion[state] = newValue
     }
   }
-  var items: [ShareType]?
   
   // *********************************************************************
   // MARK: - Lifecycle
@@ -93,28 +131,77 @@ class ShareButton: UIView, Animatable {
   }
   
   // *********************************************************************
-  // MARK: - Private func
+  // MARK: - Private
   private func configure() {
     layer.cornerRadius = layer.bounds.height * 0.5
   }
   
   private func openBox() {
-    whiteButton.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-    whiteButton.layer.position = CGPoint(x: whiteButton.layer.position.x,
-                                         y: 0)
-    let open = buildKeyFrameAnimation(keyPath: "transform.rotation.x",
-                                      values: [0.0, M_PI_2],
-                                      keyTimes: [0.0, 1.0],
-                                      duration: 0.5,
-                                      delegate: self,
-                                      timingFunctions: [openningEase])
-    whiteButton.layer.add(open, forKey: "open")
-    whiteButton.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(M_PI_2), 1.0, 0.0, 0.0)
+    if !animationRunning && state == .Closed {
+      animationRunning = true
+      whiteButton.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+      whiteButton.layer.position = CGPoint(x: whiteButton.layer.position.x,
+                                           y: 0)
+      let open = buildKeyFrameAnimation(keyPath: "transform.rotation.x",
+                                        values: [0.0, M_PI_2],
+                                        keyTimes: [0.0, 1.0],
+                                        duration: 0.5,
+                                        delegate: self,
+                                        timingFunctions: [openningEase])
+      whiteButton.layer.add(open, forKey: "open")
+      whiteButton.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(M_PI_2), 1.0, 0.0, 0.0)
+      completion = {
+        self.state = .DisplayButtons
+        self.displayButtons()
+      }
+    }
+  }
+  
+  private func layerButton(withRadius radius: CGFloat, type: ShareType) -> CALayer {
+    let l = CALayer()
+    let innerLayer = CALayer()
+    innerLayer.bounds = CGRect(x: 0,
+                               y: 0,
+                               width: radius,
+                               height: radius)
+    innerLayer.position = CGPoint(x: radius, y: radius)
+    innerLayer.contents = type.icon().cgImage
+    innerLayer.contentsGravity = kCAGravityResizeAspectFill
+    l.addSublayer(innerLayer)
+    l.backgroundColor = UIColor.white.cgColor
+    l.cornerRadius = radius
+    l.bounds = CGRect(x: 0,
+                      y: 0,
+                      width: radius * 2,
+                      height: radius * 2)
+    return l
+  }
+  
+  private func displayButtons() {
+    reinitButtonPosition()
+    
+  }
+  
+  private func reinitButtonPosition() {
+    for i in 0..<containerButtons.count {
+      containerButtons[i].position = CGPoint(x: containerButtons[i].bounds.width * 0.5 + CGFloat(i) * (containerButtons[i].bounds.width + 4),
+                                             y: containerButtons[i].bounds.height * 0.5)
+    }
   }
   
   // *********************************************************************
   // MARK: - IBAction
   @IBAction func whiteButtonDidTap(_ sender: UIButton) {
     openBox()
+  }
+  
+  // *********************************************************************
+  // MARK: - UIScrollViewDelegate
+  
+  // *********************************************************************
+  // MARK: - CAAnimationDelegate
+  func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    animationRunning = false
+    completion?()
   }
 }

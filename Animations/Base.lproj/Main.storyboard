@@ -119,10 +119,13 @@
                                 <rect key="frame" x="0.0" y="222.5" width="375" height="222"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-5Z-XnS" customClass="ShareButton" customModule="Animations" customModuleProvider="target">
-                                        <rect key="frame" x="127" y="89" width="120" height="44"/>
+                                        <rect key="frame" x="125" y="89" width="124" height="44"/>
                                         <subviews>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKn-i4-H9n">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
+                                            </scrollView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zm-cy-0ps">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
+                                                <rect key="frame" x="0.0" y="-0.5" width="124" height="44"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
@@ -132,14 +135,19 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.21176470588235294" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="P21-hM-tWr"/>
+                                            <constraint firstAttribute="width" constant="124" id="P21-hM-tWr"/>
                                             <constraint firstAttribute="trailing" secondItem="2Zm-cy-0ps" secondAttribute="trailing" id="Qs9-TC-QWM"/>
                                             <constraint firstItem="2Zm-cy-0ps" firstAttribute="leading" secondItem="2fA-5Z-XnS" secondAttribute="leading" id="Upu-a0-vZJ"/>
                                             <constraint firstItem="2Zm-cy-0ps" firstAttribute="top" secondItem="2fA-5Z-XnS" secondAttribute="top" id="X8S-Z6-1CO"/>
+                                            <constraint firstAttribute="bottom" secondItem="fKn-i4-H9n" secondAttribute="bottom" id="aJb-XA-rVa"/>
+                                            <constraint firstItem="fKn-i4-H9n" firstAttribute="leading" secondItem="2fA-5Z-XnS" secondAttribute="leading" id="cHP-uf-dT1"/>
                                             <constraint firstAttribute="bottom" secondItem="2Zm-cy-0ps" secondAttribute="bottom" id="fDK-P2-wV0"/>
+                                            <constraint firstItem="fKn-i4-H9n" firstAttribute="top" secondItem="2fA-5Z-XnS" secondAttribute="top" id="kDA-wa-UUT"/>
+                                            <constraint firstAttribute="trailing" secondItem="fKn-i4-H9n" secondAttribute="trailing" id="uvU-Va-RqY"/>
                                             <constraint firstAttribute="height" constant="44" id="zd9-bx-bx9"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="container" destination="fKn-i4-H9n" id="sd8-Wt-h5c"/>
                                             <outlet property="whiteButton" destination="2Zm-cy-0ps" id="J5B-2D-RAn"/>
                                         </connections>
                                     </view>
