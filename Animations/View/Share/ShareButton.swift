@@ -9,8 +9,38 @@
 import Foundation
 import UIKit
 
+
 protocol ShareButtonDelegate: class {
   
+}
+
+enum ShareType {
+  case Facebook
+  case Twitter
+  case LinkedIn
+  case Viadeo
+  case Mail
+  
+  func imageName() -> UIImage {
+    let image: UIImage
+    switch self {
+    case .Facebook:
+      image = #imageLiteral(resourceName: "fb_icon")
+    case .Twitter:
+      image = #imageLiteral(resourceName: "twitter_icon")
+    case .LinkedIn:
+      image = #imageLiteral(resourceName: "linkedIn_icon")
+    case .Viadeo:
+      image = #imageLiteral(resourceName: "viadeo_icon")
+    case .Mail:
+      image = #imageLiteral(resourceName: "mail_icon")
+    }
+    return image
+  }
+  
+  static func all() -> [ShareType] {
+    return [.Facebook, .Twitter, .LinkedIn, .Viadeo, .Mail]
+  }
 }
 
 class ShareButton: UIView, Animatable {
@@ -33,6 +63,17 @@ class ShareButton: UIView, Animatable {
   // *********************************************************************
   // MARK: - Properties
   weak var delegate: ShareButtonDelegate?
+  
+  private var shareItems: [ShareType] {
+    get {
+      if let itemsToDisplay = items, itemsToDisplay.count > 0 {
+        return itemsToDisplay
+      } else {
+        return ShareType.all()
+      }
+    }
+  }
+  var items: [ShareType]?
   
   // *********************************************************************
   // MARK: - Lifecycle
