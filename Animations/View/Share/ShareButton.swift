@@ -111,6 +111,8 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
       buttons.append(button)
       i += 1
     }
+    self.container.contentSize = CGSize(width: (size + self.inset) * CGFloat(i) - self.inset,
+                                        height: size)
     return buttons
   }()
   
