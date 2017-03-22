@@ -11,7 +11,7 @@ import UIKit
 
 
 protocol ShareButtonDelegate: class {
-  
+  func didTapShareButton(withType type: ShareType)
 }
 
 enum ShareType {
@@ -52,6 +52,8 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
   
   // *********************************************************************
   // MARK: - Constants
+  private let inset: CGFloat = 4
+  private let displayDelay = 0.2
   private let shareLabel = "Share"
   private let openningEase = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.7, 1)
   
@@ -70,10 +72,10 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
       container.delegate = self
       container.layer.cornerRadius = container.layer.bounds.height * 0.5
       container.layer.masksToBounds = true
-      container.contentInset = UIEdgeInsets(top: 4,
-                                            left: 4,
-                                            bottom: 4,
-                                            right: 4)
+      container.contentInset = UIEdgeInsets(top: inset,
+                                            left: inset,
+                                            bottom: inset,
+                                            right: inset)
     }
   }
   
@@ -89,14 +91,25 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
     }
   }()
   var items: [ShareType]?
-  lazy private var containerButtons: [CALayer] = {
-    var buttons = [CALayer]()
-    var l: CALayer
-    let cornerRadius = (self.container.bounds.height - self.container.contentInset.top - self.container.contentInset.bottom) * 0.5
+  lazy private var containerButtons: [ShareTypeButton] = {
+    var buttons = [ShareTypeButton]()
+    var button: ShareTypeButton
+    let size = self.container.bounds.height - self.container.contentInset.top - self.container.contentInset.bottom
+    let startFrame = CGRect(x: self.container.bounds.size.width,
+                            y: 0,
+                            width: size,
+                            height: size)
+    var i = 0
     for type in self.shareItems {
-      l = self.layerButton(withRadius: cornerRadius, type: type)
-      self.container.layer.addSublayer(l)
-      buttons.append(l)
+      button = ShareTypeButton(withType: type,
+                               startFrame: startFrame,
+                               endFrame: CGRect(x: CGFloat(i) * (size + self.inset),
+                                                y: 0,
+                                                width: size,
+                                                height: size))
+      self.container.addSubview(button)
+      buttons.append(button)
+      i += 1
     }
     return buttons
   }()
@@ -157,35 +170,16 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
     }
   }
   
-  private func layerButton(withRadius radius: CGFloat, type: ShareType) -> CALayer {
-    let l = CALayer()
-    let innerLayer = CALayer()
-    innerLayer.bounds = CGRect(x: 0,
-                               y: 0,
-                               width: radius,
-                               height: radius)
-    innerLayer.position = CGPoint(x: radius, y: radius)
-    innerLayer.contents = type.icon().cgImage
-    innerLayer.contentsGravity = kCAGravityResizeAspectFill
-    l.addSublayer(innerLayer)
-    l.backgroundColor = UIColor.white.cgColor
-    l.cornerRadius = radius
-    l.bounds = CGRect(x: 0,
-                      y: 0,
-                      width: radius * 2,
-                      height: radius * 2)
-    return l
-  }
-  
   private func displayButtons() {
-    reinitButtonPosition()
-    
+    for i in 0..<containerButtons.count {
+      let delay = displayDelay * Double(i)
+      containerButtons[i].display(delay: NSNumber(value: delay))
+    }
   }
   
   private func reinitButtonPosition() {
-    for i in 0..<containerButtons.count {
-      containerButtons[i].position = CGPoint(x: containerButtons[i].bounds.width * 0.5 + CGFloat(i) * (containerButtons[i].bounds.width + 4),
-                                             y: containerButtons[i].bounds.height * 0.5)
+    containerButtons.forEach {
+      $0.reinit()
     }
   }
   

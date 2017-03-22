@@ -15,6 +15,7 @@
 		E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349FA1E66D1BC0058FFFD /* LaunchScreen.storyboard */; };
 		E2A34A071E66D1BC0058FFFD /* AnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A34A061E66D1BC0058FFFD /* AnimationsTests.swift */; };
 		E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F608921E7FED2F00E374D9 /* Animatable.swift */; };
+		E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F608941E8289F500E374D9 /* ShareTypeButton.swift */; };
 		E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB82751E66DD1600F5F15C /* NotifyButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		E2A34A061E66D1BC0058FFFD /* AnimationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsTests.swift; sourceTree = "<group>"; };
 		E2A34A081E66D1BC0058FFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2F608921E7FED2F00E374D9 /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
+		E2F608941E8289F500E374D9 /* ShareTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTypeButton.swift; sourceTree = "<group>"; };
 		E2FB82751E66DD1600F5F15C /* NotifyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				E215EF191E7C34C800B29E9F /* ShareButton.swift */,
+				E2F608941E8289F500E374D9 /* ShareTypeButton.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				E2A349F41E66D1BC0058FFFD /* ViewController.swift in Sources */,
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
+				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
 			);
