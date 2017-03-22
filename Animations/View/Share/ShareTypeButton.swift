@@ -50,6 +50,8 @@ class ShareTypeButton: UIButton, Animatable {
     addSubview(iconView)
     
     tintColor = color
+    
+    addTarget(self, action: #selector(didTap), for: .touchUpInside)
   }
   
   // *********************************************************************
@@ -81,5 +83,19 @@ class ShareTypeButton: UIButton, Animatable {
   
   func hide(delay: NSNumber) {
     
+  }
+  
+  // *********************************************************************
+  // MARK: - IBAction
+  @IBAction func didTap(_ sender: UIButton) {
+    let colorSelection = buildKeyFrameAnimation(keyPath: "backgroundColor",
+                                                values: [backgroundDeselectedColor.cgColor,
+                                                         backgroundSelectedColor.cgColor,
+                                                         backgroundDeselectedColor.cgColor],
+                                                keyTimes: [0.0, 0.5, 1.0],
+                                                duration: 0.4,
+                                                delegate: nil,
+                                                timingFunctions: nil)
+    layer.add(colorSelection, forKey: "colorSelection")
   }
 }
