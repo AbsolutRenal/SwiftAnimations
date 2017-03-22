@@ -13,7 +13,7 @@ class ShareTypeButton: UIButton, Animatable {
   // *********************************************************************
   // MARK: - Properties
   private let appearEasing = CAMediaTimingFunction(controlPoints: 0.52, 0.07, 0.16, 1)
-  private let color: UIColor = UIColor(red: 54.0/255.0, green: 191.0/255.0, blue: 166.0/255.0, alpha: 1.0)
+  private let color: UIColor = UIColor(red: 54.0/255.0, green: 139.0/255.0, blue: 139.0/255.0, alpha: 1.0)
   private let backgroundDeselectedColor: UIColor = UIColor.white
   private let backgroundSelectedColor: UIColor = UIColor(red: 168.0/255.0, green: 0.0, blue: 137.0/255.0, alpha: 1.0)
   private var type: ShareType
@@ -43,10 +43,11 @@ class ShareTypeButton: UIButton, Animatable {
     layer.cornerRadius = frame.size.height * 0.5
     layer.backgroundColor = backgroundDeselectedColor.cgColor
     
-    imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    imageView?.contentMode = .scaleAspectFill
     let image = type.icon().withRenderingMode(.alwaysTemplate)
-    imageView?.image = image
+    let iconView = UIImageView(frame: bounds.insetBy(dx: 8, dy: 8))
+    iconView.image = image
+    iconView.contentMode = .scaleAspectFill
+    addSubview(iconView)
     
     tintColor = color
   }
@@ -59,12 +60,21 @@ class ShareTypeButton: UIButton, Animatable {
   }
   
   func display(delay: NSNumber) {
-    let display = buildKeyFrameAnimation(keyPath: "position.x",
+    let move = buildKeyFrameAnimation(keyPath: "position.x",
                                          values: [startFrame.origin.x + size * 0.5, endFrame.origin.x + size * 0.5],
                                          keyTimes: [delay, 1.0],
-                                         duration: 0.6,
+                                         duration: 0.0,
                                          delegate: nil,
                                          timingFunctions: [appearEasing])
+    let rotate = buildKeyFrameAnimation(keyPath: "transform.rotation.z",
+                                        values: [M_PI / 2.0, 0.0],
+                                        keyTimes: [delay, 1.0],
+                                        duration: 0.0,
+                                        delegate: nil,
+                                        timingFunctions: [appearEasing])
+    let display = buildAnimationGroup(animations: [move, rotate],
+                                      duration: 0.6,
+                                      delegate: nil)
     layer.add(display, forKey: "display")
     layer.frame = endFrame
   }
