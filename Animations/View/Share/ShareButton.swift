@@ -20,6 +20,8 @@ enum ShareType {
   case LinkedIn
   case Viadeo
   case Mail
+  case Vimeo
+  case Behance
   
   func icon() -> UIImage {
     let image: UIImage
@@ -34,12 +36,16 @@ enum ShareType {
       image = #imageLiteral(resourceName: "viadeo_icon")
     case .Mail:
       image = #imageLiteral(resourceName: "mail_icon")
+    case .Vimeo:
+      image = #imageLiteral(resourceName: "vimeo_icon")
+    case .Behance:
+      image = #imageLiteral(resourceName: "behance_icon")
     }
     return image
   }
   
   static func all() -> [ShareType] {
-    return [.Facebook, .Twitter, .LinkedIn, .Viadeo, .Mail]
+    return [.Facebook, .Twitter, .LinkedIn, .Viadeo, .Mail, .Vimeo, .Behance]
   }
 }
 
