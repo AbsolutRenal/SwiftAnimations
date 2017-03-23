@@ -120,9 +120,7 @@ class ShareTypeButton: UIButton, Animatable {
                                                   delegate: self,
                                                   timingFunctions: nil)
       layer.add(colorSelection, forKey: "colorSelection")
-      completion = {
-        self.delegate.didTapShareButton(withType: self.type)
-      }
+      self.delegate.didTapShareButton(withType: self.type)
     }
   }
   

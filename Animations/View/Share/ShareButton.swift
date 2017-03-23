@@ -205,14 +205,19 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   }
   
   private func displayButtons() {
+    let complete = {
+      self.container.isScrollEnabled = true
+    }
     for i in 0..<containerButtons.count {
+      let closure: (() -> Void)? = i == containerButtons.count-1 ? complete : nil
       let delay = displayDelay * Double(i)
-      containerButtons[i].display(delay: NSNumber(value: delay))
+      containerButtons[i].display(delay: NSNumber(value: delay), completion: closure)
     }
   }
   
   private func reinit() {
     didTapShare = false
+    container.isScrollEnabled = false
     firstDisplayedIndex = 0
     thanksLabel.frame = container.frame.offsetBy(dx: 0, dy: -container.frame.size.height)
     container.contentOffset = CGPoint(x: -inset, y: -inset)
@@ -300,6 +305,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   func didTapShareButton(withType type: ShareType) {
     didTapShare = true
     state = .Closing
+    container.isScrollEnabled = false
     
     let disappearCompletion = {
       self.delegate?.didTapShareButton(withType: type)
