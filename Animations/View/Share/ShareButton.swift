@@ -100,29 +100,30 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   lazy private var containerButtons: [ShareTypeButton] = {
     var buttons = [ShareTypeButton]()
     var button: ShareTypeButton
-    let size = self.container.bounds.height - self.container.contentInset.top - self.container.contentInset.bottom
+    self.buttonSize = self.container.bounds.height - self.container.contentInset.top - self.container.contentInset.bottom
     let startFrame = CGRect(x: self.container.bounds.size.width,
                             y: 0,
-                            width: size,
-                            height: size)
+                            width: self.buttonSize,
+                            height: self.buttonSize)
     var i = 0
     for type in self.shareItems {
       button = ShareTypeButton(withType: type,
                                delegate: self,
                                startFrame: startFrame,
-                               endFrame: CGRect(x: CGFloat(i) * (size + self.inset),
+                               endFrame: CGRect(x: CGFloat(i) * (self.buttonSize + self.inset),
                                                 y: 0,
-                                                width: size,
-                                                height: size))
+                                                width: self.buttonSize,
+                                                height: self.buttonSize))
       self.container.addSubview(button)
       buttons.append(button)
       i += 1
     }
-    self.container.contentSize = CGSize(width: (size + self.inset) * CGFloat(i) - self.inset,
-                                        height: size)
+    self.container.contentSize = CGSize(width: (self.buttonSize + self.inset) * CGFloat(i) - self.inset,
+                                        height: self.buttonSize)
     return buttons
   }()
   
+  private var buttonSize: CGFloat = 0
   private var animationRunning = false
   private var didTapShare = false
   private var state: AnimState = .Closed
@@ -190,7 +191,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   
   private func reinit() {
     didTapShare = false
-    container.contentOffset = .zero
+    container.contentOffset = CGPoint(x: -inset, y: 0)
     reinitButtonPosition()
   }
   
