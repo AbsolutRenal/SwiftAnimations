@@ -209,6 +209,19 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   
   // *********************************************************************
   // MARK: - UIScrollViewDelegate
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                 withVelocity velocity: CGPoint,
+                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let offset: CGPoint = containerButtons.reduce(CGPoint.zero) { (last, current) in
+      if abs(targetContentOffset.pointee.x - current.frame.origin.x - inset) < abs(targetContentOffset.pointee.x - last.x - inset) {
+        return current.frame.origin
+      } else {
+        return last
+      }
+    }
+    
+    targetContentOffset.pointee = CGPoint(x: offset.x - inset, y:offset.y)
+  }
   
   // *********************************************************************
   // MARK: - CAAnimationDelegate
