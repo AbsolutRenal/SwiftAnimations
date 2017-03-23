@@ -213,6 +213,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   
   private func reinit() {
     didTapShare = false
+    firstDisplayedIndex = 0
     thanksLabel.frame = container.frame.offsetBy(dx: 0, dy: -container.frame.size.height)
     container.contentOffset = CGPoint(x: -inset, y: -inset)
     reinitButtonPosition()
@@ -236,7 +237,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
     thanksLabel.layer.frame = container.layer.frame
     
     completion = {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.4,
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.8,
                                     execute: { [weak self] in
                                       self?.close()
       })
