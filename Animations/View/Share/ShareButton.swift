@@ -61,15 +61,18 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   private let inset: CGFloat = 4
   private let displayDelay = 0.2
   private let disappearDelay = 0.2
-  private let shareLabel = "Share"
+  private let buttonRotationX: CGFloat = CGFloat(M_PI_2)
+  private let shareString = "Share"
+  private let thanksString = "Thank you"
   private let openningEase = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.7, 1)
+  private let easeInOut = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.8, 1)
   
   // *********************************************************************
   // MARK: - IBOutlet
   @IBOutlet weak var whiteButton: UIButton! {
     didSet {
-      whiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: UIFontWeightThin)
-      whiteButton.setTitle(shareLabel, for: .normal)
+      whiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightLight)
+      whiteButton.setTitle(shareString, for: .normal)
       whiteButton.setTitleColor(UIColor(red: 193.0/255.0, green: 193.0/255.0, blue: 193.0/255.0, alpha: 1.0), for: .normal)
       whiteButton.layer.cornerRadius = whiteButton.layer.bounds.height * 0.5
     }
@@ -83,6 +86,23 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
                                             left: inset,
                                             bottom: inset,
                                             right: inset)
+    }
+  }
+  @IBOutlet weak var thanksLabel: UILabel! {
+    didSet {
+      thanksLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightLight)
+      thanksLabel.text = thanksString
+      thanksLabel.textColor = UIColor.white
+      thanksLabel.layer.shadowOffset = CGSize(width: 0.4, height: 1.0)
+      thanksLabel.layer.shadowOpacity = 0.4
+      thanksLabel.layer.shadowColor = UIColor.black.cgColor
+      thanksLabel.layer.shadowRadius = 1.0
+      let mask = CALayer()
+      mask.backgroundColor = UIColor.black.cgColor
+      mask.bounds = thanksLabel.layer.bounds
+      mask.position = thanksLabel.layer.position
+      mask.cornerRadius = container.layer.cornerRadius
+      thanksLabel.layer.mask = mask
     }
   }
   
@@ -176,7 +196,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
                                         delegate: self,
                                         timingFunctions: [openningEase])
       whiteButton.layer.add(open, forKey: "open")
-      whiteButton.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(M_PI_2), 1.0, 0.0, 0.0)
+      whiteButton.layer.transform = CATransform3DRotate(CATransform3DIdentity, buttonRotationX, 1.0, 0.0, 0.0)
       completion = {
         self.state = .Openned
         self.displayButtons()
@@ -193,7 +213,8 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   
   private func reinit() {
     didTapShare = false
-    container.contentOffset = CGPoint(x: -inset, y: 0)
+    thanksLabel.frame = container.frame.offsetBy(dx: 0, dy: -container.frame.size.height)
+    container.contentOffset = CGPoint(x: -inset, y: -inset)
     reinitButtonPosition()
   }
   
@@ -204,7 +225,36 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   }
   
   private func showThanks() {
+    let show = buildKeyFrameAnimation(keyPath: "position.y",
+                                      values: [thanksLabel.layer.position.y,
+                                               container.layer.position.y],
+                                      keyTimes: [0.0, 1.0],
+                                      duration: 0.2,
+                                      delegate: self,
+                                      timingFunctions: [easeInOut])
+    thanksLabel.layer.add(show, forKey: "show")
+    thanksLabel.layer.frame = container.layer.frame
     
+    completion = {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.4,
+                                    execute: { [weak self] in
+                                      self?.close()
+      })
+    }
+  }
+  
+  private func close() {
+    let close = buildKeyFrameAnimation(keyPath: "transform.rotation.x",
+                                       values: [buttonRotationX, 0.0],
+                                       keyTimes: [0.0, 1.0],
+                                       duration: 0.2,
+                                       delegate: self,
+                                       timingFunctions: [openningEase])
+    whiteButton.layer.add(close, forKey: "close")
+    whiteButton.layer.transform = CATransform3DIdentity
+    completion = {
+      self.state = .Closed
+    }
   }
   
   // *********************************************************************
