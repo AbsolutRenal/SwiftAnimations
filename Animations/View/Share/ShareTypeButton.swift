@@ -9,13 +9,22 @@
 import Foundation
 import UIKit
 
+protocol ShareTypeButtonDelegate {
+  func shouldSelectButton() -> Bool
+  func didTapShareButton(withType type: ShareType)
+}
+
 class ShareTypeButton: UIButton, Animatable {
   // *********************************************************************
-  // MARK: - Properties
+  // MARK: - Constants
   private let appearEasing = CAMediaTimingFunction(controlPoints: 0.52, 0.07, 0.16, 1)
   private let color: UIColor = UIColor(red: 54.0/255.0, green: 139.0/255.0, blue: 139.0/255.0, alpha: 1.0)
   private let backgroundDeselectedColor: UIColor = UIColor.white
   private let backgroundSelectedColor: UIColor = UIColor(red: 233.0/255.0, green: 79.0/255.0, blue: 137.0/255.0, alpha: 1.0)
+  
+  // *********************************************************************
+  // MARK: - Properties
+  var delegate: ShareTypeButtonDelegate
   private var type: ShareType
   private var startFrame: CGRect
   private var endFrame: CGRect
@@ -23,8 +32,9 @@ class ShareTypeButton: UIButton, Animatable {
   
   // *********************************************************************
   // MARK: - Lifecycle
-  required init(withType type: ShareType, startFrame: CGRect, endFrame: CGRect) {
+  required init(withType type: ShareType, delegate: ShareTypeButtonDelegate, startFrame: CGRect, endFrame: CGRect) {
     self.type = type
+    self.delegate = delegate
     self.startFrame = startFrame
     self.endFrame = endFrame
     size = startFrame.size.width
@@ -88,14 +98,17 @@ class ShareTypeButton: UIButton, Animatable {
   // *********************************************************************
   // MARK: - IBAction
   @IBAction func didTap(_ sender: UIButton) {
-    let colorSelection = buildKeyFrameAnimation(keyPath: "backgroundColor",
-                                                values: [backgroundDeselectedColor.cgColor,
-                                                         backgroundSelectedColor.cgColor,
-                                                         backgroundDeselectedColor.cgColor],
-                                                keyTimes: [0.0, 0.5, 1.0],
-                                                duration: 0.3,
-                                                delegate: nil,
-                                                timingFunctions: nil)
-    layer.add(colorSelection, forKey: "colorSelection")
+    if delegate.shouldSelectButton() {
+      let colorSelection = buildKeyFrameAnimation(keyPath: "backgroundColor",
+                                                  values: [backgroundDeselectedColor.cgColor,
+                                                           backgroundSelectedColor.cgColor,
+                                                           backgroundDeselectedColor.cgColor],
+                                                  keyTimes: [0.0, 0.5, 1.0],
+                                                  duration: 0.3,
+                                                  delegate: nil,
+                                                  timingFunctions: nil)
+      layer.add(colorSelection, forKey: "colorSelection")
+      delegate.didTapShareButton(withType: type)
+    }
   }
 }

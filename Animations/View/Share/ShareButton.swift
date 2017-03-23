@@ -49,11 +49,11 @@ enum ShareType {
   }
 }
 
-class ShareButton: UIView, Animatable, UIScrollViewDelegate {
+class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDelegate {
   private enum AnimState {
     case Closed
-    case DisplayButtons
     case Openned
+    case Closing
   }
   
   // *********************************************************************
@@ -108,6 +108,7 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
     var i = 0
     for type in self.shareItems {
       button = ShareTypeButton(withType: type,
+                               delegate: self,
                                startFrame: startFrame,
                                endFrame: CGRect(x: CGFloat(i) * (size + self.inset),
                                                 y: 0,
@@ -123,6 +124,7 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
   }()
   
   private var animationRunning = false
+  private var didTapShare = false
   private var state: AnimState = .Closed
   private var animCompletion: [AnimState: (() -> Void)] = [AnimState: (() -> Void)]()
   private var completion: (() -> Void)? {
@@ -159,6 +161,7 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
   
   private func openBox() {
     if !animationRunning && state == .Closed {
+      reinit()
       animationRunning = true
       whiteButton.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
       whiteButton.layer.position = CGPoint(x: whiteButton.layer.position.x,
@@ -172,7 +175,7 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
       whiteButton.layer.add(open, forKey: "open")
       whiteButton.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(M_PI_2), 1.0, 0.0, 0.0)
       completion = {
-        self.state = .DisplayButtons
+        self.state = .Openned
         self.displayButtons()
       }
     }
@@ -183,6 +186,12 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
       let delay = displayDelay * Double(i)
       containerButtons[i].display(delay: NSNumber(value: delay))
     }
+  }
+  
+  private func reinit() {
+    didTapShare = false
+    container.contentOffset = .zero
+    reinitButtonPosition()
   }
   
   private func reinitButtonPosition() {
@@ -205,5 +214,23 @@ class ShareButton: UIView, Animatable, UIScrollViewDelegate {
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
     animationRunning = false
     completion?()
+  }
+  
+  // *********************************************************************
+  // MARK: - ShareTypeButtonDelegate
+  func shouldSelectButton() -> Bool {
+    return !didTapShare
+  }
+  
+  func didTapShareButton(withType type: ShareType) {
+    didTapShare = true
+    state = .Closing
+    
+    
+    
+    completion = {
+      self.delegate?.didTapShareButton(withType: type)
+      self.state = .Closed
+    }
   }
 }
