@@ -60,6 +60,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   // MARK: - Constants
   private let inset: CGFloat = 4
   private let displayDelay = 0.2
+  private let disappearDelay = 0.2
   private let shareLabel = "Share"
   private let openningEase = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.7, 1)
   
@@ -124,6 +125,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   }()
   
   private var buttonSize: CGFloat = 0
+  private var firstDisplayedIndex = 0
   private var animationRunning = false
   private var didTapShare = false
   private var state: AnimState = .Closed
@@ -201,6 +203,10 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
     }
   }
   
+  private func showThanks() {
+    
+  }
+  
   // *********************************************************************
   // MARK: - IBAction
   @IBAction func whiteButtonDidTap(_ sender: UIButton) {
@@ -212,14 +218,18 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                  withVelocity velocity: CGPoint,
                                  targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    var i = 0
     let offset: CGPoint = containerButtons.reduce(CGPoint.zero) { (last, current) in
+      defer {
+        i += 1
+      }
       if abs(targetContentOffset.pointee.x - current.frame.origin.x - inset) < abs(targetContentOffset.pointee.x - last.x - inset) {
+        firstDisplayedIndex = i
         return current.frame.origin
       } else {
         return last
       }
     }
-    
     targetContentOffset.pointee = CGPoint(x: offset.x - inset, y:offset.y)
   }
   
@@ -240,11 +250,16 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
     didTapShare = true
     state = .Closing
     
-    
-    
-    completion = {
+    let disappearCompletion = {
       self.delegate?.didTapShareButton(withType: type)
-      self.state = .Closed
+      self.showThanks()
+    }
+    
+    var delay = 0.0
+    for i in firstDisplayedIndex..<firstDisplayedIndex+4 {
+      let c: (() -> Void)? = i == (firstDisplayedIndex + 3) ? disappearCompletion : nil
+      containerButtons[i].disappear(delay: NSNumber(value: delay), completion: c)
+      delay += disappearDelay
     }
   }
 }
