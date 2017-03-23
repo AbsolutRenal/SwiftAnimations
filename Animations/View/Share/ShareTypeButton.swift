@@ -67,7 +67,7 @@ class ShareTypeButton: UIButton, Animatable {
   // *********************************************************************
   // MARK: - Public
   func reinit() {
-    frame = endFrame
+    frame = startFrame
     layer.backgroundColor = backgroundDeselectedColor.cgColor
   }
   
