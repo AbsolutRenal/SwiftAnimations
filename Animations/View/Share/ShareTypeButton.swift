@@ -15,7 +15,7 @@ class ShareTypeButton: UIButton, Animatable {
   private let appearEasing = CAMediaTimingFunction(controlPoints: 0.52, 0.07, 0.16, 1)
   private let color: UIColor = UIColor(red: 54.0/255.0, green: 139.0/255.0, blue: 139.0/255.0, alpha: 1.0)
   private let backgroundDeselectedColor: UIColor = UIColor.white
-  private let backgroundSelectedColor: UIColor = UIColor(red: 168.0/255.0, green: 0.0, blue: 137.0/255.0, alpha: 1.0)
+  private let backgroundSelectedColor: UIColor = UIColor(red: 233.0/255.0, green: 79.0/255.0, blue: 137.0/255.0, alpha: 1.0)
   private var type: ShareType
   private var startFrame: CGRect
   private var endFrame: CGRect
@@ -93,7 +93,7 @@ class ShareTypeButton: UIButton, Animatable {
                                                          backgroundSelectedColor.cgColor,
                                                          backgroundDeselectedColor.cgColor],
                                                 keyTimes: [0.0, 0.5, 1.0],
-                                                duration: 0.4,
+                                                duration: 0.3,
                                                 delegate: nil,
                                                 timingFunctions: nil)
     layer.add(colorSelection, forKey: "colorSelection")
