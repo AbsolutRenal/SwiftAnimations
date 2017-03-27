@@ -100,7 +100,7 @@ class Replicator: UIView, Animatable {
                                         delegate: nil,
                                         timingFunctions: [ease])
     let scale = buildKeyFrameAnimation(keyPath: "transform.scale",
-                                       values: [1.0, 0.0],
+                                       values: [1.0, 0.4],
                                        keyTimes: [0.0, 1.0],
                                        duration: 0.0,
                                        delegate: nil,
