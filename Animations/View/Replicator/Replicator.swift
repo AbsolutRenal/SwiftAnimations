@@ -13,6 +13,7 @@ class Replicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
   private let nbLayers = 20
+  private let ease = CAMediaTimingFunction(controlPoints: 0.6, 0.0, 0.6, 1.0)
   
   // *********************************************************************
   // MARK: - IBOutlets
@@ -56,7 +57,10 @@ class Replicator: UIView, Animatable {
     
     let replicatorLayerX = CAReplicatorLayer()
     replicatorLayerX.preservesDepth = false
-    replicatorLayerX.instanceAlphaOffset = -0.05
+//    replicatorLayerX.instanceAlphaOffset = -0.05
+    replicatorLayerX.instanceRedOffset = -0.01
+    replicatorLayerX.instanceGreenOffset = -0.07
+    replicatorLayerX.instanceBlueOffset = -0.04
     replicatorLayerX.instanceCount = nbLayers
     replicatorLayerX.instanceDelay = 0.05
     replicatorLayerX.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
@@ -67,9 +71,12 @@ class Replicator: UIView, Animatable {
     
     let replicatorLayerY = CAReplicatorLayer()
     replicatorLayerY.preservesDepth = false
-    replicatorLayerY.instanceAlphaOffset = -0.08
+//    replicatorLayerY.instanceAlphaOffset = -0.08
     replicatorLayerY.instanceCount = Int(bounds.size.height / (size + CGFloat(offset)))
     replicatorLayerY.instanceDelay = 0.1
+    replicatorLayerY.instanceRedOffset = -0.1
+    replicatorLayerY.instanceGreenOffset = -0.03
+    replicatorLayerY.instanceBlueOffset = -0.02
     replicatorLayerY.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
                                                                 0,
                                                                 size + CGFloat(offset),
@@ -91,13 +98,13 @@ class Replicator: UIView, Animatable {
                                         keyTimes: [0.0, 0.6],
                                         duration: 0.0,
                                         delegate: nil,
-                                        timingFunctions: nil)
+                                        timingFunctions: [ease])
     let scale = buildKeyFrameAnimation(keyPath: "transform.scale",
                                        values: [1.0, 0.0],
                                        keyTimes: [0.0, 1.0],
                                        duration: 0.0,
                                        delegate: nil,
-                                       timingFunctions: nil)
+                                       timingFunctions: [ease])
     let anim = buildAnimationGroup(animations: [radius, scale],
                                    duration: 1.0)
     return anim
