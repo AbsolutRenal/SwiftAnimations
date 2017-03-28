@@ -21,6 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpA-nh-1Nn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvW-QN-wQ5" customClass="Replicator" customModule="Animations" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
                                 <color key="backgroundColor" red="0.23950053018191558" green="0.2960566971329267" blue="0.35995003172588835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -184,15 +187,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="XpA-nh-1Nn" firstAttribute="top" secondItem="wuR-TL-IaS" secondAttribute="bottom" id="19d-qY-MBc"/>
                             <constraint firstItem="cvW-QN-wQ5" firstAttribute="height" secondItem="5zS-pl-Smx" secondAttribute="height" id="1ZJ-dA-2wJ"/>
                             <constraint firstItem="Ceh-oU-fSA" firstAttribute="height" secondItem="5zS-pl-Smx" secondAttribute="height" id="2fA-c8-bXc"/>
                             <constraint firstItem="5zS-pl-Smx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4MU-ou-NKU"/>
+                            <constraint firstItem="XpA-nh-1Nn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bla-to-EKW"/>
                             <constraint firstItem="Ceh-oU-fSA" firstAttribute="top" secondItem="5zS-pl-Smx" secondAttribute="bottom" id="CxK-XK-bMz"/>
                             <constraint firstItem="Ceh-oU-fSA" firstAttribute="centerX" secondItem="5zS-pl-Smx" secondAttribute="centerX" id="FSe-KD-yeh"/>
                             <constraint firstItem="cvW-QN-wQ5" firstAttribute="top" secondItem="Ceh-oU-fSA" secondAttribute="bottom" id="JQI-1s-8dU"/>
                             <constraint firstItem="5zS-pl-Smx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="P3u-qj-Lio"/>
                             <constraint firstItem="cvW-QN-wQ5" firstAttribute="width" secondItem="5zS-pl-Smx" secondAttribute="width" id="PMF-V9-Z2N"/>
+                            <constraint firstAttribute="trailing" secondItem="XpA-nh-1Nn" secondAttribute="trailing" id="S4P-h6-4zu"/>
                             <constraint firstAttribute="trailing" secondItem="5zS-pl-Smx" secondAttribute="trailing" id="ade-AM-A2r"/>
+                            <constraint firstItem="lqG-xu-EGu" firstAttribute="top" secondItem="XpA-nh-1Nn" secondAttribute="bottom" id="cI3-eU-ScL"/>
                             <constraint firstItem="lqG-xu-EGu" firstAttribute="top" secondItem="cvW-QN-wQ5" secondAttribute="bottom" id="epY-cU-XMr"/>
                             <constraint firstItem="Ceh-oU-fSA" firstAttribute="width" secondItem="5zS-pl-Smx" secondAttribute="width" id="oCC-Jk-Pec"/>
                             <constraint firstItem="cvW-QN-wQ5" firstAttribute="centerX" secondItem="5zS-pl-Smx" secondAttribute="centerX" id="u7l-6d-k1C"/>
