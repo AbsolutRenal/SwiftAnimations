@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpA-nh-1Nn">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zS-pl-Smx">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
@@ -211,7 +211,13 @@
                             <constraint firstAttribute="trailing" secondItem="XpA-nh-1Nn" secondAttribute="trailing" id="S4P-h6-4zu"/>
                             <constraint firstItem="lqG-xu-EGu" firstAttribute="top" secondItem="XpA-nh-1Nn" secondAttribute="bottom" id="cI3-eU-ScL"/>
                             <constraint firstItem="5zS-pl-Smx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ey4-0f-Y0y"/>
+                            <constraint firstItem="XpA-nh-1Nn" firstAttribute="top" secondItem="wuR-TL-IaS" secondAttribute="bottom" constant="-20" id="tGn-S3-hJf"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="19d-qY-MBc"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
