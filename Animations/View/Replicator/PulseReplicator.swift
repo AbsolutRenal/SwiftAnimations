@@ -12,7 +12,7 @@ import UIKit
 class PulseReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
-  private let particuleSize = 120
+  private let particuleSize = 100
   private let rotationCount = 65
   private let duplicateCount = 12
   private let growEasing = CAMediaTimingFunction(controlPoints: 0.6, 0, 0.6, 1.2)
@@ -103,7 +103,11 @@ class PulseReplicator: UIView, Animatable {
 //                                       delegate: nil,
 //                                       timingFunctions: [growEasing])
     let color = buildKeyFrameAnimation(keyPath: "backgroundColor",
-                                       values: [UIColor.lightGray.cgColor, UIColor.red.cgColor],
+                                       values: [UIColor(red: 160.0/255.0,
+                                                        green: 0.0,
+                                                        blue: 0.0,
+                                                        alpha: 1.0).cgColor,
+                                                UIColor.red.cgColor],
                                        keyTimes: [0.0, 1.0],
                                        duration: 1.0,
                                        delegate: nil,
