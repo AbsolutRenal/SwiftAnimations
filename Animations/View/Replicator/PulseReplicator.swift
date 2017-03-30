@@ -12,10 +12,8 @@ import UIKit
 class PulseReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
-  private let particuleSize = 100
-  private let rotationCount = 65
-  private let duplicateCount = 12
-  private let growEasing = CAMediaTimingFunction(controlPoints: 0.6, 0, 0.6, 1.2)
+  private let particuleSize = 60
+  private let growEasing = CAMediaTimingFunction(controlPoints: 0.6, 0, 0.6, 1.6)
   
   // *********************************************************************
   // MARK: - Properties
@@ -44,7 +42,6 @@ class PulseReplicator: UIView, Animatable {
   // MARK: - Private
   private func configure() {
     create()
-//    addPerspective()
   }
   
   private func create() {
@@ -69,7 +66,7 @@ class PulseReplicator: UIView, Animatable {
     scaleReplicator.instanceBlueOffset = -0.1
     scaleReplicator.instanceRedOffset = -0.1
     scaleReplicator.instanceGreenOffset = -0.1
-    scaleReplicator.instanceCount = 60
+    scaleReplicator.instanceCount = 50
     scaleReplicator.instanceDelay = 0.1
     scaleReplicator.bounds = layer.bounds
     scaleReplicator.position = particule.position
@@ -83,38 +80,26 @@ class PulseReplicator: UIView, Animatable {
     layer.addSublayer(scaleReplicator)
   }
   
-  private func addPerspective() {
-    var perspective = CATransform3DIdentity
-    perspective.m34 = -1.0 / 100.0
-    layer.sublayerTransform = perspective
-  }
-  
   private func pulseAnimation() -> CAAnimationGroup {
     let grow = buildKeyFrameAnimation(keyPath: "transform.scale",
-                                      values: [1.0, 1.8],
-                                      keyTimes: [0.2, 1.0],
-                                      duration: 0.8,
+                                      values: [1.0, 1.4],
+                                      keyTimes: [0.0, 0.8],
+                                      duration: 0.0,
                                       delegate: nil,
                                       timingFunctions: [growEasing])
-//    let depth = buildKeyFrameAnimation(keyPath: "zPosition",
-//                                       values: [1000.0, -1000.0],
-//                                       keyTimes: [0.0, 0.4],
-//                                       duration: 0.8,
-//                                       delegate: nil,
-//                                       timingFunctions: [growEasing])
     let color = buildKeyFrameAnimation(keyPath: "backgroundColor",
                                        values: [UIColor(red: 160.0/255.0,
                                                         green: 0.0,
                                                         blue: 0.0,
                                                         alpha: 1.0).cgColor,
                                                 UIColor.red.cgColor],
-                                       keyTimes: [0.0, 1.0],
-                                       duration: 1.0,
+                                       keyTimes: [0.3, 1.0],
+                                       duration: 0.0,
                                        delegate: nil,
                                        timingFunctions: [growEasing])
     
     let anim = buildAnimationGroup(animations: [grow, color],
-                                   duration: 0.8,
+                                   duration: 1.0,
                                    delegate: nil)
     anim.autoreverses = true
     anim.repeatCount = Float.greatestFiniteMagnitude
