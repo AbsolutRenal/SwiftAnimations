@@ -13,8 +13,9 @@ class PulseReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
   private let particuleSize = 20
-  private let rotationCount = 40
+  private let rotationCount = 65
   private let duplicateCount = 12
+  private let growEasing = CAMediaTimingFunction(controlPoints: 0.6, 0, 0.6, 1.2)
   
   // *********************************************************************
   // MARK: - Properties
@@ -42,6 +43,11 @@ class PulseReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Private
   private func configure() {
+    create()
+    addPerspective()
+  }
+  
+  private func create() {
     clipsToBounds = true
     
     let particule = CALayer()
@@ -55,6 +61,8 @@ class PulseReplicator: UIView, Animatable {
                                     height: 1)
     particule.position = CGPoint(x: layer.bounds.size.width * 0.5,
                                  y: layer.bounds.size.height * 0.5)
+    particule.add(pulseAnimation(),
+                  forKey: "pulse")
     layer.addSublayer(particule)
     
     let translateReplicator = CAReplicatorLayer()
@@ -66,7 +74,7 @@ class PulseReplicator: UIView, Animatable {
     translateReplicator.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
                                                                    CGFloat(particuleSize),
                                                                    0,
-                                                                   CGFloat(particuleSize))
+                                                                   0)
     translateReplicator.addSublayer(particule)
     translateReplicator.bounds = CGRect(x: (layer.bounds.size.width - CGFloat(particuleSize)) * 0.5,
                                         y: (layer.bounds.size.height - CGFloat(particuleSize)) * 0.5,
@@ -90,5 +98,33 @@ class PulseReplicator: UIView, Animatable {
     rotateReplicator.shadowRadius = 1.0
     rotateReplicator.shadowOpacity = 0.3
     layer.addSublayer(rotateReplicator)
+  }
+  
+  private func addPerspective() {
+    var perspective = CATransform3DIdentity
+    perspective.m34 = -1.0 / 100.0
+    layer.sublayerTransform = perspective
+  }
+  
+  private func pulseAnimation() -> CAAnimationGroup {
+    let grow = buildKeyFrameAnimation(keyPath: "transform.scale",
+                                      values: [1.0, 1.8],
+                                      keyTimes: [0.2, 1.0],
+                                      duration: 0.8,
+                                      delegate: nil,
+                                      timingFunctions: [growEasing])
+    let depth = buildKeyFrameAnimation(keyPath: "zPosition",
+                                       values: [1000.0, -1000.0],
+                                       keyTimes: [0.0, 0.4],
+                                       duration: 0.8,
+                                       delegate: nil,
+                                       timingFunctions: [growEasing])
+    
+    let anim = buildAnimationGroup(animations: [grow, depth],
+                                   duration: 0.8,
+                                   delegate: nil)
+    anim.autoreverses = true
+    anim.repeatCount = Float.greatestFiniteMagnitude
+    return anim
   }
 }
