@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,11 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpA-nh-1Nn">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="XpA-nh-1Nn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zS-pl-Smx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="223"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-YJ-EvR" customClass="NotifyButton" customModule="Animations" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="89" width="343" height="44"/>
@@ -116,7 +116,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ceh-oU-fSA">
-                                        <rect key="frame" x="0.0" y="222.5" width="375" height="222"/>
+                                        <rect key="frame" x="0.0" y="223" width="375" height="223"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-5Z-XnS" customClass="ShareButton" customModule="Animations" customModuleProvider="target">
                                                 <rect key="frame" x="106" y="89.5" width="164" height="44"/>
@@ -182,22 +182,30 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvW-QN-wQ5" customClass="Replicator" customModule="Animations" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
+                                        <rect key="frame" x="0.0" y="446" width="375" height="223"/>
                                         <color key="backgroundColor" red="0.23950053018191558" green="0.2960566971329267" blue="0.35995003172588835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPK-ng-iht" customClass="PulseReplicator" customModule="Animations" customModuleProvider="target">
+                                        <rect key="frame" x="-0.5" y="669" width="375" height="223"/>
+                                        <color key="backgroundColor" red="0.0049511473630000002" green="0.67020994420000002" blue="0.92407971619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="cvW-QN-wQ5" secondAttribute="bottom" id="AP5-Qu-gVo"/>
+                                    <constraint firstAttribute="bottom" secondItem="VPK-ng-iht" secondAttribute="bottom" id="Dc9-ev-U1h"/>
                                     <constraint firstItem="5zS-pl-Smx" firstAttribute="leading" secondItem="XpA-nh-1Nn" secondAttribute="leading" id="I1z-sN-XYi"/>
                                     <constraint firstItem="Ceh-oU-fSA" firstAttribute="top" secondItem="5zS-pl-Smx" secondAttribute="bottom" id="LxF-m4-2KY"/>
                                     <constraint firstItem="cvW-QN-wQ5" firstAttribute="top" secondItem="Ceh-oU-fSA" secondAttribute="bottom" id="MPc-EY-9Ob"/>
                                     <constraint firstAttribute="trailing" secondItem="5zS-pl-Smx" secondAttribute="trailing" id="PdT-TK-0MC"/>
                                     <constraint firstItem="cvW-QN-wQ5" firstAttribute="width" secondItem="5zS-pl-Smx" secondAttribute="width" id="VaR-1v-pB9"/>
                                     <constraint firstItem="5zS-pl-Smx" firstAttribute="top" secondItem="XpA-nh-1Nn" secondAttribute="top" id="XzU-hN-NcF"/>
+                                    <constraint firstItem="VPK-ng-iht" firstAttribute="top" secondItem="cvW-QN-wQ5" secondAttribute="bottom" id="d2b-lu-pOu"/>
                                     <constraint firstItem="cvW-QN-wQ5" firstAttribute="centerX" secondItem="5zS-pl-Smx" secondAttribute="centerX" id="d4n-Pd-MES"/>
+                                    <constraint firstItem="VPK-ng-iht" firstAttribute="height" secondItem="5zS-pl-Smx" secondAttribute="height" id="fmh-4L-rcc"/>
                                     <constraint firstItem="cvW-QN-wQ5" firstAttribute="height" secondItem="5zS-pl-Smx" secondAttribute="height" id="fzW-6f-smx"/>
                                     <constraint firstItem="Ceh-oU-fSA" firstAttribute="width" secondItem="5zS-pl-Smx" secondAttribute="width" id="jf2-2Z-p2b"/>
                                     <constraint firstItem="Ceh-oU-fSA" firstAttribute="height" secondItem="5zS-pl-Smx" secondAttribute="height" id="kUI-MK-MrV"/>
+                                    <constraint firstItem="VPK-ng-iht" firstAttribute="width" secondItem="5zS-pl-Smx" secondAttribute="width" id="px4-5y-d2y"/>
+                                    <constraint firstItem="VPK-ng-iht" firstAttribute="centerX" secondItem="5zS-pl-Smx" secondAttribute="centerX" id="tsr-Ba-TBb"/>
                                     <constraint firstItem="Ceh-oU-fSA" firstAttribute="centerX" secondItem="5zS-pl-Smx" secondAttribute="centerX" id="zFX-QP-MNd"/>
                                 </constraints>
                             </scrollView>
