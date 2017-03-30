@@ -10,3 +10,6 @@ Try CALayer Animations in Swift
 
 ##### Morph Replicator Animation
 ![Morph Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/MorphReplicatorAnim.gif "Morph Animation")
+
+##### Pulse Replicator Animation
+![Pulse Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/PulseAnim.gif "Pulse Animation")
