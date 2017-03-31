@@ -48,7 +48,7 @@ class PulseReplicator: UIView, Animatable {
     clipsToBounds = true
     
     let particule = CALayer()
-    particule.backgroundColor = UIColor.lightGray.cgColor
+    particule.backgroundColor = UIColor.red.cgColor
     particule.bounds = CGRect(x: 0,
                               y: 0,
                               width: particuleSize,
@@ -82,7 +82,7 @@ class PulseReplicator: UIView, Animatable {
   
   private func pulseAnimation() -> CAAnimationGroup {
     let grow = buildKeyFrameAnimation(keyPath: "transform.scale",
-                                      values: [1.0, 1.4],
+                                      values: [1.0, 0.6],
                                       keyTimes: [0.0, 0.8],
                                       duration: 0.0,
                                       delegate: nil,
@@ -99,7 +99,7 @@ class PulseReplicator: UIView, Animatable {
                                        timingFunctions: [growEasing])
     
     let anim = buildAnimationGroup(animations: [grow, color],
-                                   duration: 1.0,
+                                   duration: 0.7,
                                    delegate: nil)
     anim.autoreverses = true
     anim.repeatCount = Float.greatestFiniteMagnitude
