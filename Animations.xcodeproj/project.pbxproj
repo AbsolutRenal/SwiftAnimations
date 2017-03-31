@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E20A269D1E8AAE6600D31CE3 /* PulseReplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A269C1E8AAE6600D31CE3 /* PulseReplicator.swift */; };
 		E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E215EF191E7C34C800B29E9F /* ShareButton.swift */; };
+		E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */; };
 		E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* Replicator.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F41E66D1BC0058FFFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F31E66D1BC0058FFFD /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		E20A269C1E8AAE6600D31CE3 /* PulseReplicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseReplicator.swift; sourceTree = "<group>"; };
 		E215EF191E7C34C800B29E9F /* ShareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
+		E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityIndicator.swift; sourceTree = "<group>"; };
 		E2573BD91E89133500F5B329 /* Replicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Replicator.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 				E2F608941E8289F500E374D9 /* ShareTypeButton.swift */,
 			);
 			path = Share;
+			sourceTree = "<group>";
+		};
+		E21E0CF01E8E68740073BC12 /* ActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */,
+			);
+			path = ActivityIndicator;
 			sourceTree = "<group>";
 		};
 		E2573BD81E8912F400F5B329 /* Replicator */ = {
@@ -138,6 +148,7 @@
 		E2FB82771E66DE0800F5F15C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E21E0CF01E8E68740073BC12 /* ActivityIndicator */,
 				E2573BD81E8912F400F5B329 /* Replicator */,
 				E2F608911E7FECC200E374D9 /* Protocols */,
 				E215EF181E7C34AB00B29E9F /* Share */,
@@ -264,6 +275,7 @@
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
 				E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */,
+				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
 				E20A269D1E8AAE6600D31CE3 /* PulseReplicator.swift in Sources */,
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
