@@ -61,7 +61,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   private let inset: CGFloat = 4
   private let displayDelay = 0.2
   private let disappearDelay = 0.2
-  private let buttonRotationX: CGFloat = CGFloat(M_PI_2)
+  private let buttonRotationX: CGFloat = CGFloat.pi / 2.0
   private let shareString = "Share"
   private let thanksString = "Thank you"
   private let openningEase = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.7, 1)
@@ -158,6 +158,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
       animCompletion[state] = newValue
     }
   }
+  private var inactivityDelay: Timer?
   
   // *********************************************************************
   // MARK: - Lifecycle
@@ -190,7 +191,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
       whiteButton.layer.position = CGPoint(x: whiteButton.layer.position.x,
                                            y: 0)
       let open = buildKeyFrameAnimation(keyPath: "transform.rotation.x",
-                                        values: [0.0, M_PI_2],
+                                        values: [0.0, Double.pi / 2.0],
                                         keyTimes: [0.0, 1.0],
                                         duration: 0.5,
                                         delegate: self,
@@ -200,7 +201,24 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
       completion = {
         self.state = .Openned
         self.displayButtons()
+        self.resetTimer()
       }
+    }
+  }
+  
+  private func resetTimer() {
+    invalidateInactivityDelay()
+    inactivityDelay = Timer.scheduledTimer(withTimeInterval: 5.0,
+                                           repeats: false,
+                                           block: { (_) in
+                                            self.close()
+    })
+  }
+  
+  private func invalidateInactivityDelay() {
+    if let timer = inactivityDelay {
+      timer.invalidate()
+      inactivityDelay = nil
     }
   }
   
@@ -271,10 +289,15 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   
   // *********************************************************************
   // MARK: - UIScrollViewDelegate
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    invalidateInactivityDelay()
+  }
+  
   func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                  withVelocity velocity: CGPoint,
                                  targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     var i = 0
+    firstDisplayedIndex = 0
     let offset: CGPoint = containerButtons.reduce(CGPoint.zero) { (last, current) in
       defer {
         i += 1
@@ -287,6 +310,10 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
       }
     }
     targetContentOffset.pointee = CGPoint(x: offset.x - inset, y:offset.y)
+  }
+  
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    resetTimer()
   }
   
   // *********************************************************************
@@ -303,6 +330,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   }
   
   func didTapShareButton(withType type: ShareType) {
+    invalidateInactivityDelay()
     didTapShare = true
     state = .Closing
     container.isScrollEnabled = false
