@@ -61,7 +61,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   private let inset: CGFloat = 4
   private let displayDelay = 0.2
   private let disappearDelay = 0.2
-  private let buttonRotationX: CGFloat = CGFloat(M_PI_2)
+  private let buttonRotationX: CGFloat = CGFloat.pi / 2.0
   private let shareString = "Share"
   private let thanksString = "Thank you"
   private let openningEase = CAMediaTimingFunction(controlPoints: 0.8, 0, 0.7, 1)
@@ -275,6 +275,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
                                  withVelocity velocity: CGPoint,
                                  targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     var i = 0
+    firstDisplayedIndex = 0
     let offset: CGPoint = containerButtons.reduce(CGPoint.zero) { (last, current) in
       defer {
         i += 1
@@ -287,6 +288,10 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
       }
     }
     targetContentOffset.pointee = CGPoint(x: offset.x - inset, y:offset.y)
+  }
+  
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    
   }
   
   // *********************************************************************
