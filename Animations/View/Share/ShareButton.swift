@@ -190,7 +190,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
       whiteButton.layer.position = CGPoint(x: whiteButton.layer.position.x,
                                            y: 0)
       let open = buildKeyFrameAnimation(keyPath: "transform.rotation.x",
-                                        values: [0.0, M_PI_2],
+                                        values: [0.0, Double.pi / 2.0],
                                         keyTimes: [0.0, 1.0],
                                         duration: 0.5,
                                         delegate: self,
