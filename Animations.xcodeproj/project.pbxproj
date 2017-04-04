@@ -11,6 +11,7 @@
 		E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E215EF191E7C34C800B29E9F /* ShareButton.swift */; };
 		E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */; };
 		E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* Replicator.swift */; };
+		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F41E66D1BC0058FFFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F31E66D1BC0058FFFD /* ViewController.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		E215EF191E7C34C800B29E9F /* ShareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityIndicator.swift; sourceTree = "<group>"; };
 		E2573BD91E89133500F5B329 /* Replicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Replicator.swift; sourceTree = "<group>"; };
+		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2A349F31E66D1BC0058FFFD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 			path = Replicator;
 			sourceTree = "<group>";
 		};
+		E282DE901E939AF7009BE85C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E282DE911E939B3C009BE85C /* Stack.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		E2A349E51E66D1BC0058FFFD = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 		E2A349F01E66D1BC0058FFFD /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				E282DE901E939AF7009BE85C /* Helper */,
 				E2FB82771E66DE0800F5F15C /* View */,
 				E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */,
 				E2A349F31E66D1BC0058FFFD /* ViewController.swift */,
@@ -270,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E282DE921E939B3C009BE85C /* Stack.swift in Sources */,
 				E2A349F41E66D1BC0058FFFD /* ViewController.swift in Sources */,
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
