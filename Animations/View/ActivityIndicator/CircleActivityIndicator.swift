@@ -13,11 +13,20 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
   // *********************************************************************
   // MARK: - Constants
   private static let ColorAnimation = "colorAnimation"
-  private let colors: Stack<CGColor> = {
+  private var colors: Stack<CGColor> = {
     var stack = Stack<CGColor>()
-    stack.push(UIColor.red.cgColor)
-    stack.push(UIColor.blue.cgColor)
-    stack.push(UIColor.green.cgColor)
+    stack.push(UIColor(red: 216.0/255.0,
+                       green: 3.0/255.0,
+                       blue: 45.0/255.0,
+                       alpha: 1.0).cgColor)
+    stack.push(UIColor(red: 1.0/255.0,
+                       green: 171.0/255.0,
+                       blue: 236.0/255.0,
+                       alpha: 1.0).cgColor)
+    stack.push(UIColor(red: 0.0/255.0,
+                       green: 173.0/255.0,
+                       blue: 48.0/255.0,
+                       alpha: 1.0).cgColor)
     return stack
   }()
   
@@ -41,7 +50,7 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
   @IBInspectable var strokeColor: UIColor? {
     didSet {
       circleShape.strokeColor = self.strokeColor!.cgColor
-      layer.removeAnimation(forKey: CircleActivityIndicator.ColorAnimation)
+      self.removeColorAnimation()
     }
   }
   
@@ -93,6 +102,7 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
     rotate.repeatCount = Float.greatestFiniteMagnitude
     return rotate
   }()
+  private var colorAnimation: CAAnimation?
   
   // *********************************************************************
   // MARK: - Lifecycle
@@ -147,11 +157,32 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
   }
   
   private func addColorAnimation() {
-    print("addColorAnimation")
+    removeColorAnimation()
+    colorAnimation = buildKeyFrameAnimation(keyPath: "strokeColor",
+                                            values: [colors.current(),
+                                                     colors.next()],
+                                            keyTimes: [0.0, 1.0],
+                                            duration: rotationDelay,
+                                            delegate: self,
+                                            timingFunctions: [easeInOut])
+    circleShape.add(colorAnimation!,
+                    forKey: CircleActivityIndicator.ColorAnimation)
+}
+  
+  private func removeColorAnimation() {
+    circleShape.removeAnimation(forKey: CircleActivityIndicator.ColorAnimation)
   }
   
   private func clearAnimations() {
     layer.removeAllAnimations()
     circleShape.removeAllAnimations()
+  }
+  
+  // *********************************************************************
+  // MARK: - CAAnimationDelegate
+  func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    if flag {
+      addColorAnimation()
+    }
   }
 }
