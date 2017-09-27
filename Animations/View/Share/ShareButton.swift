@@ -59,8 +59,8 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   // *********************************************************************
   // MARK: - Constants
   private let inset: CGFloat = 4
-  private let displayDelay = 0.2
-  private let disappearDelay = 0.2
+  private let displayDelay = 0.08
+  private let disappearDelay = 0.1
   private let buttonRotationX: CGFloat = CGFloat.pi / 2.0
   private let shareString = "Share"
   private let thanksString = "Thank you"
@@ -229,7 +229,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
     for i in 0..<containerButtons.count {
       let closure: (() -> Void)? = i == containerButtons.count-1 ? complete : nil
       let delay = displayDelay * Double(i)
-      containerButtons[i].display(delay: NSNumber(value: delay), completion: closure)
+      containerButtons[i].display(delay: delay, completion: closure)
     }
   }
   
@@ -343,8 +343,9 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
     var delay = 0.0
     for i in firstDisplayedIndex..<firstDisplayedIndex+4 {
       let c: (() -> Void)? = i == (firstDisplayedIndex + 3) ? disappearCompletion : nil
-      containerButtons[i].disappear(delay: NSNumber(value: delay), completion: c)
+      containerButtons[i].disappear(delay: delay, completion: c)
       delay += disappearDelay
     }
   }
 }
+

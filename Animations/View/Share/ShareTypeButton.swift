@@ -49,7 +49,7 @@ class ShareTypeButton: UIButton, Animatable {
     fatalError("Should use init(withType:frame:)")
     return nil
   }
-
+  
   // *********************************************************************
   // MARK: - Private
   private func configure() {
@@ -74,35 +74,46 @@ class ShareTypeButton: UIButton, Animatable {
     layer.backgroundColor = backgroundDeselectedColor.cgColor
   }
   
-  func display(delay: NSNumber, completion: (() -> Void)? = nil) {
+  func display(delay: Double, completion: (() -> Void)? = nil) {
     self.completion = completion
     let move = buildKeyFrameAnimation(keyPath: "position.x",
-                                         values: [startFrame.origin.x + size * 0.5, endFrame.origin.x + size * 0.5],
-                                         keyTimes: [delay, 1.0],
-                                         duration: 0.0,
-                                         delegate: nil,
-                                         timingFunctions: [appearEasing])
+                                      values: [startFrame.origin.x + size * 0.5, endFrame.origin.x + size * 0.5],
+                                      keyTimes: [0.0, 1.0],
+                                      duration: 0.0,
+                                      delegate: nil,
+                                      timingFunctions: [appearEasing])
     let rotate = buildKeyFrameAnimation(keyPath: "transform.rotation.z",
-                                        values: [M_PI / 2.0, 0.0],
-                                        keyTimes: [delay, 1.0],
+                                        values: [Float.pi / 2.0, 0.0],
+                                        keyTimes: [0.0, 1.0],
                                         duration: 0.0,
                                         delegate: nil,
                                         timingFunctions: [appearEasing])
     let display = buildAnimationGroup(animations: [move, rotate],
                                       duration: 0.6,
                                       delegate: self)
+    if delay > 0.0 {
+      let animDelay = CACurrentMediaTime() + delay
+      display.beginTime = animDelay
+      display.fillMode = kCAFillModeBackwards
+    }
     layer.add(display, forKey: "display")
     layer.frame = endFrame
   }
   
-  func disappear(delay: NSNumber, completion: (() -> Void)? = nil) {
+  func disappear(delay: Double, completion: (() -> Void)? = nil) {
+    layer.removeAllAnimations()
     self.completion = completion
     let move = buildKeyFrameAnimation(keyPath: "position.y",
                                       values: [layer.position.y, layer.position.y + offsetY],
-                                      keyTimes: [delay, 1.0],
+                                      keyTimes: [0.0, 1.0],
                                       duration: 0.6,
                                       delegate: self,
                                       timingFunctions: [disappearEasing])
+    if delay > 0.0 {
+      let animDelay = CACurrentMediaTime() + delay
+      move.beginTime = animDelay
+      move.fillMode = kCAFillModeBackwards
+    }
     layer.add(move, forKey: "disappear")
     layer.frame = layer.frame.offsetBy(dx: 0, dy: offsetY)
   }
@@ -127,7 +138,10 @@ class ShareTypeButton: UIButton, Animatable {
   // *********************************************************************
   // MARK: - CAAnimationDelegate
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-    completion?()
-    completion = nil
+    if flag {
+      completion?()
+      completion = nil
+    }
   }
 }
+
