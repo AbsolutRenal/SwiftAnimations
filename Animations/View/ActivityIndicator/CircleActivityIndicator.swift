@@ -94,7 +94,7 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
   }()
   lazy private var globalRotationAnimation: CAAnimation = {
     let rotate = self.buildKeyFrameAnimation(keyPath: "transform.rotation",
-                                             values: [0.0, CGFloat.pi * 4.0],
+                                             values: [0.0, CGFloat.pi * 2.0],
                                              keyTimes: [0.0, 1.0],
                                              duration: self.rotationDelay,
                                              delegate: nil,
