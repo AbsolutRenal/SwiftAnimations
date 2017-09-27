@@ -71,7 +71,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   // MARK: - IBOutlet
   @IBOutlet weak var whiteButton: UIButton! {
     didSet {
-      whiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightLight)
+      whiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: UIFont.Weight.light)
       whiteButton.setTitle(shareString, for: .normal)
       whiteButton.setTitleColor(UIColor(red: 193.0/255.0, green: 193.0/255.0, blue: 193.0/255.0, alpha: 1.0), for: .normal)
       whiteButton.layer.cornerRadius = whiteButton.layer.bounds.height * 0.5
@@ -90,7 +90,7 @@ class ShareButton: UIView, Animatable, ShareTypeButtonDelegate, UIScrollViewDele
   }
   @IBOutlet weak var thanksLabel: UILabel! {
     didSet {
-      thanksLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightLight)
+      thanksLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.light)
       thanksLabel.text = thanksString
       thanksLabel.textColor = UIColor.white
       thanksLabel.layer.shadowOffset = CGSize(width: 0.4, height: 1.0)

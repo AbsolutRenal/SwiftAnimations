@@ -26,7 +26,7 @@ class NotifyButton: UIView, UITextFieldDelegate, Animatable {
   // MARK: - IBOutlet
   @IBOutlet weak var label: UIButton! {
     didSet {
-      label.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
+      label.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)
       label.setTitleColor(UIColor(red: 255.0/255.0,
                                   green: 145.0/255.0,
                                   blue: 133.0/255.0,
