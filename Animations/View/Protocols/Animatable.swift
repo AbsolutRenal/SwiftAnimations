@@ -14,10 +14,14 @@ protocol Animatable: CAAnimationDelegate {
                               values: [Any],
                               keyTimes: [NSNumber]?,
                               duration: CFTimeInterval,
+                              fillMode: String?,
+                              beginTime: CFTimeInterval?,
                               delegate: CAAnimationDelegate?,
                               timingFunctions: [CAMediaTimingFunction]?) -> CAKeyframeAnimation
   func buildAnimationGroup(animations: [CAAnimation],
                            duration: CFTimeInterval,
+                           fillMode: String?,
+                           beginTime: CFTimeInterval?,
                            delegate: CAAnimationDelegate?) -> CAAnimationGroup
 }
 
@@ -26,26 +30,34 @@ extension Animatable {
                               values: [Any],
                               keyTimes: [NSNumber]?,
                               duration: CFTimeInterval = 0,
+                              fillMode: String? = nil,
+                              beginTime: CFTimeInterval? = nil,
                               delegate: CAAnimationDelegate? = nil,
                               timingFunctions: [CAMediaTimingFunction]? = nil) -> CAKeyframeAnimation {
     let anim = CAKeyframeAnimation(keyPath: keyPath)
     anim.values = values
     anim.keyTimes = keyTimes
     anim.delegate = delegate
-    anim.fillMode = kCAFillModeForwards
+    anim.beginTime = beginTime ?? 0.0
+    anim.fillMode = fillMode ?? kCAFillModeForwards
     anim.timingFunctions = timingFunctions
     anim.duration = duration
     return anim
   }
   
   func buildAnimationGroup(animations: [CAAnimation],
-                                   duration: CFTimeInterval,
-                                   delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
+                           duration: CFTimeInterval,
+                           fillMode: String? = nil,
+                           beginTime: CFTimeInterval? = nil,
+                           delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
     let anim = CAAnimationGroup()
     anim.animations = animations
     anim.duration = duration
     anim.delegate = delegate
-    anim.fillMode = kCAFillModeForwards
+    anim.beginTime = beginTime ?? 0.0
+    anim.fillMode = fillMode ?? kCAFillModeForwards
+    
     return anim
   }
 }
+
