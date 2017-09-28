@@ -103,6 +103,7 @@ class PulseReplicator: UIView, Animatable {
                                    delegate: nil)
     anim.autoreverses = true
     anim.repeatCount = Float.greatestFiniteMagnitude
+    anim.isRemovedOnCompletion = false
     return anim
   }
 }

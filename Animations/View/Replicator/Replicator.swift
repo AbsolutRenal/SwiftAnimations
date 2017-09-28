@@ -107,6 +107,7 @@ class Replicator: UIView, Animatable {
                                        timingFunctions: [ease])
     let anim = buildAnimationGroup(animations: [radius, scale],
                                    duration: 1.0)
+    anim.isRemovedOnCompletion = false
     return anim
   }
 }
