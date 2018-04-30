@@ -13,3 +13,6 @@ Try CALayer Animations in Swift
 
 ##### Pulse Replicator Animation
 ![Pulse Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/PulseAnim.gif "Pulse Animation")
+
+##### Activity Indicator
+![ActivityIndicator Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/ActivityIndicator.gif "ActivityIndicator Animation")
