@@ -15,17 +15,13 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
   private static let ColorAnimation = "colorAnimation"
   private var colors: Stack<CGColor> = {
     var stack = Stack<CGColor>()
-    stack.push(UIColor(red: 216.0/255.0,
-                       green: 3.0/255.0,
-                       blue: 45.0/255.0,
+    stack.push(UIColor(red: 255/255.0,
+                       green: 255/255.0,
+                       blue: 255/255.0,
                        alpha: 1.0).cgColor)
-    stack.push(UIColor(red: 1.0/255.0,
-                       green: 171.0/255.0,
-                       blue: 236.0/255.0,
-                       alpha: 1.0).cgColor)
-    stack.push(UIColor(red: 0.0/255.0,
-                       green: 173.0/255.0,
-                       blue: 48.0/255.0,
+    stack.push(UIColor(red: 230/255.0,
+                       green: 190/255.0,
+                       blue: 18/255.0,
                        alpha: 1.0).cgColor)
     return stack
   }()

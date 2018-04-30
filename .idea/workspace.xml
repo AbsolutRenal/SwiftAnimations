@@ -23,9 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2b83a46-f12a-4156-9d1a-b1ecc2192c21" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Animations.xcodeproj/project.xcworkspace/xcuserdata/renaudcousin.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Animations.xcodeproj/project.xcworkspace/xcuserdata/renaudcousin.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change beforePath="$PROJECT_DIR$/Animations/View/ActivityIndicator/CircleActivityIndicator.swift" afterPath="$PROJECT_DIR$/Animations/View/ActivityIndicator/CircleActivityIndicator.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
