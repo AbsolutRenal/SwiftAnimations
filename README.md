@@ -16,3 +16,18 @@ Try CALayer Animations in Swift
 
 ##### Activity Indicator
 ![ActivityIndicator Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/ActivityIndicator.gif "ActivityIndicator Animation")
+
+##### Square Activity Indicator (animation found on [Dribbble](https://dribbble.com/shots/2373672-Collapsing-cube-spinner-CSS))
+![SquareActivityIndicator Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/SquareReplicatorLoader.gif "Square ActivityIndicator Animation")
+
+##### Pacman Animation
+![Pacman Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/Pacman.gif "Pacman Animation")
+
+##### Internet Connection Search Animation (animation found on [Dribbble](https://dribbble.com/shots/3121019-Connecting-and-error-state-Wi-Fi-animation))
+![Internet Connection Search Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/ConnectionSearch.gif "Internet Connection Search Animation")
+
+##### Atom Animation (animation found on [Dribbble](https://dribbble.com/shots/1952320-Wait-for-it-SCIENCE))
+![Atom Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/AtomLike.gif "Atom Animation")
+
+##### Circular Menu Animation
+![Circular Menu Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/CircularMenu.gif "Circular Menu Animation")
