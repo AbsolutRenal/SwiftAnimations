@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E20A269D1E8AAE6600D31CE3 /* PulseReplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A269C1E8AAE6600D31CE3 /* PulseReplicator.swift */; };
+		E20A269D1E8AAE6600D31CE3 /* HeartPulseReplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A269C1E8AAE6600D31CE3 /* HeartPulseReplicator.swift */; };
 		E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E215EF191E7C34C800B29E9F /* ShareButton.swift */; };
 		E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */; };
-		E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* Replicator.swift */; };
+		E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* MorphReplicator.swift */; };
 		E2772526219AE2B6007D85C8 /* AnimationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */; };
 		E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */; };
+		E277252A219B168E007D85C8 /* CircleActivityIndicator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2772529219B168E007D85C8 /* CircleActivityIndicator.storyboard */; };
+		E277252C219B16C0007D85C8 /* MorphReplicator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277252B219B16C0007D85C8 /* MorphReplicator.storyboard */; };
+		E277252E219B16D4007D85C8 /* HeartPulseReplicator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277252D219B16D4007D85C8 /* HeartPulseReplicator.storyboard */; };
+		E2772530219B1708007D85C8 /* ShareButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277252F219B1708007D85C8 /* ShareButton.storyboard */; };
+		E2772532219B1717007D85C8 /* NotifyButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2772531219B1717007D85C8 /* NotifyButton.storyboard */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
@@ -35,12 +40,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E20A269C1E8AAE6600D31CE3 /* PulseReplicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseReplicator.swift; sourceTree = "<group>"; };
+		E20A269C1E8AAE6600D31CE3 /* HeartPulseReplicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartPulseReplicator.swift; sourceTree = "<group>"; };
 		E215EF191E7C34C800B29E9F /* ShareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityIndicator.swift; sourceTree = "<group>"; };
-		E2573BD91E89133500F5B329 /* Replicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Replicator.swift; sourceTree = "<group>"; };
+		E2573BD91E89133500F5B329 /* MorphReplicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorphReplicator.swift; sourceTree = "<group>"; };
 		E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsListViewController.swift; sourceTree = "<group>"; };
 		E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsListDataSource.swift; sourceTree = "<group>"; };
+		E2772529219B168E007D85C8 /* CircleActivityIndicator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CircleActivityIndicator.storyboard; sourceTree = "<group>"; };
+		E277252B219B16C0007D85C8 /* MorphReplicator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MorphReplicator.storyboard; sourceTree = "<group>"; };
+		E277252D219B16D4007D85C8 /* HeartPulseReplicator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeartPulseReplicator.storyboard; sourceTree = "<group>"; };
+		E277252F219B1708007D85C8 /* ShareButton.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareButton.storyboard; sourceTree = "<group>"; };
+		E2772531219B1717007D85C8 /* NotifyButton.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotifyButton.storyboard; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +89,7 @@
 			children = (
 				E215EF191E7C34C800B29E9F /* ShareButton.swift */,
 				E2F608941E8289F500E374D9 /* ShareTypeButton.swift */,
+				E277252F219B1708007D85C8 /* ShareButton.storyboard */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -87,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */,
+				E2772529219B168E007D85C8 /* CircleActivityIndicator.storyboard */,
 			);
 			path = ActivityIndicator;
 			sourceTree = "<group>";
@@ -94,8 +106,10 @@
 		E2573BD81E8912F400F5B329 /* Replicator */ = {
 			isa = PBXGroup;
 			children = (
-				E2573BD91E89133500F5B329 /* Replicator.swift */,
-				E20A269C1E8AAE6600D31CE3 /* PulseReplicator.swift */,
+				E2573BD91E89133500F5B329 /* MorphReplicator.swift */,
+				E20A269C1E8AAE6600D31CE3 /* HeartPulseReplicator.swift */,
+				E277252B219B16C0007D85C8 /* MorphReplicator.storyboard */,
+				E277252D219B16D4007D85C8 /* HeartPulseReplicator.storyboard */,
 			);
 			path = Replicator;
 			sourceTree = "<group>";
@@ -175,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				E2FB82751E66DD1600F5F15C /* NotifyButton.swift */,
+				E2772531219B1717007D85C8 /* NotifyButton.storyboard */,
 			);
 			path = Notify;
 			sourceTree = "<group>";
@@ -264,8 +279,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E277252E219B16D4007D85C8 /* HeartPulseReplicator.storyboard in Resources */,
 				E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */,
+				E277252A219B168E007D85C8 /* CircleActivityIndicator.storyboard in Resources */,
+				E2772532219B1717007D85C8 /* NotifyButton.storyboard in Resources */,
 				E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */,
+				E2772530219B1708007D85C8 /* ShareButton.storyboard in Resources */,
+				E277252C219B16C0007D85C8 /* MorphReplicator.storyboard in Resources */,
 				E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,11 +308,11 @@
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
-				E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */,
+				E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */,
 				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
 				E2772526219AE2B6007D85C8 /* AnimationsListViewController.swift in Sources */,
-				E20A269D1E8AAE6600D31CE3 /* PulseReplicator.swift in Sources */,
+				E20A269D1E8AAE6600D31CE3 /* HeartPulseReplicator.swift in Sources */,
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
 				E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */,
 			);

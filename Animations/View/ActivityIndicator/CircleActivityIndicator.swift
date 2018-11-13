@@ -134,7 +134,6 @@ class CircleActivityIndicator: UIActivityIndicatorView, Animatable {
   }
   
   override func stopAnimating() {
-    super.stopAnimating()
     circleShape.removeAllAnimations()
     layer.removeAllAnimations()
   }
