@@ -1,5 +1,5 @@
 //
-//  Replicator.swift
+//  MorphReplicator.swift
 //  Animations
 //
 //  Created by AbsolutRenal on 27/03/2017.
@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
-class Replicator: UIView, Animatable {
+class MorphReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
-  private let nbLayers = 20
+//  private let nbLayers = 20
+  private var size: CGFloat = 15
   private let ease = CAMediaTimingFunction(controlPoints: 0.6, 0.0, 0.6, 1.0)
   
   // *********************************************************************
@@ -20,8 +21,8 @@ class Replicator: UIView, Animatable {
   
   // *********************************************************************
   // MARK: - Properties
-  var replicatorLayer: CAReplicatorLayer!
-  private var size: CGFloat = 0
+  var replicatorLayerX: CAReplicatorLayer!
+  var replicatorLayerY: CAReplicatorLayer!
   
   // *********************************************************************
   // MARK: - Lifecycle
@@ -44,7 +45,6 @@ class Replicator: UIView, Animatable {
   // MARK: - Private
   private func configure() {
     let offset = 2
-    size = (layer.bounds.size.width - CGFloat(nbLayers * offset)) / CGFloat(nbLayers)
     let l = CALayer()
     l.bounds = CGRect(x: 0,
                       y: 0,
@@ -55,13 +55,12 @@ class Replicator: UIView, Animatable {
     l.backgroundColor = UIColor.lightGray.cgColor
     l.cornerRadius = 0.0
     
-    let replicatorLayerX = CAReplicatorLayer()
+    replicatorLayerX = CAReplicatorLayer()
     replicatorLayerX.preservesDepth = false
-//    replicatorLayerX.instanceAlphaOffset = -0.05
     replicatorLayerX.instanceRedOffset = -0.01
     replicatorLayerX.instanceGreenOffset = -0.07
     replicatorLayerX.instanceBlueOffset = -0.04
-    replicatorLayerX.instanceCount = nbLayers
+    replicatorLayerX.instanceCount = Int(bounds.width / (size + CGFloat(offset)))
     replicatorLayerX.instanceDelay = 0.05
     replicatorLayerX.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
                                                                 size + CGFloat(offset),
@@ -69,9 +68,8 @@ class Replicator: UIView, Animatable {
                                                                 0)
     replicatorLayerX.addSublayer(l)
     
-    let replicatorLayerY = CAReplicatorLayer()
+    replicatorLayerY = CAReplicatorLayer()
     replicatorLayerY.preservesDepth = false
-//    replicatorLayerY.instanceAlphaOffset = -0.08
     replicatorLayerY.instanceCount = Int(bounds.size.height / (size + CGFloat(offset)))
     replicatorLayerY.instanceDelay = 0.1
     replicatorLayerY.instanceRedOffset = -0.1

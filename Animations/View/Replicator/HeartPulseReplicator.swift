@@ -1,5 +1,5 @@
 //
-//  PulseReplicator.swift
+//  HeartPulseReplicator.swift
 //  Animations
 //
 //  Created by AbsolutRenal on 28/03/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PulseReplicator: UIView, Animatable {
+class HeartPulseReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
   private let particuleSize = 60
@@ -17,6 +17,8 @@ class PulseReplicator: UIView, Animatable {
   
   // *********************************************************************
   // MARK: - Properties
+  private var particule: CALayer!
+  private var scaleReplicator: CAReplicatorLayer!
   
   // *********************************************************************
   // MARK: - IBOutlets
@@ -38,6 +40,13 @@ class PulseReplicator: UIView, Animatable {
     configure()
   }
   
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    particule.position = .zero
+    scaleReplicator.position = CGPoint(x: layer.bounds.size.width * 0.5,
+                                       y: layer.bounds.size.height * 0.5)
+  }
+  
   // *********************************************************************
   // MARK: - Private
   private func configure() {
@@ -47,29 +56,25 @@ class PulseReplicator: UIView, Animatable {
   private func create() {
     clipsToBounds = true
     
-    let particule = CALayer()
+    particule = CALayer()
     particule.backgroundColor = UIColor.red.cgColor
-    particule.bounds = CGRect(x: 0,
+    particule.frame = CGRect(x: 0,
                               y: 0,
                               width: particuleSize,
                               height: particuleSize)
     particule.cornerRadius = CGFloat(particuleSize) * 0.5
     particule.shadowOffset = CGSize(width: 1,
                                     height: 1)
-    particule.position = CGPoint(x: layer.bounds.size.width * 0.5,
-                                 y: layer.bounds.size.height * 0.5)
     particule.add(pulseAnimation(),
                   forKey: "pulse")
     layer.addSublayer(particule)
     
-    let scaleReplicator = CAReplicatorLayer()
+    scaleReplicator = CAReplicatorLayer()
     scaleReplicator.instanceBlueOffset = -0.1
     scaleReplicator.instanceRedOffset = -0.1
     scaleReplicator.instanceGreenOffset = -0.1
     scaleReplicator.instanceCount = 50
     scaleReplicator.instanceDelay = 0.1
-    scaleReplicator.bounds = layer.bounds
-    scaleReplicator.position = particule.position
     scaleReplicator.instanceTransform = CATransform3DScale(CATransform3DIdentity,
                                                            0.9,
                                                            0.9,

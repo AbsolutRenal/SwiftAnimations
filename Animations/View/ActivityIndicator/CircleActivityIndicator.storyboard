@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Aja-wS-xnS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="rk8-Mk-Id3">
+            <objects>
+                <viewController id="Aja-wS-xnS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mZc-91-OFg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-AH-6WC" customClass="CircleActivityIndicator" customModule="Animations" customModuleProvider="target">
+                                <rect key="frame" x="162.5" y="308.5" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3on-1i-Cmg"/>
+                                    <constraint firstAttribute="width" constant="50" id="dHa-bZ-3US"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bUd-AH-6WC" firstAttribute="centerY" secondItem="mZc-91-OFg" secondAttribute="centerY" id="63M-D7-Hrt"/>
+                            <constraint firstItem="bUd-AH-6WC" firstAttribute="centerX" secondItem="mZc-91-OFg" secondAttribute="centerX" id="hKq-42-dDD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ibr-n6-Vwv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQQ-0n-Ev9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-33" y="224"/>
+        </scene>
+    </scenes>
+</document>

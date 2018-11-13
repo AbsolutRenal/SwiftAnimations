@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XQo-HO-yXx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Atom Like View Controller-->
+        <scene sceneID="G51-AB-lnC">
+            <objects>
+                <viewController id="XQo-HO-yXx" customClass="AtomLikeViewController" customModule="BeautifulAnimations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yed-qW-OKH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48Y-S4-MFe" customClass="AtomLikeView" customModule="BeautifulAnimations" customModuleProvider="target">
+                                <rect key="frame" x="123.5" y="269.5" width="128" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="hk0-Su-Ifs"/>
+                                    <constraint firstAttribute="width" secondItem="48Y-S4-MFe" secondAttribute="height" multiplier="1:1" id="sof-RP-dXg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="48Y-S4-MFe" firstAttribute="centerY" secondItem="Yed-qW-OKH" secondAttribute="centerY" id="Q1w-TJ-b1e"/>
+                            <constraint firstItem="48Y-S4-MFe" firstAttribute="centerX" secondItem="Yed-qW-OKH" secondAttribute="centerX" id="W8u-PJ-Esi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q4Y-e3-pkL"/>
+                    </view>
+                    <connections>
+                        <outlet property="atomView" destination="48Y-S4-MFe" id="Nwf-XJ-k2e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HGB-rI-PEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-405" y="-5"/>
+        </scene>
+    </scenes>
+</document>

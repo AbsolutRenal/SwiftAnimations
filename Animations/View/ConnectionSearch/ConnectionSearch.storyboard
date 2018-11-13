@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mic-bf-hyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Connection Search View Controller-->
+        <scene sceneID="Zc8-Yx-uS1">
+            <objects>
+                <viewController id="mic-bf-hyx" customClass="ConnectionSearchViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="el9-ES-gOO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK6-vh-hu2" customClass="ConnectionSearchView" customModule="BeautifulAnimations" customModuleProvider="target">
+                                <rect key="frame" x="123.5" y="269.5" width="128" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="8Bf-Jj-Dna"/>
+                                    <constraint firstAttribute="width" secondItem="vK6-vh-hu2" secondAttribute="height" multiplier="1:1" id="boP-6g-nJC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vK6-vh-hu2" firstAttribute="width" secondItem="vK6-vh-hu2" secondAttribute="height" multiplier="1:1" id="j7w-Mg-6hr"/>
+                            <constraint firstItem="vK6-vh-hu2" firstAttribute="centerY" secondItem="el9-ES-gOO" secondAttribute="centerY" id="q9e-hq-k5S"/>
+                            <constraint firstItem="vK6-vh-hu2" firstAttribute="centerX" secondItem="el9-ES-gOO" secondAttribute="centerX" id="wSv-b7-P11"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BW6-Zz-hud"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectionSearchView" destination="vK6-vh-hu2" id="YCr-rL-i2e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QKl-BJ-aRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="112"/>
+        </scene>
+    </scenes>
+</document>
