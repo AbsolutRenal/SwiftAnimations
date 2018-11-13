@@ -45,6 +45,7 @@ class AnimationsListDataSource: NSObject, UITableViewDataSource {
       Animation(name: "Circle ActivityIndicator", storyboardID: "CircleActivityIndicator")
       ]),
     AnimationsSection(name: "Buttons", animations: [
+      Animation(name: "Circular Menu", storyboardID: "CircleMenuActions"),
       Animation(name: "Share Button", storyboardID: "ShareButton"),
       Animation(name: "Notify Button", storyboardID: "NotifyButton"),
       ]),

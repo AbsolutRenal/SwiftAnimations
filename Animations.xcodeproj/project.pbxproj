@@ -22,6 +22,10 @@
 		E2772537219B2F94007D85C8 /* ConnectionSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772536219B2F94007D85C8 /* ConnectionSearchView.swift */; };
 		E2772539219B2FA6007D85C8 /* ConnectionSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772538219B2FA6007D85C8 /* ConnectionSearchViewController.swift */; };
 		E277253B219B304B007D85C8 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277253A219B304A007D85C8 /* CALayer.swift */; };
+		E2772540219B31F2007D85C8 /* CircleMenuActions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277253D219B31F1007D85C8 /* CircleMenuActions.storyboard */; };
+		E2772541219B31F2007D85C8 /* CircleMenuActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277253E219B31F1007D85C8 /* CircleMenuActionButton.swift */; };
+		E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277253F219B31F1007D85C8 /* CircleMenu.swift */; };
+		E2772544219B3253007D85C8 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772543219B3253007D85C8 /* CGRect.swift */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
@@ -59,6 +63,10 @@
 		E2772536219B2F94007D85C8 /* ConnectionSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionSearchView.swift; sourceTree = "<group>"; };
 		E2772538219B2FA6007D85C8 /* ConnectionSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionSearchViewController.swift; sourceTree = "<group>"; };
 		E277253A219B304A007D85C8 /* CALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		E277253D219B31F1007D85C8 /* CircleMenuActions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CircleMenuActions.storyboard; sourceTree = "<group>"; };
+		E277253E219B31F1007D85C8 /* CircleMenuActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenuActionButton.swift; sourceTree = "<group>"; };
+		E277253F219B31F1007D85C8 /* CircleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenu.swift; sourceTree = "<group>"; };
+		E2772543219B3253007D85C8 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,9 +140,20 @@
 			path = ConnectionSearch;
 			sourceTree = "<group>";
 		};
+		E277253C219B31D3007D85C8 /* CircularMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E277253F219B31F1007D85C8 /* CircleMenu.swift */,
+				E277253E219B31F1007D85C8 /* CircleMenuActionButton.swift */,
+				E277253D219B31F1007D85C8 /* CircleMenuActions.storyboard */,
+			);
+			path = CircularMenu;
+			sourceTree = "<group>";
+		};
 		E282DE901E939AF7009BE85C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E2772543219B3253007D85C8 /* CGRect.swift */,
 				E277253A219B304A007D85C8 /* CALayer.swift */,
 				E282DE911E939B3C009BE85C /* Stack.swift */,
 			);
@@ -195,6 +214,7 @@
 		E2FB82771E66DE0800F5F15C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E277253C219B31D3007D85C8 /* CircularMenu */,
 				E2772533219B2EF3007D85C8 /* ConnectionSearch */,
 				E21E0CF01E8E68740073BC12 /* ActivityIndicator */,
 				E2573BD81E8912F400F5B329 /* Replicator */,
@@ -302,6 +322,7 @@
 				E277252E219B16D4007D85C8 /* HeartPulseReplicator.storyboard in Resources */,
 				E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */,
 				E277252A219B168E007D85C8 /* CircleActivityIndicator.storyboard in Resources */,
+				E2772540219B31F2007D85C8 /* CircleMenuActions.storyboard in Resources */,
 				E2772532219B1717007D85C8 /* NotifyButton.storyboard in Resources */,
 				E2772535219B2F05007D85C8 /* ConnectionSearch.storyboard in Resources */,
 				E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */,
@@ -327,6 +348,7 @@
 			files = (
 				E282DE921E939B3C009BE85C /* Stack.swift in Sources */,
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
+				E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
 				E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */,
@@ -338,6 +360,8 @@
 				E20A269D1E8AAE6600D31CE3 /* HeartPulseReplicator.swift in Sources */,
 				E277253B219B304B007D85C8 /* CALayer.swift in Sources */,
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
+				E2772541219B31F2007D85C8 /* CircleMenuActionButton.swift in Sources */,
+				E2772544219B3253007D85C8 /* CGRect.swift in Sources */,
 				E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
