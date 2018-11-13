@@ -26,6 +26,9 @@
 		E2772541219B31F2007D85C8 /* CircleMenuActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277253E219B31F1007D85C8 /* CircleMenuActionButton.swift */; };
 		E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277253F219B31F1007D85C8 /* CircleMenu.swift */; };
 		E2772544219B3253007D85C8 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772543219B3253007D85C8 /* CGRect.swift */; };
+		E2772549219B32D5007D85C8 /* AtomLike.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2772546219B32D5007D85C8 /* AtomLike.storyboard */; };
+		E277254A219B32D5007D85C8 /* AtomLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772547219B32D5007D85C8 /* AtomLikeView.swift */; };
+		E277254B219B32D5007D85C8 /* AtomLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772548219B32D5007D85C8 /* AtomLikeViewController.swift */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
@@ -67,6 +70,9 @@
 		E277253E219B31F1007D85C8 /* CircleMenuActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenuActionButton.swift; sourceTree = "<group>"; };
 		E277253F219B31F1007D85C8 /* CircleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenu.swift; sourceTree = "<group>"; };
 		E2772543219B3253007D85C8 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		E2772546219B32D5007D85C8 /* AtomLike.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AtomLike.storyboard; sourceTree = "<group>"; };
+		E2772547219B32D5007D85C8 /* AtomLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomLikeView.swift; sourceTree = "<group>"; };
+		E2772548219B32D5007D85C8 /* AtomLikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomLikeViewController.swift; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +156,16 @@
 			path = CircularMenu;
 			sourceTree = "<group>";
 		};
+		E2772545219B32B3007D85C8 /* AtomAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E2772546219B32D5007D85C8 /* AtomLike.storyboard */,
+				E2772547219B32D5007D85C8 /* AtomLikeView.swift */,
+				E2772548219B32D5007D85C8 /* AtomLikeViewController.swift */,
+			);
+			path = AtomAnimation;
+			sourceTree = "<group>";
+		};
 		E282DE901E939AF7009BE85C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +230,7 @@
 		E2FB82771E66DE0800F5F15C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2772545219B32B3007D85C8 /* AtomAnimation */,
 				E277253C219B31D3007D85C8 /* CircularMenu */,
 				E2772533219B2EF3007D85C8 /* ConnectionSearch */,
 				E21E0CF01E8E68740073BC12 /* ActivityIndicator */,
@@ -323,6 +340,7 @@
 				E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */,
 				E277252A219B168E007D85C8 /* CircleActivityIndicator.storyboard in Resources */,
 				E2772540219B31F2007D85C8 /* CircleMenuActions.storyboard in Resources */,
+				E2772549219B32D5007D85C8 /* AtomLike.storyboard in Resources */,
 				E2772532219B1717007D85C8 /* NotifyButton.storyboard in Resources */,
 				E2772535219B2F05007D85C8 /* ConnectionSearch.storyboard in Resources */,
 				E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */,
@@ -350,6 +368,7 @@
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
+				E277254A219B32D5007D85C8 /* AtomLikeView.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
 				E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */,
 				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
@@ -362,6 +381,7 @@
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
 				E2772541219B31F2007D85C8 /* CircleMenuActionButton.swift in Sources */,
 				E2772544219B3253007D85C8 /* CGRect.swift in Sources */,
+				E277254B219B32D5007D85C8 /* AtomLikeViewController.swift in Sources */,
 				E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
