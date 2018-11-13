@@ -14,12 +14,14 @@ protocol Animatable: CAAnimationDelegate {
                               values: [Any],
                               keyTimes: [NSNumber]?,
                               duration: CFTimeInterval,
+                              repeatDuration: CFTimeInterval,
                               fillMode: String?,
                               beginTime: CFTimeInterval?,
                               delegate: CAAnimationDelegate?,
                               timingFunctions: [CAMediaTimingFunction]?) -> CAKeyframeAnimation
   func buildAnimationGroup(animations: [CAAnimation],
                            duration: CFTimeInterval,
+                           repeatDuration: CFTimeInterval,
                            fillMode: String?,
                            beginTime: CFTimeInterval?,
                            delegate: CAAnimationDelegate?) -> CAAnimationGroup
@@ -30,6 +32,7 @@ extension Animatable {
                               values: [Any],
                               keyTimes: [NSNumber]?,
                               duration: CFTimeInterval = 0,
+                              repeatDuration: CFTimeInterval = 0,
                               fillMode: String? = nil,
                               beginTime: CFTimeInterval? = nil,
                               delegate: CAAnimationDelegate? = nil,
@@ -42,22 +45,23 @@ extension Animatable {
     anim.fillMode = fillMode ?? kCAFillModeForwards
     anim.timingFunctions = timingFunctions
     anim.duration = duration
+    anim.repeatDuration = repeatDuration
     return anim
   }
   
   func buildAnimationGroup(animations: [CAAnimation],
                            duration: CFTimeInterval,
+                           repeatDuration: CFTimeInterval = 0,
                            fillMode: String? = nil,
                            beginTime: CFTimeInterval? = nil,
                            delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
     let anim = CAAnimationGroup()
     anim.animations = animations
     anim.duration = duration
+    anim.repeatDuration = repeatDuration
     anim.delegate = delegate
     anim.beginTime = beginTime ?? 0.0
     anim.fillMode = fillMode ?? kCAFillModeForwards
-    
     return anim
   }
 }
-

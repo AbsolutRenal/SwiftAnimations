@@ -29,6 +29,9 @@
 		E2772549219B32D5007D85C8 /* AtomLike.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2772546219B32D5007D85C8 /* AtomLike.storyboard */; };
 		E277254A219B32D5007D85C8 /* AtomLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772547219B32D5007D85C8 /* AtomLikeView.swift */; };
 		E277254B219B32D5007D85C8 /* AtomLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772548219B32D5007D85C8 /* AtomLikeViewController.swift */; };
+		E2772550219B3350007D85C8 /* SquareReplicatorLoader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277254D219B3350007D85C8 /* SquareReplicatorLoader.storyboard */; };
+		E2772551219B3350007D85C8 /* SquareReplicatorLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277254E219B3350007D85C8 /* SquareReplicatorLoaderView.swift */; };
+		E2772552219B3350007D85C8 /* SquareReplicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277254F219B3350007D85C8 /* SquareReplicatorViewController.swift */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
@@ -73,6 +76,9 @@
 		E2772546219B32D5007D85C8 /* AtomLike.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AtomLike.storyboard; sourceTree = "<group>"; };
 		E2772547219B32D5007D85C8 /* AtomLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomLikeView.swift; sourceTree = "<group>"; };
 		E2772548219B32D5007D85C8 /* AtomLikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomLikeViewController.swift; sourceTree = "<group>"; };
+		E277254D219B3350007D85C8 /* SquareReplicatorLoader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SquareReplicatorLoader.storyboard; sourceTree = "<group>"; };
+		E277254E219B3350007D85C8 /* SquareReplicatorLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareReplicatorLoaderView.swift; sourceTree = "<group>"; };
+		E277254F219B3350007D85C8 /* SquareReplicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareReplicatorViewController.swift; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +172,16 @@
 			path = AtomAnimation;
 			sourceTree = "<group>";
 		};
+		E277254C219B3339007D85C8 /* SquareLoader */ = {
+			isa = PBXGroup;
+			children = (
+				E277254D219B3350007D85C8 /* SquareReplicatorLoader.storyboard */,
+				E277254E219B3350007D85C8 /* SquareReplicatorLoaderView.swift */,
+				E277254F219B3350007D85C8 /* SquareReplicatorViewController.swift */,
+			);
+			path = SquareLoader;
+			sourceTree = "<group>";
+		};
 		E282DE901E939AF7009BE85C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +246,7 @@
 		E2FB82771E66DE0800F5F15C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E277254C219B3339007D85C8 /* SquareLoader */,
 				E2772545219B32B3007D85C8 /* AtomAnimation */,
 				E277253C219B31D3007D85C8 /* CircularMenu */,
 				E2772533219B2EF3007D85C8 /* ConnectionSearch */,
@@ -343,6 +360,7 @@
 				E2772549219B32D5007D85C8 /* AtomLike.storyboard in Resources */,
 				E2772532219B1717007D85C8 /* NotifyButton.storyboard in Resources */,
 				E2772535219B2F05007D85C8 /* ConnectionSearch.storyboard in Resources */,
+				E2772550219B3350007D85C8 /* SquareReplicatorLoader.storyboard in Resources */,
 				E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */,
 				E2772530219B1708007D85C8 /* ShareButton.storyboard in Resources */,
 				E277252C219B16C0007D85C8 /* MorphReplicator.storyboard in Resources */,
@@ -365,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E282DE921E939B3C009BE85C /* Stack.swift in Sources */,
+				E2772552219B3350007D85C8 /* SquareReplicatorViewController.swift in Sources */,
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
@@ -378,6 +397,7 @@
 				E2772539219B2FA6007D85C8 /* ConnectionSearchViewController.swift in Sources */,
 				E20A269D1E8AAE6600D31CE3 /* HeartPulseReplicator.swift in Sources */,
 				E277253B219B304B007D85C8 /* CALayer.swift in Sources */,
+				E2772551219B3350007D85C8 /* SquareReplicatorLoaderView.swift in Sources */,
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
 				E2772541219B31F2007D85C8 /* CircleMenuActionButton.swift in Sources */,
 				E2772544219B3253007D85C8 /* CGRect.swift in Sources */,
