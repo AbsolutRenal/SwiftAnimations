@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ybn-iq-Usk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Animations List View Controller-->
+        <scene sceneID="wRd-uh-Z9d">
+            <objects>
+                <tableViewController id="Ybn-iq-Usk" customClass="AnimationsListViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VjR-6W-YL3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="AQN-Q7-ola">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AQN-Q7-ola" id="rg5-rU-ncK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ybn-iq-Usk" id="hzS-9e-EAv"/>
+                            <outlet property="delegate" destination="Ybn-iq-Usk" id="cTp-MC-qUV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYG-0y-xlR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-780" y="139"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wuR-TL-IaS"/>
                         <viewControllerLayoutGuide type="bottom" id="lqG-xu-EGu"/>
@@ -29,10 +56,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-YJ-EvR" customClass="NotifyButton" customModule="Animations" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="88.5" width="343" height="44"/>
+                                                <rect key="frame" x="16" y="89" width="343" height="44"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ji-a1-o3g">
-                                                        <rect key="frame" x="112" y="0.0" width="120" height="44"/>
+                                                        <rect key="frame" x="111.5" y="0.0" width="120" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="120" id="giy-qa-p0o"/>
@@ -46,13 +73,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJL-wS-BGo">
-                                                        <rect key="frame" x="14" y="11" width="44" height="21"/>
+                                                        <rect key="frame" x="14" y="11.5" width="44" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <color key="textColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Spm-QN-wyz">
-                                                        <rect key="frame" x="14" y="11" width="241" height="21"/>
+                                                        <rect key="frame" x="14" y="11.5" width="241" height="21"/>
                                                         <color key="textColor" red="1" green="0.56671130660000002" blue="0.52343326810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -119,7 +146,7 @@
                                         <rect key="frame" x="0.0" y="222.5" width="375" height="222"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-5Z-XnS" customClass="ShareButton" customModule="Animations" customModuleProvider="target">
-                                                <rect key="frame" x="106" y="89" width="164" height="44"/>
+                                                <rect key="frame" x="105.5" y="89" width="164" height="44"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKn-i4-H9n">
                                                         <rect key="frame" x="0.0" y="0.0" width="164" height="44"/>
@@ -186,14 +213,14 @@
                                         <color key="backgroundColor" red="0.23950053018191558" green="0.2960566971329267" blue="0.35995003172588835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPK-ng-iht" customClass="PulseReplicator" customModule="Animations" customModuleProvider="target">
-                                        <rect key="frame" x="-0.5" y="667" width="375" height="222.5"/>
+                                        <rect key="frame" x="0.0" y="667" width="375" height="222.5"/>
                                         <color key="backgroundColor" red="0.5827252538071066" green="0.010142004871448335" blue="0.12556292657550064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TB-iO-jvK">
-                                        <rect key="frame" x="-0.5" y="889.5" width="375" height="222.5"/>
+                                        <rect key="frame" x="0.0" y="889.5" width="375" height="222"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-wc-uTM" customClass="CircleActivityIndicator" customModule="Animations" customModuleProvider="target">
-                                                <rect key="frame" x="162.5" y="85.5" width="50" height="50"/>
+                                                <rect key="frame" x="162.5" y="86" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="axn-UF-zJG"/>

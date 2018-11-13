@@ -11,9 +11,10 @@
 		E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E215EF191E7C34C800B29E9F /* ShareButton.swift */; };
 		E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */; };
 		E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* Replicator.swift */; };
+		E2772526219AE2B6007D85C8 /* AnimationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */; };
+		E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
-		E2A349F41E66D1BC0058FFFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F31E66D1BC0058FFFD /* ViewController.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
 		E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F81E66D1BC0058FFFD /* Assets.xcassets */; };
 		E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349FA1E66D1BC0058FFFD /* LaunchScreen.storyboard */; };
@@ -38,10 +39,11 @@
 		E215EF191E7C34C800B29E9F /* ShareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityIndicator.swift; sourceTree = "<group>"; };
 		E2573BD91E89133500F5B329 /* Replicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Replicator.swift; sourceTree = "<group>"; };
+		E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsListViewController.swift; sourceTree = "<group>"; };
+		E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsListDataSource.swift; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E2A349F31E66D1BC0058FFFD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E2A349F61E66D1BC0058FFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2A349F81E66D1BC0058FFFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2A349FB1E66D1BC0058FFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,14 +129,15 @@
 		E2A349F01E66D1BC0058FFFD /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */,
 				E282DE901E939AF7009BE85C /* Helper */,
 				E2FB82771E66DE0800F5F15C /* View */,
 				E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */,
-				E2A349F31E66D1BC0058FFFD /* ViewController.swift */,
 				E2A349F51E66D1BC0058FFFD /* Main.storyboard */,
 				E2A349F81E66D1BC0058FFFD /* Assets.xcassets */,
 				E2A349FA1E66D1BC0058FFFD /* LaunchScreen.storyboard */,
 				E2A349FD1E66D1BC0058FFFD /* Info.plist */,
+				E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -282,15 +285,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E282DE921E939B3C009BE85C /* Stack.swift in Sources */,
-				E2A349F41E66D1BC0058FFFD /* ViewController.swift in Sources */,
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
 				E2573BDA1E89133500F5B329 /* Replicator.swift in Sources */,
 				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
+				E2772526219AE2B6007D85C8 /* AnimationsListViewController.swift in Sources */,
 				E20A269D1E8AAE6600D31CE3 /* PulseReplicator.swift in Sources */,
 				E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */,
+				E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
