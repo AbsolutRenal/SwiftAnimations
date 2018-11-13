@@ -53,6 +53,7 @@ class AnimationsListDataSource: NSObject, UITableViewDataSource {
     AnimationsSection(name: "Infinite Loop Animations", animations: [
       Animation(name: "Internet Connection Search", storyboardID: "ConnectionSearch"),
       Animation(name: "Atom like animation", storyboardID: "AtomLike"),
+      Animation(name: "Pacman", storyboardID: "Pacman"),
       Animation(name: "Morph Replicator", storyboardID: "MorphReplicator"),
       Animation(name: "Heart Pulse", storyboardID: "HeartPulseReplicator")
       ])
