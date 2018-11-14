@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.23921568627450979" green="0.29411764705882354" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="Qpq-ki-Fbu" firstAttribute="bottom" secondItem="j0U-3Q-QhG" secondAttribute="bottom" id="DqW-Jc-uyW"/>
                             <constraint firstItem="j0U-3Q-QhG" firstAttribute="top" secondItem="Qpq-ki-Fbu" secondAttribute="top" id="ELh-v9-5H1"/>

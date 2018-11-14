@@ -12,17 +12,30 @@ import UIKit
 class MorphReplicator: UIView, Animatable {
   // *********************************************************************
   // MARK: - Constants
-//  private let nbLayers = 20
-  private var size: CGFloat = 15
+  //  private let nbLayers = 20
+  private let size: CGFloat = 15
   private let ease = CAMediaTimingFunction(controlPoints: 0.6, 0.0, 0.6, 1.0)
+  private let offset = 2
   
   // *********************************************************************
   // MARK: - IBOutlets
   
   // *********************************************************************
   // MARK: - Properties
-  var replicatorLayerX: CAReplicatorLayer!
-  var replicatorLayerY: CAReplicatorLayer!
+  lazy private var particule: CALayer = {
+    let l = CALayer()
+    l.bounds = CGRect(x: 0,
+                      y: 0,
+                      width: size,
+                      height: size)
+    l.position = CGPoint(x: size * 0.5 + CGFloat(offset),
+                         y: size * 0.5 + CGFloat(offset))
+    l.backgroundColor = UIColor.lightGray.cgColor
+    l.cornerRadius = 0.0
+    return l
+  }()
+  private var replicatorLayerX: CAReplicatorLayer?
+  private var replicatorLayerY: CAReplicatorLayer?
   
   // *********************************************************************
   // MARK: - Lifecycle
@@ -41,53 +54,54 @@ class MorphReplicator: UIView, Animatable {
     configure()
   }
   
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    clearReplicators()
+    setupReplicators()
+  }
+  
+  private func clearReplicators() {
+    replicatorLayerX?.removeFromSuperlayer()
+    replicatorLayerY?.removeFromSuperlayer()
+  }
+  
+  private func setupReplicators() {
+    replicatorLayerX = CAReplicatorLayer()
+    replicatorLayerX?.preservesDepth = false
+    replicatorLayerX?.instanceRedOffset = -0.01
+    replicatorLayerX?.instanceGreenOffset = -0.07
+    replicatorLayerX?.instanceBlueOffset = -0.04
+    replicatorLayerX?.instanceCount = Int(ceil(bounds.width / (size + CGFloat(offset))))
+    replicatorLayerX?.instanceDelay = 0.05
+    replicatorLayerX?.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
+                                                                 size + CGFloat(offset),
+                                                                 0,
+                                                                 0)
+    replicatorLayerX?.addSublayer(particule)
+    
+    replicatorLayerY = CAReplicatorLayer()
+    replicatorLayerY?.preservesDepth = false
+    replicatorLayerY?.instanceCount = Int(ceil(bounds.size.height / (size + CGFloat(offset))))
+    replicatorLayerY?.instanceDelay = 0.1
+    replicatorLayerY?.instanceRedOffset = -0.1
+    replicatorLayerY?.instanceGreenOffset = -0.03
+    replicatorLayerY?.instanceBlueOffset = -0.02
+    replicatorLayerY?.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
+                                                                 0,
+                                                                 size + CGFloat(offset),
+                                                                 0)
+    replicatorLayerY?.addSublayer(replicatorLayerX!)
+    layer.addSublayer(replicatorLayerY!)
+  }
+  
   // *********************************************************************
   // MARK: - Private
   private func configure() {
-    let offset = 2
-    let l = CALayer()
-    l.bounds = CGRect(x: 0,
-                      y: 0,
-                      width: size,
-                      height: size)
-    l.position = CGPoint(x: size * 0.5 + CGFloat(offset),
-                         y: size * 0.5 + CGFloat(offset))
-    l.backgroundColor = UIColor.lightGray.cgColor
-    l.cornerRadius = 0.0
-    
-    replicatorLayerX = CAReplicatorLayer()
-    replicatorLayerX.preservesDepth = false
-    replicatorLayerX.instanceRedOffset = -0.01
-    replicatorLayerX.instanceGreenOffset = -0.07
-    replicatorLayerX.instanceBlueOffset = -0.04
-    replicatorLayerX.instanceCount = Int(bounds.width / (size + CGFloat(offset)))
-    replicatorLayerX.instanceDelay = 0.05
-    replicatorLayerX.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
-                                                                size + CGFloat(offset),
-                                                                0,
-                                                                0)
-    replicatorLayerX.addSublayer(l)
-    
-    replicatorLayerY = CAReplicatorLayer()
-    replicatorLayerY.preservesDepth = false
-    replicatorLayerY.instanceCount = Int(bounds.size.height / (size + CGFloat(offset)))
-    replicatorLayerY.instanceDelay = 0.1
-    replicatorLayerY.instanceRedOffset = -0.1
-    replicatorLayerY.instanceGreenOffset = -0.03
-    replicatorLayerY.instanceBlueOffset = -0.02
-    replicatorLayerY.instanceTransform = CATransform3DTranslate(CATransform3DIdentity,
-                                                                0,
-                                                                size + CGFloat(offset),
-                                                                0)
-    replicatorLayerY.addSublayer(replicatorLayerX)
-    
-    layer.addSublayer(replicatorLayerY)
-    
     let morph = morphAnimation()
     morph.repeatCount = Float.greatestFiniteMagnitude
     morph.autoreverses = true
-    l.add(morph,
-          forKey: "morph")
+    particule.add(morph,
+                  forKey: "morph")
   }
   
   private func morphAnimation() -> CAAnimationGroup {
