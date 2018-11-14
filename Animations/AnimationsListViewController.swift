@@ -19,6 +19,7 @@ class AnimationsListViewController: UITableViewController {
     tableView.dataSource = dataSource
     tableView.delegate = self
     tableView.tableFooterView = .init()
+    title = "CoreAnimation samples"
   }
   
   // MARK: - UITableViewDelegate

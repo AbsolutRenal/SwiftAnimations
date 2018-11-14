@@ -43,7 +43,8 @@ class AnimationsListDataSource: NSObject, UITableViewDataSource {
   private let animations: [AnimationsSection] = [
     AnimationsSection(name: "Activity Indicators", animations: [
       Animation(name: "Square Replicator Loader", storyboardID: "SquareReplicatorLoader"),
-      Animation(name: "Circle ActivityIndicator", storyboardID: "CircleActivityIndicator")
+      Animation(name: "Circle ActivityIndicator", storyboardID: "CircleActivityIndicator"),
+      Animation(name: "Bouncing Replicator App Loader", storyboardID: "ReplicatorAppLoader")
       ]),
     AnimationsSection(name: "Buttons", animations: [
       Animation(name: "Circular Menu", storyboardID: "CircleMenuActions"),

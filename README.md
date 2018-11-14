@@ -31,3 +31,6 @@ Try CALayer Animations in Swift
 
 ##### Circular Menu Animation
 ![Circular Menu Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/CircularMenu.gif "Circular Menu Animation")
+
+##### App Loader Animation (animation found on [Dribbble](https://dribbble.com/shots/2440492-App-loader))
+![App Loader Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/AppLoader.gif "App Loader Animation")
