@@ -8,7 +8,13 @@
 
 import UIKit
 
-class InfiniteSpinnerView: UIView {
+class InfiniteSpinnerView: UIView, Animatable {
+  // MARK: - Constants
+  private enum Constants {
+    static let delayBetweenStartEnd: CFTimeInterval = 0.1
+    static let duration: CFTimeInterval = 1
+  }
+  
   // MARK: - Properties
   private var leftLayer: CAShapeLayer?
   private var rightLayer: CAShapeLayer?
@@ -23,6 +29,7 @@ class InfiniteSpinnerView: UIView {
     super.layoutSubviews()
     removeLayersIfNeeded()
     setupLayers()
+    setupAnimations()
   }
   
   // MARK: - Private
@@ -51,6 +58,8 @@ class InfiniteSpinnerView: UIView {
     layer.lineWidth = 16
     layer.lineCap = kCALineCapRound
     layer.fillColor = UIColor.clear.cgColor
+    layer.strokeStart = 0
+    layer.strokeEnd = 0
     return layer
   }
   
@@ -63,5 +72,30 @@ class InfiniteSpinnerView: UIView {
                             endAngle: endAngle,
                             clockwise: clockwise)
     return path.cgPath
+  }
+  
+  private func setupAnimations() {
+    rightLayer?.add(strokeAnimation(), forKey: "stroke")
+    leftLayer?.add(strokeAnimation(delayedBy: Constants.duration * 0.5), forKey: "stroke")
+  }
+  
+  private func strokeAnimation(delayedBy delay: CFTimeInterval = 0) -> CAAnimation {
+    let strokeAnimDuration = 0.5 - Constants.delayBetweenStartEnd
+    let strokeEndAnimation = buildKeyFrameAnimation(keyPath: "strokeEnd",
+                                                    values: [0, 1],
+                                                    keyTimes: [
+                                                      NSNumber(value: delay),
+                                                      NSNumber(value: delay + strokeAnimDuration)
+      ])
+    let strokeStartAnimation = buildKeyFrameAnimation(keyPath: "strokeStart",
+                                                      values: [0, 1],
+                                                      keyTimes: [
+                                                        NSNumber(value: delay + Constants.delayBetweenStartEnd),
+                                                        NSNumber(value: delay + Constants.delayBetweenStartEnd + strokeAnimDuration)
+      ])
+    let wholeAnimation = buildAnimationGroup(animations: [strokeEndAnimation, strokeStartAnimation],
+                                             duration: Constants.duration)
+    wholeAnimation.repeatCount = .greatestFiniteMagnitude
+    return wholeAnimation
   }
 }
