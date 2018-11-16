@@ -34,3 +34,6 @@ Try CALayer Animations in Swift
 
 ##### App Loader Animation (animation found on [Dribbble](https://dribbble.com/shots/2440492-App-loader))
 ![App Loader Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/AppLoader.gif "App Loader Animation")
+
+##### Infinite Spinner Animation (animation found on [Dribbble](https://dribbble.com/shots/2339876-Spinner-lX-Infinity))
+![Infinite Spinner Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/InfiniteSpinner.gif "Infinite Spinner Animation")
