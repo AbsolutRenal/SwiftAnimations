@@ -13,9 +13,8 @@ class InfiniteSpinnerView: UIView, Animatable {
   private enum Constants {
     static let delayBetweenStartEnd: CFTimeInterval = 0.15
     static let duration: CFTimeInterval = 1.2
-    static let ease = CAMediaTimingFunction(name: "linear")
-//    static let ease = CAMediaTimingFunction(controlPoints: 0, 0.5,
-//                                               0.6, 1)
+    static let ease = CAMediaTimingFunction(controlPoints: 0.6, 0.9,
+                                               0.6, 1)
   }
   
   // MARK: - Properties
@@ -41,9 +40,9 @@ class InfiniteSpinnerView: UIView, Animatable {
   }
   
   private func removeLayersIfNeeded() {
-//    leftLayer?.removeAllAnimations()
+    leftLayer?.removeAllAnimations()
     leftLayer?.removeFromSuperlayer()
-//    rightLayer?.removeAllAnimations()
+    rightLayer?.removeAllAnimations()
     rightLayer?.removeFromSuperlayer()
   }
   
