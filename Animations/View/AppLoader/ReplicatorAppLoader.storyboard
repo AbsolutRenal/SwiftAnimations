@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--App Loader View Controller-->
+        <!--View Controller-->
         <scene sceneID="N8y-ss-3JC">
             <objects>
-                <viewController id="BZM-gl-wpw" customClass="AppLoaderViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BZM-gl-wpw" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eeu-tk-hle">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
