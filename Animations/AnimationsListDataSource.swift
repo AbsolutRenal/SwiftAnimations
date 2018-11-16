@@ -44,7 +44,8 @@ class AnimationsListDataSource: NSObject, UITableViewDataSource {
     AnimationsSection(name: "Activity Indicators", animations: [
       Animation(name: "Square Replicator Loader", storyboardID: "SquareReplicatorLoader"),
       Animation(name: "Circle ActivityIndicator", storyboardID: "CircleActivityIndicator"),
-      Animation(name: "Bouncing Replicator App Loader", storyboardID: "ReplicatorAppLoader")
+      Animation(name: "Bouncing Replicator App Loader", storyboardID: "ReplicatorAppLoader"),
+      Animation(name: "Infinite Spinner", storyboardID: "InfiniteSpinner")
       ]),
     AnimationsSection(name: "Buttons", animations: [
       Animation(name: "Circular Menu", storyboardID: "CircleMenuActions"),

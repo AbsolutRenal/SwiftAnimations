@@ -35,7 +35,6 @@
 		E2772555219B3590007D85C8 /* Pacman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2772554219B3590007D85C8 /* Pacman.storyboard */; };
 		E2772557219B359D007D85C8 /* PacmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772556219B359D007D85C8 /* PacmanViewController.swift */; };
 		E2772559219B3600007D85C8 /* PacmanLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772558219B3600007D85C8 /* PacmanLayer.swift */; };
-		E277255C219C2E08007D85C8 /* AppLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277255B219C2E08007D85C8 /* AppLoaderViewController.swift */; };
 		E277255E219C2E11007D85C8 /* ReplicatorAppLoader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277255D219C2E11007D85C8 /* ReplicatorAppLoader.storyboard */; };
 		E2772560219C35F2007D85C8 /* AppLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277255F219C35F2007D85C8 /* AppLoaderView.swift */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
@@ -44,6 +43,8 @@
 		E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F81E66D1BC0058FFFD /* Assets.xcassets */; };
 		E2A349FC1E66D1BC0058FFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349FA1E66D1BC0058FFFD /* LaunchScreen.storyboard */; };
 		E2A34A071E66D1BC0058FFFD /* AnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A34A061E66D1BC0058FFFD /* AnimationsTests.swift */; };
+		E2EF1CB4219F006100608828 /* InfiniteSpinner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2EF1CB3219F006100608828 /* InfiniteSpinner.storyboard */; };
+		E2EF1CB6219F007900608828 /* InfiniteSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF1CB5219F007900608828 /* InfiniteSpinnerView.swift */; };
 		E2F608931E7FED2F00E374D9 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F608921E7FED2F00E374D9 /* Animatable.swift */; };
 		E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F608941E8289F500E374D9 /* ShareTypeButton.swift */; };
 		E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB82751E66DD1600F5F15C /* NotifyButton.swift */; };
@@ -88,7 +89,6 @@
 		E2772554219B3590007D85C8 /* Pacman.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pacman.storyboard; sourceTree = "<group>"; };
 		E2772556219B359D007D85C8 /* PacmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacmanViewController.swift; sourceTree = "<group>"; };
 		E2772558219B3600007D85C8 /* PacmanLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacmanLayer.swift; sourceTree = "<group>"; };
-		E277255B219C2E08007D85C8 /* AppLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoaderViewController.swift; sourceTree = "<group>"; };
 		E277255D219C2E11007D85C8 /* ReplicatorAppLoader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReplicatorAppLoader.storyboard; sourceTree = "<group>"; };
 		E277255F219C35F2007D85C8 /* AppLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoaderView.swift; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -101,6 +101,8 @@
 		E2A34A021E66D1BC0058FFFD /* AnimationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A34A061E66D1BC0058FFFD /* AnimationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsTests.swift; sourceTree = "<group>"; };
 		E2A34A081E66D1BC0058FFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2EF1CB3219F006100608828 /* InfiniteSpinner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfiniteSpinner.storyboard; sourceTree = "<group>"; };
+		E2EF1CB5219F007900608828 /* InfiniteSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteSpinnerView.swift; sourceTree = "<group>"; };
 		E2F608921E7FED2F00E374D9 /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		E2F608941E8289F500E374D9 /* ShareTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTypeButton.swift; sourceTree = "<group>"; };
 		E2FB82751E66DD1600F5F15C /* NotifyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyButton.swift; sourceTree = "<group>"; };
@@ -207,7 +209,6 @@
 		E277255A219C2DF5007D85C8 /* AppLoader */ = {
 			isa = PBXGroup;
 			children = (
-				E277255B219C2E08007D85C8 /* AppLoaderViewController.swift */,
 				E277255D219C2E11007D85C8 /* ReplicatorAppLoader.storyboard */,
 				E277255F219C35F2007D85C8 /* AppLoaderView.swift */,
 			);
@@ -267,6 +268,15 @@
 			path = AnimationsTests;
 			sourceTree = "<group>";
 		};
+		E2EF1CB2219F005200608828 /* InifinteSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				E2EF1CB3219F006100608828 /* InfiniteSpinner.storyboard */,
+				E2EF1CB5219F007900608828 /* InfiniteSpinnerView.swift */,
+			);
+			path = InifinteSpinner;
+			sourceTree = "<group>";
+		};
 		E2F608911E7FECC200E374D9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +288,7 @@
 		E2FB82771E66DE0800F5F15C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2EF1CB2219F005200608828 /* InifinteSpinner */,
 				E277255A219C2DF5007D85C8 /* AppLoader */,
 				E2772553219B3580007D85C8 /* Pacman */,
 				E277254C219B3339007D85C8 /* SquareLoader */,
@@ -401,6 +412,7 @@
 				E2772530219B1708007D85C8 /* ShareButton.storyboard in Resources */,
 				E277252C219B16C0007D85C8 /* MorphReplicator.storyboard in Resources */,
 				E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */,
+				E2EF1CB4219F006100608828 /* InfiniteSpinner.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,10 +436,10 @@
 				E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E2772559219B3600007D85C8 /* PacmanLayer.swift in Sources */,
+				E2EF1CB6219F007900608828 /* InfiniteSpinnerView.swift in Sources */,
 				E277254A219B32D5007D85C8 /* AtomLikeView.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
 				E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */,
-				E277255C219C2E08007D85C8 /* AppLoaderViewController.swift in Sources */,
 				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
 				E2772537219B2F94007D85C8 /* ConnectionSearchView.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
