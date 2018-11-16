@@ -11,8 +11,11 @@ import UIKit
 class InfiniteSpinnerView: UIView, Animatable {
   // MARK: - Constants
   private enum Constants {
-    static let delayBetweenStartEnd: CFTimeInterval = 0.1
-    static let duration: CFTimeInterval = 1
+    static let delayBetweenStartEnd: CFTimeInterval = 0.15
+    static let duration: CFTimeInterval = 1.2
+    static let ease = CAMediaTimingFunction(name: "linear")
+//    static let ease = CAMediaTimingFunction(controlPoints: 0, 0.5,
+//                                               0.6, 1)
   }
   
   // MARK: - Properties
@@ -38,9 +41,9 @@ class InfiniteSpinnerView: UIView, Animatable {
   }
   
   private func removeLayersIfNeeded() {
-    leftLayer?.removeAllAnimations()
+//    leftLayer?.removeAllAnimations()
     leftLayer?.removeFromSuperlayer()
-    rightLayer?.removeAllAnimations()
+//    rightLayer?.removeAllAnimations()
     rightLayer?.removeFromSuperlayer()
   }
   
@@ -79,20 +82,27 @@ class InfiniteSpinnerView: UIView, Animatable {
     leftLayer?.add(strokeAnimation(delayedBy: Constants.duration * 0.5), forKey: "stroke")
   }
   
+  private func mapTime(_ delay: CFTimeInterval) -> NSNumber {
+    let mapped = delay / Constants.duration
+    return NSNumber(value: mapped)
+  }
+  
   private func strokeAnimation(delayedBy delay: CFTimeInterval = 0) -> CAAnimation {
-    let strokeAnimDuration = 0.5 - Constants.delayBetweenStartEnd
+    let strokeAnimDuration = Constants.duration * 0.5 - Constants.delayBetweenStartEnd
     let strokeEndAnimation = buildKeyFrameAnimation(keyPath: "strokeEnd",
                                                     values: [0, 1],
                                                     keyTimes: [
-                                                      NSNumber(value: delay),
-                                                      NSNumber(value: delay + strokeAnimDuration)
-      ])
+                                                      mapTime(delay),
+                                                      mapTime(delay + strokeAnimDuration)
+      ],
+                                                    timingFunctions: [Constants.ease])
     let strokeStartAnimation = buildKeyFrameAnimation(keyPath: "strokeStart",
                                                       values: [0, 1],
                                                       keyTimes: [
-                                                        NSNumber(value: delay + Constants.delayBetweenStartEnd),
-                                                        NSNumber(value: delay + Constants.delayBetweenStartEnd + strokeAnimDuration)
-      ])
+                                                        mapTime(delay + Constants.delayBetweenStartEnd),
+                                                        mapTime(delay + Constants.delayBetweenStartEnd + strokeAnimDuration)
+      ],
+                                                      timingFunctions: [Constants.ease])
     let wholeAnimation = buildAnimationGroup(animations: [strokeEndAnimation, strokeStartAnimation],
                                              duration: Constants.duration)
     wholeAnimation.repeatCount = .greatestFiniteMagnitude
