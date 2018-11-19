@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eHZ-40-loh">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Button View Controller-->
+        <scene sceneID="cY2-d3-IoZ">
+            <objects>
+                <viewController id="eHZ-40-loh" customClass="SearchButtonViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bLb-xU-9x9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUR-Cj-vD9" customClass="SearchButton" customModule="Animations" customModuleProvider="target">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="C8h-GA-ler"/>
+                                    <constraint firstAttribute="width" secondItem="eUR-Cj-vD9" secondAttribute="height" multiplier="1:1" id="TDL-ZE-EL5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dominentColor">
+                                        <color key="value" red="0.20392156859999999" green="0.23529411759999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.23529411764705882" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eUR-Cj-vD9" firstAttribute="centerX" secondItem="bLb-xU-9x9" secondAttribute="centerX" id="lBa-gL-ZIb"/>
+                            <constraint firstItem="eUR-Cj-vD9" firstAttribute="centerY" secondItem="bLb-xU-9x9" secondAttribute="centerY" id="tmK-fx-y2U"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PNw-tp-883"/>
+                    </view>
+                    <connections>
+                        <outlet property="seachButton" destination="eUR-Cj-vD9" id="pf1-2G-geI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hhV-va-GcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-185" y="92"/>
+        </scene>
+    </scenes>
+</document>
