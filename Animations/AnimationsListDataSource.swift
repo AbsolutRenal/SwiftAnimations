@@ -51,6 +51,7 @@ class AnimationsListDataSource: NSObject, UITableViewDataSource {
       Animation(name: "Circular Menu", storyboardID: "CircleMenuActions"),
       Animation(name: "Share Button", storyboardID: "ShareButton"),
       Animation(name: "Notify Button", storyboardID: "NotifyButton"),
+      Animation(name: "Search Button Field", storyboardID: "SearchButton")
       ]),
     AnimationsSection(name: "Infinite Loop Animations", animations: [
       Animation(name: "Internet Connection Search", storyboardID: "ConnectionSearch"),

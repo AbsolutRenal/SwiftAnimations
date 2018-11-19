@@ -37,3 +37,6 @@ Try CALayer Animations in Swift
 
 ##### Infinite Spinner Animation (animation found on [Dribbble](https://dribbble.com/shots/2339876-Spinner-lX-Infinity))
 ![Infinite Spinner Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/InfiniteSpinner.gif "Infinite Spinner Animation")
+
+##### Search Field Animation (animation found on [Dribbble](https://dribbble.com/shots/1947346-Search))
+![Search Field Animation](https://github.com/AbsolutRenal/SwiftAnimations/blob/master/Gifs/Search.gif "Search Field Animation")
