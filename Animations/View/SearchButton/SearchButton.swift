@@ -22,6 +22,7 @@ class SearchButton: UIControl, Animatable {
   }
   
   // MARK: - Properties
+  private var toggled = false
   private var color: UIColor = UIColor.blue
   private let overallColor = UIColor.white
   @IBInspectable var dominentColor: UIColor {
@@ -37,7 +38,7 @@ class SearchButton: UIControl, Animatable {
     return CATransform3DRotate(CATransform3DIdentity, -.pi * 0.25, 0, 0, 1)
   }
   private var queueTranslatedTransform: CATransform3D {
-    return CATransform3DRotate(CATransform3DIdentity, .pi * 0.25, 0, 0, 1)
+    return CATransform3DTranslate(queueRotationTransform, 0, Constants.circleRadius + Constants.thickness, 0)
   }
   private var roundLayer: CALayer?
   private var queueLayer: CALayer?
@@ -66,6 +67,10 @@ class SearchButton: UIControl, Animatable {
   
   // MARK: - Public
   func toggle(_ stateCross: Bool) {
+    guard toggled != stateCross else {
+      return
+    }
+    toggled = stateCross
     clearAnimations()
     animateInnerLayer(stateCross)
     animateQueueLayer(stateCross)
@@ -98,7 +103,7 @@ class SearchButton: UIControl, Animatable {
                           width: Constants.thickness, height: Constants.crossBarHeight)
     layer.backgroundColor = overallColor.cgColor
     layer.cornerRadius = Constants.thickness * 0.5
-    layer.transform = CATransform3DTranslate(queueRotationTransform, 0, Constants.circleRadius + Constants.thickness, 0)
+    layer.transform = queueTranslatedTransform
     return layer
   }
   
@@ -108,7 +113,7 @@ class SearchButton: UIControl, Animatable {
                           width: Constants.innerMaxSize, height: Constants.innerMaxSize)
     layer.backgroundColor = color.cgColor
     layer.cornerRadius = Constants.innerMaxSize * 0.5
-    layer.transform = queueTranslatedTransform
+    layer.transform = CATransform3DRotate(CATransform3DIdentity, .pi * 0.25, 0, 0, 1)
     return layer
   }
   
