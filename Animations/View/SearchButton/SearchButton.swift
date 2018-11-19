@@ -16,7 +16,7 @@ class SearchButton: UIControl, Animatable {
     static let thickness: CGFloat = Constants.circleRadius / 4
     static let innerMaxSize: CGFloat = (Constants.circleRadius - Constants.thickness) * 2
     static let crossBarHeight: CGFloat = (Constants.circleRadius) * 4 / 3 - Constants.thickness
-    static let duration: CFTimeInterval = 0.3
+    static let duration: CFTimeInterval = 0.2
     static let easing = CAMediaTimingFunction(controlPoints: 0.6, 0,
                                               0.4, 1)
   }

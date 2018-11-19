@@ -29,10 +29,17 @@ class SearchField: UIView {
     setup()
   }
   
+  // MARK: - IBActions
+  @IBAction private func didTapClear() {
+    textInput.text = ""
+    searchButton.toggle(false)
+  }
+  
   // MARK: - Private
   private func setup() {
     setupUI()
     setupConstraints()
+    searchButton.addTarget(self, action: #selector(didTapClear), for: .touchUpInside)
   }
   
   private func setupUI() {
@@ -61,7 +68,7 @@ class SearchField: UIView {
       textInput.topAnchor.constraint(equalTo: topAnchor),
       textInput.bottomAnchor.constraint(equalTo: bottomAnchor),
       textInput.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-      textInput.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -8),
+      textInput.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
       searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
       searchButton.topAnchor.constraint(equalTo: topAnchor),
       searchButton.widthAnchor.constraint(equalTo: searchButton.heightAnchor),
@@ -81,7 +88,6 @@ extension SearchField: UITextFieldDelegate {
     } else {
       searchButton.toggle(true)
     }
-    
     return true
   }
 }

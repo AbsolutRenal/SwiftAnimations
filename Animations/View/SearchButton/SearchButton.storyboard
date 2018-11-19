@@ -26,7 +26,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.20392156862745098" green="0.23529411764705882" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.23529411764705882" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                         <constraints>
                             <constraint firstItem="Zyx-Sx-5VO" firstAttribute="leading" secondItem="PNw-tp-883" secondAttribute="leading" constant="24" id="M5U-Gr-hdq"/>
                             <constraint firstItem="Zyx-Sx-5VO" firstAttribute="centerX" secondItem="bLb-xU-9x9" secondAttribute="centerX" id="nAs-zk-L3n"/>
