@@ -11,7 +11,14 @@ import UIKit
 
 class AnimationsListViewController: UITableViewController {
   // MARK: - Properties
+  private let transitionDelegate = AppTransitioningDelegate()
   private let dataSource = AnimationsListDataSource()
+  override weak var transitioningDelegate: UIViewControllerTransitioningDelegate? {
+    get {
+      return transitionDelegate
+    }
+    set {}
+  }
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
@@ -24,7 +31,9 @@ class AnimationsListViewController: UITableViewController {
   
   // MARK: - UITableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    navigationController?.pushViewController(dataSource.viewController(forIndexPath: indexPath), animated: true)
+    let controller = dataSource.viewController(forIndexPath: indexPath)
+    controller.transitioningDelegate = transitionDelegate
+    navigationController?.pushViewController(controller, animated: true)
   }
   
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
