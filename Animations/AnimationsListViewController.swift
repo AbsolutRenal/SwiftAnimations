@@ -11,14 +11,9 @@ import UIKit
 
 class AnimationsListViewController: UITableViewController {
   // MARK: - Properties
-  private let transitionDelegate = AppTransitioningDelegate()
   private let dataSource = AnimationsListDataSource()
-  override weak var transitioningDelegate: UIViewControllerTransitioningDelegate? {
-    get {
-      return transitionDelegate
-    }
-    set {}
-  }
+  private let transitionDelegate = AppTransitioningDelegate()
+  private let navigationControllerDelegate = CustomNavigationControlerDelegate()
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
@@ -27,12 +22,12 @@ class AnimationsListViewController: UITableViewController {
     tableView.delegate = self
     tableView.tableFooterView = .init()
     title = "CoreAnimation samples"
+    navigationController?.delegate = navigationControllerDelegate
   }
   
   // MARK: - UITableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let controller = dataSource.viewController(forIndexPath: indexPath)
-    controller.transitioningDelegate = transitionDelegate
     navigationController?.pushViewController(controller, animated: true)
   }
   
