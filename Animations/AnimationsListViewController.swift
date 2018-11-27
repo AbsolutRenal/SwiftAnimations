@@ -12,7 +12,6 @@ import UIKit
 class AnimationsListViewController: UITableViewController {
   // MARK: - Properties
   private let dataSource = AnimationsListDataSource()
-  private let transitionDelegate = AppTransitioningDelegate()
   private let navigationControllerDelegate = CustomNavigationControlerDelegate()
   
   // MARK: - LifeCycle

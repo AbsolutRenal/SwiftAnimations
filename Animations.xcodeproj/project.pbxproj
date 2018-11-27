@@ -38,9 +38,7 @@
 		E277255E219C2E11007D85C8 /* ReplicatorAppLoader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E277255D219C2E11007D85C8 /* ReplicatorAppLoader.storyboard */; };
 		E2772560219C35F2007D85C8 /* AppLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277255F219C35F2007D85C8 /* AppLoaderView.swift */; };
 		E282DE921E939B3C009BE85C /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282DE911E939B3C009BE85C /* Stack.swift */; };
-		E29CAFDB21AC060E006C3532 /* ZoomInAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CAFDA21AC060E006C3532 /* ZoomInAnimatedTransitioning.swift */; };
-		E29CAFDD21AC0663006C3532 /* AppTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CAFDC21AC0663006C3532 /* AppTransitioningDelegate.swift */; };
-		E29CAFDF21AC0850006C3532 /* ZoomOutAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CAFDE21AC0850006C3532 /* ZoomOutAnimatedTransitioning.swift */; };
+		E29CAFDB21AC060E006C3532 /* ZoomAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CAFDA21AC060E006C3532 /* ZoomAnimatedTransitioning.swift */; };
 		E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */; };
 		E2A349F71E66D1BC0058FFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F51E66D1BC0058FFFD /* Main.storyboard */; };
 		E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A349F81E66D1BC0058FFFD /* Assets.xcassets */; };
@@ -99,9 +97,7 @@
 		E277255D219C2E11007D85C8 /* ReplicatorAppLoader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReplicatorAppLoader.storyboard; sourceTree = "<group>"; };
 		E277255F219C35F2007D85C8 /* AppLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoaderView.swift; sourceTree = "<group>"; };
 		E282DE911E939B3C009BE85C /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		E29CAFDA21AC060E006C3532 /* ZoomInAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomInAnimatedTransitioning.swift; sourceTree = "<group>"; };
-		E29CAFDC21AC0663006C3532 /* AppTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTransitioningDelegate.swift; sourceTree = "<group>"; };
-		E29CAFDE21AC0850006C3532 /* ZoomOutAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomOutAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		E29CAFDA21AC060E006C3532 /* ZoomAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		E2A349EE1E66D1BC0058FFFD /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A349F11E66D1BC0058FFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2A349F61E66D1BC0058FFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -243,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				E29CAFD921AC0586006C3532 /* ZoomTransition */,
-				E29CAFDC21AC0663006C3532 /* AppTransitioningDelegate.swift */,
 				E2E67B8021ADA40700545448 /* CustomNavigationControlerDelegate.swift */,
 			);
 			path = Transitions;
@@ -252,8 +247,7 @@
 		E29CAFD921AC0586006C3532 /* ZoomTransition */ = {
 			isa = PBXGroup;
 			children = (
-				E29CAFDA21AC060E006C3532 /* ZoomInAnimatedTransitioning.swift */,
-				E29CAFDE21AC0850006C3532 /* ZoomOutAnimatedTransitioning.swift */,
+				E29CAFDA21AC060E006C3532 /* ZoomAnimatedTransitioning.swift */,
 			);
 			path = ZoomTransition;
 			sourceTree = "<group>";
@@ -479,16 +473,14 @@
 				E282DE921E939B3C009BE85C /* Stack.swift in Sources */,
 				E2772552219B3350007D85C8 /* SquareReplicatorViewController.swift in Sources */,
 				E2A349F21E66D1BC0058FFFD /* AppDelegate.swift in Sources */,
-				E29CAFDB21AC060E006C3532 /* ZoomInAnimatedTransitioning.swift in Sources */,
+				E29CAFDB21AC060E006C3532 /* ZoomAnimatedTransitioning.swift in Sources */,
 				E2772542219B31F2007D85C8 /* CircleMenu.swift in Sources */,
 				E2FB82761E66DD1600F5F15C /* NotifyButton.swift in Sources */,
 				E2772559219B3600007D85C8 /* PacmanLayer.swift in Sources */,
 				E2EF1CB6219F007900608828 /* InfiniteSpinnerView.swift in Sources */,
 				E277254A219B32D5007D85C8 /* AtomLikeView.swift in Sources */,
 				E2F608951E8289F500E374D9 /* ShareTypeButton.swift in Sources */,
-				E29CAFDF21AC0850006C3532 /* ZoomOutAnimatedTransitioning.swift in Sources */,
 				E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */,
-				E29CAFDD21AC0663006C3532 /* AppTransitioningDelegate.swift in Sources */,
 				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
 				E2772537219B2F94007D85C8 /* ConnectionSearchView.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
