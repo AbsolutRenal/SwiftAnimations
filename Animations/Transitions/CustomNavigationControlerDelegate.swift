@@ -13,7 +13,7 @@ final class CustomNavigationControlerDelegate: NSObject, UINavigationControllerD
                                    animationControllerFor operation: UINavigationController.Operation,
                                    from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     switch operation {
-    case .push, .pop: return ZoomAnimatedTransitioning(from: fromVC, to: toVC, forOperation: operation)
+    case .push, .pop: return ZoomAnimatedTransitioning(forOperation: operation)
     case .none: return nil
     }
   }

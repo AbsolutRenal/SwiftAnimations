@@ -9,62 +9,72 @@
 import UIKit
 
 final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
-  private var fromVC: UIViewController
-  private var toVC: UIViewController
+  // MARK: - Constants
+  private enum Constants {
+    static let offsetX: CGFloat = 80
+    static let animDuration: TimeInterval = 0.5
+    static let ease: UIViewAnimationOptions = .curveEaseInOut
+    static let scaleOffset: CGFloat = 0.4
+  }
+  
+  
+  // MARK: - Properties
   private var operation: UINavigationController.Operation
   
-  init(from fromVC: UIViewController, to toVC: UIViewController, forOperation operation: UINavigationController.Operation) {
-    self.fromVC = fromVC
-    self.toVC = toVC
+  init(forOperation operation: UINavigationController.Operation) {
     self.operation = operation
   }
   
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-    return 0.5
+    return Constants.animDuration
   }
   
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    guard let fromVC = transitionContext.viewController(forKey: .from),
+      let toVC = transitionContext.viewController(forKey: .to) else {
+        return
+    }
+    
     let toInitialAlpha: CGFloat = operation == .push
       ? 0.0
       : 1.0
-    let fromInitialTransform: CGAffineTransform = operation == .push
-      ? .identity
-      : CGAffineTransform(scaleX: 0.6, y: 0.6).concatenating(CGAffineTransform(translationX: -80, y: 0))
     let toInitialTransform: CGAffineTransform = operation == .push
-      ? CGAffineTransform(scaleX: 1.4, y: 1.4).concatenating(CGAffineTransform(translationX: 80, y: 0))
-      : CGAffineTransform(scaleX: 0.6, y: 0.6).concatenating(CGAffineTransform(translationX: -80, y: 0))
+      ? CGAffineTransform(scaleX: 1 + Constants.scaleOffset, y: 1 + Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: Constants.offsetX, y: 0))
+      : CGAffineTransform(scaleX: 1 - Constants.scaleOffset, y: 1 - Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: -Constants.offsetX, y: 0))
     
     let fromFinalTransform: CGAffineTransform = operation == .push
-      ? CGAffineTransform(scaleX: 0.6, y: 0.6).concatenating(CGAffineTransform(translationX: -80, y: 0))
-      : CGAffineTransform(scaleX: 1.4, y: 1.4).concatenating(CGAffineTransform(translationX: 80, y: 0))
-    let toFinalTransform: CGAffineTransform = operation == .push
-      ? .identity
-      : CGAffineTransform(scaleX: 1.4, y: 1.4).concatenating(CGAffineTransform(translationX: 80, y: 0))
+      ? CGAffineTransform(scaleX: 1 - Constants.scaleOffset, y: 1 - Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: -Constants.offsetX, y: 0))
+      : CGAffineTransform(scaleX: 1 + Constants.scaleOffset, y: 1 + Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: Constants.offsetX, y: 0))
     let fromFinalAlpha: CGFloat = operation == .push
       ? 1.0
       : 0.0
-    let toFinalAlpha: CGFloat = operation == .push
-      ? 1.0
-      : 0.0
     
-    toVC.view.frame = fromVC.view.frame
-    fromVC.view.transform = fromInitialTransform
+    switch operation {
+    case .push: transitionContext.containerView.addSubview(toVC.view)
+    case .pop: transitionContext.containerView.insertSubview(toVC.view, at: 0)
+    default: break
+    }
+    
+    toVC.view.frame = transitionContext.finalFrame(for: toVC)
     toVC.view.transform = toInitialTransform
     toVC.view.alpha = toInitialAlpha
-    
-    transitionContext.containerView.addSubview(toVC.view)
+    transitionContext.containerView.layoutIfNeeded()
     
     UIView.animate(withDuration: transitionDuration(using: transitionContext),
                    delay: 0,
-                   options: .curveEaseInOut,
+                   options: Constants.ease,
                    animations: {
-                    self.fromVC.view.transform = fromFinalTransform
-                    self.fromVC.view.alpha = fromFinalAlpha
-                    self.toVC.view.transform = toFinalTransform
-                    self.toVC.view.alpha = toFinalAlpha
+                    fromVC.view.transform = fromFinalTransform
+                    fromVC.view.alpha = fromFinalAlpha
+                    toVC.view.transform = .identity
+                    toVC.view.alpha = 1.0
     },
                    completion: { _ in
-                    transitionContext.completeTransition(transitionContext.transitionWasCancelled)
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     })
   }
 }
