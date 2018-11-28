@@ -17,14 +17,15 @@ final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
     static let scaleOffset: CGFloat = 0.5
   }
   
-  
   // MARK: - Properties
   private var operation: UINavigationController.Operation
   
+  // MARK: - LifeCycle
   init(forOperation operation: UINavigationController.Operation) {
     self.operation = operation
   }
   
+  // MARK: - UIViewControllerAnimatedTransitioning
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return Constants.animDuration
   }
@@ -35,23 +36,11 @@ final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
         return
     }
     
-    let toInitialAlpha: CGFloat = operation == .push
-      ? 0.0
-      : 1.0
-    let toInitialTransform: CGAffineTransform = operation == .push
-      ? CGAffineTransform(scaleX: 1 + Constants.scaleOffset, y: 1 + Constants.scaleOffset)
-        .concatenating(CGAffineTransform(translationX: Constants.offsetX, y: 0))
-      : CGAffineTransform(scaleX: 1 - Constants.scaleOffset, y: 1 - Constants.scaleOffset)
-        .concatenating(CGAffineTransform(translationX: -Constants.offsetX, y: 0))
+    let toInitialAlpha = presentedControllerInitialAlpha(forOperation: operation)
+    let toInitialTransform = presentedControllerInitialTransform(forOperation: operation)
     
-    let fromFinalTransform: CGAffineTransform = operation == .push
-      ? CGAffineTransform(scaleX: 1 - Constants.scaleOffset, y: 1 - Constants.scaleOffset)
-        .concatenating(CGAffineTransform(translationX: -Constants.offsetX, y: 0))
-      : CGAffineTransform(scaleX: 1 + Constants.scaleOffset, y: 1 + Constants.scaleOffset)
-        .concatenating(CGAffineTransform(translationX: Constants.offsetX, y: 0))
-    let fromFinalAlpha: CGFloat = operation == .push
-      ? 1.0
-      : 0.0
+    let fromFinalTransform = presentingControllerFinalTransform(forOperation: operation)
+    let fromFinalAlpha = presentingControllerInitialAlpha(forOperation: operation)
     
     switch operation {
     case .push: transitionContext.containerView.addSubview(toVC.view)
@@ -78,5 +67,34 @@ final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
                    completion: { _ in
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     })
+  }
+  
+  // MARK: - Private
+  private func presentingControllerInitialAlpha(forOperation operation: UINavigationController.Operation) -> CGFloat {
+    return operation == .push
+      ? 1.0
+      : 0.0
+  }
+  
+  private func presentedControllerInitialAlpha(forOperation operation: UINavigationController.Operation) -> CGFloat {
+    return operation == .push
+      ? 0.0
+      : 1.0
+  }
+  
+  private func presentingControllerFinalTransform(forOperation operation: UINavigationController.Operation) -> CGAffineTransform {
+    return operation == .push
+      ? CGAffineTransform(scaleX: 1 - Constants.scaleOffset, y: 1 - Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: -Constants.offsetX, y: 0))
+      : CGAffineTransform(scaleX: 1 + Constants.scaleOffset, y: 1 + Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: Constants.offsetX, y: 0))
+  }
+  
+  private func presentedControllerInitialTransform(forOperation operation: UINavigationController.Operation) -> CGAffineTransform {
+    return operation == .push
+      ? CGAffineTransform(scaleX: 1 + Constants.scaleOffset, y: 1 + Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: Constants.offsetX, y: 0))
+      : CGAffineTransform(scaleX: 1 - Constants.scaleOffset, y: 1 - Constants.scaleOffset)
+        .concatenating(CGAffineTransform(translationX: -Constants.offsetX, y: 0))
   }
 }
