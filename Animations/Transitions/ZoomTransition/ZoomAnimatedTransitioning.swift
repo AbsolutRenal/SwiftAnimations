@@ -11,10 +11,10 @@ import UIKit
 final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
   // MARK: - Constants
   private enum Constants {
-    static let offsetX: CGFloat = 80
-    static let animDuration: TimeInterval = 0.5
+    static let offsetX: CGFloat = 120
+    static let animDuration: TimeInterval = 0.3
     static let ease: UIViewAnimationOptions = .curveEaseInOut
-    static let scaleOffset: CGFloat = 0.4
+    static let scaleOffset: CGFloat = 0.5
   }
   
   
@@ -58,11 +58,13 @@ final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
     case .pop: transitionContext.containerView.insertSubview(toVC.view, at: 0)
     default: break
     }
-    
-    toVC.view.frame = transitionContext.finalFrame(for: toVC)
+
+    toVC.view.bounds = CGRect(origin: .zero, size: transitionContext.finalFrame(for: toVC).size)
+    toVC.view.center = fromVC.view.center
     toVC.view.transform = toInitialTransform
     toVC.view.alpha = toInitialAlpha
     transitionContext.containerView.layoutIfNeeded()
+    
     
     UIView.animate(withDuration: transitionDuration(using: transitionContext),
                    delay: 0,
