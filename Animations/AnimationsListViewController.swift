@@ -29,12 +29,4 @@ class AnimationsListViewController: UITableViewController {
     let controller = dataSource.viewController(forIndexPath: indexPath)
     navigationController?.pushViewController(controller, animated: true)
   }
-  
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    guard let headerView = super.tableView(tableView, viewForHeaderInSection: section) else {
-      return nil
-    }
-    headerView.backgroundColor = .orange
-    return headerView
-  }
 }

@@ -51,9 +51,7 @@ final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
     toVC.view.bounds = CGRect(origin: .zero, size: transitionContext.finalFrame(for: toVC).size)
     toVC.view.center = fromVC.view.center
     toVC.view.transform = toInitialTransform
-    toVC.view.alpha = toInitialAlpha
-    transitionContext.containerView.layoutIfNeeded()
-    
+    toVC.view.alpha = toInitialAlpha    
     
     UIView.animate(withDuration: transitionDuration(using: transitionContext),
                    delay: 0,
