@@ -12,6 +12,7 @@ import UIKit
 class AnimationsListViewController: UITableViewController {
   // MARK: - Properties
   private let dataSource = AnimationsListDataSource()
+  private let navigationControllerDelegate = CustomNavigationControlerDelegate()
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
@@ -20,18 +21,12 @@ class AnimationsListViewController: UITableViewController {
     tableView.delegate = self
     tableView.tableFooterView = .init()
     title = "CoreAnimation samples"
+    navigationController?.delegate = navigationControllerDelegate
   }
   
   // MARK: - UITableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    navigationController?.pushViewController(dataSource.viewController(forIndexPath: indexPath), animated: true)
-  }
-  
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    guard let headerView = super.tableView(tableView, viewForHeaderInSection: section) else {
-      return nil
-    }
-    headerView.backgroundColor = .orange
-    return headerView
+    let controller = dataSource.viewController(forIndexPath: indexPath)
+    navigationController?.pushViewController(controller, animated: true)
   }
 }
