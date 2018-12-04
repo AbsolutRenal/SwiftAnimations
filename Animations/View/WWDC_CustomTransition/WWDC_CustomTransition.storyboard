@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FyS-cU-gR2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Transition Initial View Controller-->
+        <scene sceneID="znY-57-cZS">
+            <objects>
+                <viewController id="FyS-cU-gR2" customClass="WWDC_CustomTransitionInitialViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BHl-88-PXr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TKm-Qa-c6P">
+                                <rect key="frame" x="16" y="226.5" width="343" height="214"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TKm-Qa-c6P" secondAttribute="height" multiplier="16:10" id="OaQ-F6-b5Q"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TKm-Qa-c6P" firstAttribute="centerY" secondItem="BHl-88-PXr" secondAttribute="centerY" id="6Tm-zt-fmC"/>
+                            <constraint firstItem="TKm-Qa-c6P" firstAttribute="leading" secondItem="i1R-eX-181" secondAttribute="leading" constant="16" id="Jc8-jh-QMn"/>
+                            <constraint firstItem="TKm-Qa-c6P" firstAttribute="centerX" secondItem="BHl-88-PXr" secondAttribute="centerX" id="Sxp-YZ-pP9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="i1R-eX-181"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="TKm-Qa-c6P" id="LL9-2k-Ns3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VTb-Et-RoX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-532" y="-242.42878560719643"/>
+        </scene>
+        <!--Custom Transition Final View Controller-->
+        <scene sceneID="7BO-5S-Pti">
+            <objects>
+                <viewController storyboardIdentifier="WWDC_CustomTransitionFinalViewController" id="gtc-bL-4m7" customClass="WWDC_CustomTransitionFinalViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ava-gD-HHE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zE4-ch-1dV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9q-uo-hfj">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="790.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFj-jP-xbl">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="562.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="HFj-jP-xbl" secondAttribute="height" multiplier="828:1242" id="vHt-Bb-iVr"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TtC-Fg-8ZT">
+                                                <rect key="frame" x="12" y="578.5" width="351" height="196"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="HFj-jP-xbl" firstAttribute="top" secondItem="w9q-uo-hfj" secondAttribute="top" id="4di-XT-sey"/>
+                                            <constraint firstItem="HFj-jP-xbl" firstAttribute="leading" secondItem="w9q-uo-hfj" secondAttribute="leading" id="GcA-PI-tnY"/>
+                                            <constraint firstAttribute="bottom" secondItem="TtC-Fg-8ZT" secondAttribute="bottom" constant="16" id="MU7-il-P6l"/>
+                                            <constraint firstItem="TtC-Fg-8ZT" firstAttribute="top" secondItem="HFj-jP-xbl" secondAttribute="bottom" constant="16" id="Sdn-tI-Xmo"/>
+                                            <constraint firstItem="HFj-jP-xbl" firstAttribute="centerX" secondItem="w9q-uo-hfj" secondAttribute="centerX" id="afG-uF-qNj"/>
+                                            <constraint firstItem="TtC-Fg-8ZT" firstAttribute="centerX" secondItem="w9q-uo-hfj" secondAttribute="centerX" id="h8J-PY-qJb"/>
+                                            <constraint firstItem="TtC-Fg-8ZT" firstAttribute="leading" secondItem="w9q-uo-hfj" secondAttribute="leading" constant="12" id="kqF-sw-GM0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="w9q-uo-hfj" secondAttribute="trailing" id="7xB-bB-FkA"/>
+                                    <constraint firstItem="w9q-uo-hfj" firstAttribute="top" secondItem="zE4-ch-1dV" secondAttribute="top" id="BFF-V8-MMV"/>
+                                    <constraint firstAttribute="bottom" secondItem="w9q-uo-hfj" secondAttribute="bottom" id="SMO-dD-bRN"/>
+                                    <constraint firstItem="w9q-uo-hfj" firstAttribute="leading" secondItem="zE4-ch-1dV" secondAttribute="leading" id="m1M-DD-4TV"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zE4-ch-1dV" firstAttribute="bottom" secondItem="9zl-bb-bLq" secondAttribute="bottom" id="FeO-7d-eXT"/>
+                            <constraint firstAttribute="trailing" secondItem="zE4-ch-1dV" secondAttribute="trailing" id="Hl4-b3-veZ"/>
+                            <constraint firstItem="zE4-ch-1dV" firstAttribute="top" secondItem="9zl-bb-bLq" secondAttribute="top" id="R5Z-2q-F0E"/>
+                            <constraint firstItem="w9q-uo-hfj" firstAttribute="width" secondItem="9zl-bb-bLq" secondAttribute="width" id="oyk-M7-Viu"/>
+                            <constraint firstItem="zE4-ch-1dV" firstAttribute="leading" secondItem="Ava-gD-HHE" secondAttribute="leading" id="puf-OO-0jB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9zl-bb-bLq"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="HFj-jP-xbl" id="bHA-Hs-x29"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Igk-jW-RSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="381.60000000000002" y="-242.42878560719643"/>
+        </scene>
+    </scenes>
+</document>
