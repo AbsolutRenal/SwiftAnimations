@@ -15,7 +15,6 @@ final class WWDCTransitioningDelegate: NSObject, UIViewControllerTransitioningDe
   }
   
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return nil
-    //    return WWDCAnimatedTransitioning(dismissing: true)
+    return WWDCAnimatedTransitioning(dismissing: true)
   }
 }

@@ -15,7 +15,7 @@ final class WWDCCustomTransitionInitialViewController: UIViewController {
   }
   
   // MARK: - IBOutlets
-  @IBOutlet private weak var imageView: UIImageView!
+  @IBOutlet weak var imageView: UIImageView!
   
   // MARK: - Properties
   private lazy var  tapGesture: UITapGestureRecognizer = {

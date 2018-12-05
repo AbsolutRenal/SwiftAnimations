@@ -18,6 +18,7 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   private lazy var  tapGesture: UITapGestureRecognizer = {
     return UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
   }()
+  private var transitionProperties: WWDCTransitionProperties?
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
@@ -43,12 +44,13 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   }
   
   // MARK: - Public
-  func configureTransition(with options: WWDCTransitionProperties) {
+  func configureTransition(with properties: WWDCTransitionProperties) {
+    transitionProperties = properties
     scrollView.isScrollEnabled = false
     view.layer.masksToBounds = true
-    view.layer.cornerRadius = options.cornerRadius
+    view.layer.cornerRadius = properties.cornerRadius
     
-    view.frame = options.frame
+    view.frame = properties.frame
   }
   
   func animatePresentation(options: WWDCTransitionAnimationOptions, finalFrame: CGRect, completion: @escaping () -> Void) {
@@ -61,6 +63,26 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
     }) { _ in
       self.scrollView.isScrollEnabled = true
       self.view.layer.masksToBounds = false
+      completion()
+    }
+  }
+  
+  func animateDismissal(options: WWDCTransitionAnimationOptions, completion: @escaping () -> Void) {
+    guard let properties = transitionProperties else {
+      return
+    }
+    scrollView.isScrollEnabled = false
+    view.layer.masksToBounds = true
+    
+    UIView.animate(withDuration: options.duration, delay: 0,
+                   usingSpringWithDamping: options.damping, initialSpringVelocity: options.initialVelocity,
+                   options: .curveEaseInOut,
+                   animations: {
+                    self.scrollView.contentOffset = .zero
+                    self.view.layer.cornerRadius = properties.cornerRadius
+                    self.view.frame = properties.frame
+    }) { _ in
+      self.transitionProperties = nil
       completion()
     }
   }

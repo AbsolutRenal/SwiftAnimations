@@ -57,6 +57,22 @@ final class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
   }
   
   private func dismiss(using transitionContext: UIViewControllerContextTransitioning) {
-    //TODO: to implement
+    guard let fromVC = transitionContext.viewController(forKey: .from) as? WWDCCustomTransitionFinalViewController,
+      let toVC = dismissingViewController(to: transitionContext.viewController(forKey: .to)) else {
+        return
+    }
+    toVC.imageView.alpha = 0
+    fromVC.animateDismissal(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
+                                                                    damping: Constants.damping,
+                                                                    initialVelocity: Constants.initialVelocity)) {
+                                                                      toVC.imageView.alpha = 1
+                                                                      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+    }
+  }
+  
+  private func dismissingViewController(to: UIViewController?) -> WWDCCustomTransitionInitialViewController? {
+    return (to is UINavigationController)
+    ? (to as! UINavigationController).viewControllers.last  as? WWDCCustomTransitionInitialViewController
+    : to as? WWDCCustomTransitionInitialViewController
   }
 }
