@@ -11,9 +11,9 @@
 		E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E215EF191E7C34C800B29E9F /* ShareButton.swift */; };
 		E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */; };
 		E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* MorphReplicator.swift */; };
-		E276F79621B6DD2100DA7D20 /* WWDC_CustomTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E276F79521B6DD2100DA7D20 /* WWDC_CustomTransition.storyboard */; };
-		E276F79821B6DD5D00DA7D20 /* WWDC_CustomTransitionInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276F79721B6DD5D00DA7D20 /* WWDC_CustomTransitionInitialViewController.swift */; };
-		E276F79A21B6DD6E00DA7D20 /* WWDC_CustomTransitionFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276F79921B6DD6E00DA7D20 /* WWDC_CustomTransitionFinalViewController.swift */; };
+		E276F79621B6DD2100DA7D20 /* WWDCCustomTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E276F79521B6DD2100DA7D20 /* WWDCCustomTransition.storyboard */; };
+		E276F79821B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276F79721B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift */; };
+		E276F79A21B6DD6E00DA7D20 /* WWDCCustomTransitionFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276F79921B6DD6E00DA7D20 /* WWDCCustomTransitionFinalViewController.swift */; };
 		E2772526219AE2B6007D85C8 /* AnimationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */; };
 		E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */; };
 		E277252A219B168E007D85C8 /* CircleActivityIndicator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2772529219B168E007D85C8 /* CircleActivityIndicator.storyboard */; };
@@ -73,9 +73,9 @@
 		E215EF191E7C34C800B29E9F /* ShareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		E21E0CF11E8E68C30073BC12 /* CircleActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityIndicator.swift; sourceTree = "<group>"; };
 		E2573BD91E89133500F5B329 /* MorphReplicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorphReplicator.swift; sourceTree = "<group>"; };
-		E276F79521B6DD2100DA7D20 /* WWDC_CustomTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WWDC_CustomTransition.storyboard; sourceTree = "<group>"; };
-		E276F79721B6DD5D00DA7D20 /* WWDC_CustomTransitionInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDC_CustomTransitionInitialViewController.swift; sourceTree = "<group>"; };
-		E276F79921B6DD6E00DA7D20 /* WWDC_CustomTransitionFinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDC_CustomTransitionFinalViewController.swift; sourceTree = "<group>"; };
+		E276F79521B6DD2100DA7D20 /* WWDCCustomTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WWDCCustomTransition.storyboard; sourceTree = "<group>"; };
+		E276F79721B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCCustomTransitionInitialViewController.swift; sourceTree = "<group>"; };
+		E276F79921B6DD6E00DA7D20 /* WWDCCustomTransitionFinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCCustomTransitionFinalViewController.swift; sourceTree = "<group>"; };
 		E2772525219AE2B6007D85C8 /* AnimationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsListViewController.swift; sourceTree = "<group>"; };
 		E2772527219AE404007D85C8 /* AnimationsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsListDataSource.swift; sourceTree = "<group>"; };
 		E2772529219B168E007D85C8 /* CircleActivityIndicator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CircleActivityIndicator.storyboard; sourceTree = "<group>"; };
@@ -175,9 +175,9 @@
 		E276F79421B6DCEC00DA7D20 /* WWDC_CustomTransition */ = {
 			isa = PBXGroup;
 			children = (
-				E276F79521B6DD2100DA7D20 /* WWDC_CustomTransition.storyboard */,
-				E276F79721B6DD5D00DA7D20 /* WWDC_CustomTransitionInitialViewController.swift */,
-				E276F79921B6DD6E00DA7D20 /* WWDC_CustomTransitionFinalViewController.swift */,
+				E276F79521B6DD2100DA7D20 /* WWDCCustomTransition.storyboard */,
+				E276F79721B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift */,
+				E276F79921B6DD6E00DA7D20 /* WWDCCustomTransitionFinalViewController.swift */,
 			);
 			path = WWDC_CustomTransition;
 			sourceTree = "<group>";
@@ -464,7 +464,7 @@
 				E277255E219C2E11007D85C8 /* ReplicatorAppLoader.storyboard in Resources */,
 				E2772532219B1717007D85C8 /* NotifyButton.storyboard in Resources */,
 				E2772535219B2F05007D85C8 /* ConnectionSearch.storyboard in Resources */,
-				E276F79621B6DD2100DA7D20 /* WWDC_CustomTransition.storyboard in Resources */,
+				E276F79621B6DD2100DA7D20 /* WWDCCustomTransition.storyboard in Resources */,
 				E2772550219B3350007D85C8 /* SquareReplicatorLoader.storyboard in Resources */,
 				E2A349F91E66D1BC0058FFFD /* Assets.xcassets in Resources */,
 				E2772530219B1708007D85C8 /* ShareButton.storyboard in Resources */,
@@ -502,12 +502,12 @@
 				E21E0CF21E8E68C30073BC12 /* CircleActivityIndicator.swift in Sources */,
 				E2772537219B2F94007D85C8 /* ConnectionSearchView.swift in Sources */,
 				E215EF1A1E7C34C800B29E9F /* ShareButton.swift in Sources */,
-				E276F79821B6DD5D00DA7D20 /* WWDC_CustomTransitionInitialViewController.swift in Sources */,
+				E276F79821B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift in Sources */,
 				E2772526219AE2B6007D85C8 /* AnimationsListViewController.swift in Sources */,
 				E2E67B8121ADA40700545448 /* CustomNavigationControlerDelegate.swift in Sources */,
 				E2772539219B2FA6007D85C8 /* ConnectionSearchViewController.swift in Sources */,
 				E20A269D1E8AAE6600D31CE3 /* HeartPulseReplicator.swift in Sources */,
-				E276F79A21B6DD6E00DA7D20 /* WWDC_CustomTransitionFinalViewController.swift in Sources */,
+				E276F79A21B6DD6E00DA7D20 /* WWDCCustomTransitionFinalViewController.swift in Sources */,
 				E277253B219B304B007D85C8 /* CALayer.swift in Sources */,
 				E2772551219B3350007D85C8 /* SquareReplicatorLoaderView.swift in Sources */,
 				E2E1720221A3032100F1B272 /* SearchField.swift in Sources */,

@@ -13,7 +13,7 @@
         <!--Custom Transition Initial View Controller-->
         <scene sceneID="znY-57-cZS">
             <objects>
-                <viewController id="FyS-cU-gR2" customClass="WWDC_CustomTransitionInitialViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FyS-cU-gR2" customClass="WWDCCustomTransitionInitialViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BHl-88-PXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +44,7 @@
         <!--Custom Transition Final View Controller-->
         <scene sceneID="7BO-5S-Pti">
             <objects>
-                <viewController storyboardIdentifier="WWDC_CustomTransitionFinalViewController" id="gtc-bL-4m7" customClass="WWDC_CustomTransitionFinalViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WWDCCustomTransitionFinalViewController" id="gtc-bL-4m7" customClass="WWDCCustomTransitionFinalViewController" customModule="Animations" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ava-gD-HHE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

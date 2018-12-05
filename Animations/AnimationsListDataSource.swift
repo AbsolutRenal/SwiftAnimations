@@ -61,7 +61,7 @@ class AnimationsListDataSource: NSObject, UITableViewDataSource {
       Animation(name: "Heart Pulse", storyboardID: "HeartPulseReplicator")
       ]),
     AnimationsSection(name: "Custom Transitions", animations: [
-      Animation(name: "WWDC like transitions", storyboardID: "WWDC_CustomTransition")
+      Animation(name: "WWDC like transitions", storyboardID: "WWDCCustomTransition")
       ])
   ]
   

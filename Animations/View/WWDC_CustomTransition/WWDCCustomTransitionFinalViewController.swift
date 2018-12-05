@@ -1,5 +1,5 @@
 //
-//  WWDC_CustomTransitionInitialViewController.swift
+//  WWDCCustomTransitionFinalViewController.swift
 //  Animations
 //
 //  Created by AbsolutRenal on 04/12/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WWDC_CustomTransitionInitialViewController: UIViewController {
+final class WWDCCustomTransitionFinalViewController: UIViewController {
   // MARK: - IBOutlets
   @IBOutlet private weak var imageView: UIImageView!
   
@@ -22,16 +22,21 @@ final class WWDC_CustomTransitionInitialViewController: UIViewController {
     imageView.image = UIImage(named: "LandscapePhoto")
     imageView.isUserInteractionEnabled = true
     imageView.addGestureRecognizer(tapGesture)
-    imageView.layer.cornerRadius = 12
     imageView.layer.masksToBounds = true
   }
   
   // MARK: - IBActions
   @objc private func didTapPhoto() {
-    let controller = UIStoryboard(name: "WWDC_CustomTransition", bundle: nil)
-      .instantiateViewController(withIdentifier: "WWDC_CustomTransitionFinalViewController")
-//    controller.transitioningDelegate =
-//    controller.modalPresentationStyle = .custom
-    present(controller, animated: true, completion: nil)
+    dismiss(animated: true, completion: nil)
+  }
+  
+  // MARK: - Public
+  func animatePresentation(duration: TimeInterval, completion: @escaping () -> Void) {
+    UIView.animate(withDuration: duration,
+                   animations: {
+                    
+    }) { _ in
+      completion()
+    }
   }
 }
