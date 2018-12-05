@@ -9,6 +9,11 @@
 import UIKit
 
 final class WWDCCustomTransitionInitialViewController: UIViewController {
+  // MARK: - Constants
+  private enum Constants {
+    static let cornerRadius: CGFloat = 12
+  }
+  
   // MARK: - IBOutlets
   @IBOutlet private weak var imageView: UIImageView!
   
@@ -21,10 +26,20 @@ final class WWDCCustomTransitionInitialViewController: UIViewController {
   // MARK: - LifeCycle
   override func viewDidLoad() {
     imageView.image = UIImage(named: "LandscapePhoto")
+    imageView.layer.cornerRadius = Constants.cornerRadius
+    imageView.layer.masksToBounds = true
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     imageView.isUserInteractionEnabled = true
     imageView.addGestureRecognizer(tapGesture)
-    imageView.layer.cornerRadius = 12
-    imageView.layer.masksToBounds = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    imageView.isUserInteractionEnabled = false
+    imageView.removeGestureRecognizer(tapGesture)
   }
   
   // MARK: - IBActions
@@ -35,33 +50,54 @@ final class WWDCCustomTransitionInitialViewController: UIViewController {
     controller.modalPresentationStyle = .custom
     present(controller, animated: true, completion: nil)
   }
+  
+  // MARK: - Public
+  func getTransitionProperties() -> WWDCTransitionProperties {
+    return WWDCTransitionProperties(cornerRadius: imageView.layer.cornerRadius,
+                                    frame: view.convert(imageView.frame, to: UIApplication.shared.keyWindow))
+  }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+struct WWDCTransitionProperties {
+  let cornerRadius: CGFloat
+  let frame: CGRect
+}
+
+struct WWDCTransitionAnimationOptions {
+  let duration: TimeInterval
+  let damping: CGFloat
+  let initialVelocity: CGFloat
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class WWDCTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
   func animationController(forPresented presented: UIViewController,
                            presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return WWDCAnimatedTransitioning(isDismissing: false)
+    return WWDCAnimatedTransitioning(from: source, dismissing: false)
   }
   
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return WWDCAnimatedTransitioning(isDismissing: true)
+    return nil
+//    return WWDCAnimatedTransitioning(dismissing: true)
   }
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
   // MARK: - Constants
   private enum Constants {
-    static let duration: TimeInterval = 1
-//    static let spring
-//    static let dampling
+    static let duration: TimeInterval = 0.8
+    static let damping: CGFloat = 0.7
+    static let initialVelocity: CGFloat = 1
   }
   
   // MARK: - Properties
   private let isDismissing: Bool
+  private let source: UIViewController?
   
   // MARK: - LifeCycle
-  init(isDismissing: Bool) {
-    self.isDismissing = isDismissing
+  init(from: UIViewController? = nil, dismissing: Bool) {
+    isDismissing = dismissing
+    source = from
   }
   
   // MARK: - UIViewControllerAnimatedTransitioning
@@ -79,13 +115,17 @@ class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning
   
   // MARK: - Private
   private func present(using transitionContext: UIViewControllerContextTransitioning) {
-    guard let _ = transitionContext.viewController(forKey: .from) as? WWDCCustomTransitionInitialViewController,
+    guard let fromVC = source as? WWDCCustomTransitionInitialViewController,
       let toVC = transitionContext.viewController(forKey: .to) as? WWDCCustomTransitionFinalViewController else {
         return
     }
-    toVC.view.frame = transitionContext.finalFrame(for: toVC)
+    toVC.configureTransition(with: fromVC.getTransitionProperties())
     transitionContext.containerView.addSubview(toVC.view)
-    toVC.animatePresentation(duration: transitionDuration(using: transitionContext)) {
+    
+    toVC.animatePresentation(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
+                                                                      damping: Constants.damping,
+                                                                      initialVelocity: Constants.initialVelocity),
+                             finalFrame: transitionContext.finalFrame(for: toVC)) {
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
   }

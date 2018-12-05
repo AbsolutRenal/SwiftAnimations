@@ -50,9 +50,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zE4-ch-1dV">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9q-uo-hfj">
+                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9q-uo-hfj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="790.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFj-jP-xbl">
@@ -88,20 +88,22 @@
                                     <constraint firstAttribute="bottom" secondItem="w9q-uo-hfj" secondAttribute="bottom" id="SMO-dD-bRN"/>
                                     <constraint firstItem="w9q-uo-hfj" firstAttribute="leading" secondItem="zE4-ch-1dV" secondAttribute="leading" id="m1M-DD-4TV"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="qKB-j7-Ldh"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zE4-ch-1dV" firstAttribute="bottom" secondItem="9zl-bb-bLq" secondAttribute="bottom" id="FeO-7d-eXT"/>
+                            <constraint firstItem="zE4-ch-1dV" firstAttribute="bottom" secondItem="Ava-gD-HHE" secondAttribute="bottom" id="FeO-7d-eXT"/>
                             <constraint firstAttribute="trailing" secondItem="zE4-ch-1dV" secondAttribute="trailing" id="Hl4-b3-veZ"/>
-                            <constraint firstItem="zE4-ch-1dV" firstAttribute="top" secondItem="9zl-bb-bLq" secondAttribute="top" id="R5Z-2q-F0E"/>
-                            <constraint firstItem="w9q-uo-hfj" firstAttribute="width" secondItem="9zl-bb-bLq" secondAttribute="width" id="oyk-M7-Viu"/>
+                            <constraint firstItem="zE4-ch-1dV" firstAttribute="top" secondItem="Ava-gD-HHE" secondAttribute="top" id="R5Z-2q-F0E"/>
+                            <constraint firstItem="w9q-uo-hfj" firstAttribute="width" secondItem="Ava-gD-HHE" secondAttribute="width" id="oyk-M7-Viu"/>
                             <constraint firstItem="zE4-ch-1dV" firstAttribute="leading" secondItem="Ava-gD-HHE" secondAttribute="leading" id="puf-OO-0jB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="9zl-bb-bLq"/>
+                        <viewLayoutGuide key="safeArea" id="grT-0l-ers"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="HFj-jP-xbl" id="bHA-Hs-x29"/>
+                        <outlet property="scrollView" destination="zE4-ch-1dV" id="r8c-A7-yqZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Igk-jW-RSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
