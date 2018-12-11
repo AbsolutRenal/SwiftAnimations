@@ -9,6 +9,11 @@
 import UIKit
 
 final class WWDCCustomTransitionFinalViewController: UIViewController {
+  // MARK: - Constants
+  private enum Constants {
+    static let minScrollOffsetBeforeDismiss: CGFloat = -200
+  }
+  
   // MARK: - IBOutlets
   @IBOutlet private weak var imageView: UIImageView!
   @IBOutlet private weak var scrollView: UIScrollView!
@@ -25,6 +30,7 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   override func viewDidLoad() {
     imageView.image = UIImage(named: "LandscapePhoto")
     imageView.layer.masksToBounds = true
+    scrollView.delegate = self
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -89,12 +95,21 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
                    usingSpringWithDamping: options.damping, initialSpringVelocity: options.initialVelocity,
                    options: .curveEaseInOut,
                    animations: {
+                    self.scrollView.bounces = false
                     self.scrollView.contentOffset = .zero
                     self.view.layer.cornerRadius = properties.cornerRadius
                     self.view.frame = properties.frame
     }) { _ in
       self.transitionProperties = nil
       completion()
+    }
+  }
+}
+
+extension WWDCCustomTransitionFinalViewController: UIScrollViewDelegate {
+  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    if scrollView.contentOffset.y <= Constants.minScrollOffsetBeforeDismiss {
+      dismiss(animated: true, completion: nil)
     }
   }
 }
