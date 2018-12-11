@@ -12,7 +12,7 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   // MARK: - IBOutlets
   @IBOutlet private weak var imageView: UIImageView!
   @IBOutlet private weak var scrollView: UIScrollView!
-  @IBOutlet private weak var contentView: UIView!
+  @IBOutlet private var heightConstraint: NSLayoutConstraint!
   
   // MARK: - Properties
   private lazy var  tapGesture: UITapGestureRecognizer = {
@@ -29,6 +29,7 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    heightConstraint.constant = image?.size.height ?? 0
     imageView.image = image
   }
   
