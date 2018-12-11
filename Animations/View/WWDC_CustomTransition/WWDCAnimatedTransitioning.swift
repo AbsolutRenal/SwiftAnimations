@@ -48,17 +48,20 @@ final class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
     toVC.configureTransition(with: fromVC.getTransitionProperties())
     transitionContext.containerView.addSubview(toVC.view)
     
-    
-//    _ = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) {
-//      fromVC.view.alpha = 0
-//    }.startAnimation()
-    
-    toVC.animatePresentation(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
-                                                                     damping: Constants.damping,
-                                                                     initialVelocity: Constants.initialVelocity),
-                             finalFrame: transitionContext.finalFrame(for: toVC)) {
-                              transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+    fromVC.selectedCell?.alpha = 0
+    let fromAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeOut) {
+      fromVC.collectionView.alpha = 0
     }
+    fromAnimator.addCompletion { _ in
+      toVC.animatePresentation(options: WWDCTransitionAnimationOptions(duration: self.transitionDuration(using: transitionContext),
+                                                                       damping: Constants.damping,
+                                                                       initialVelocity: Constants.initialVelocity),
+                               finalFrame: transitionContext.finalFrame(for: toVC)) {
+                                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+      }
+    }
+    fromAnimator.startAnimation()
+    
   }
   
   private func dismiss(using transitionContext: UIViewControllerContextTransitioning) {
@@ -66,12 +69,18 @@ final class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
       let toVC = dismissingViewController(to: transitionContext.viewController(forKey: .to)) else {
         return
     }
-//    toVC..alpha = 0
+    let toAnimator = UIViewPropertyAnimator(duration: 0.6, curve: .easeOut, animations: {
+      toVC.collectionView.alpha = 1
+    })
+    toAnimator.addCompletion { _ in
+      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+    }
+    toAnimator.startAnimation()
     fromVC.animateDismissal(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
                                                                     damping: Constants.damping,
                                                                     initialVelocity: Constants.initialVelocity)) {
-//                                                                      toVC.imageView.alpha = 1
-                                                                      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                                                                      toVC.selectedCell?.alpha = 1
+                                                                      
     }
   }
   

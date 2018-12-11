@@ -18,10 +18,10 @@ final class WWDCCustomTransitionInitialViewController: UIViewController {
   }
   
   // MARK: - IBOutlets
-  @IBOutlet private weak var collectionView: UICollectionView!
+  @IBOutlet weak var collectionView: UICollectionView!
   
   // MARK: - Properties
-  private var selectedCell: WWDCCollectionViewCell?
+  var selectedCell: WWDCCollectionViewCell?
   private let images = ["image0",
                         "image1",
                         "image2",
