@@ -99,6 +99,7 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
                     self.scrollView.contentOffset = .zero
                     self.view.layer.cornerRadius = properties.cornerRadius
                     self.view.frame = properties.frame
+                    self.view.layoutIfNeeded()
     }) { _ in
       self.transitionProperties = nil
       completion()
