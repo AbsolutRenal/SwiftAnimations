@@ -61,11 +61,11 @@ final class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
       let toVC = dismissingViewController(to: transitionContext.viewController(forKey: .to)) else {
         return
     }
-    toVC.imageView.alpha = 0
+//    toVC.imageView.alpha = 0
     fromVC.animateDismissal(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
                                                                     damping: Constants.damping,
                                                                     initialVelocity: Constants.initialVelocity)) {
-                                                                      toVC.imageView.alpha = 1
+//                                                                      toVC.imageView.alpha = 1
                                                                       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
   }
