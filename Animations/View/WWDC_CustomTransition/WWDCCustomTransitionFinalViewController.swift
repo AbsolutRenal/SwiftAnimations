@@ -19,11 +19,17 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
     return UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
   }()
   private var transitionProperties: WWDCTransitionProperties?
+  private var image: UIImage?
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
     imageView.image = UIImage(named: "LandscapePhoto")
     imageView.layer.masksToBounds = true
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    imageView.image = image
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +50,10 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   }
   
   // MARK: - Public
+  func configure(with image: UIImage?) {
+    self.image = image
+  }
+  
   func configureTransition(with properties: WWDCTransitionProperties) {
     transitionProperties = properties
     scrollView.isScrollEnabled = false

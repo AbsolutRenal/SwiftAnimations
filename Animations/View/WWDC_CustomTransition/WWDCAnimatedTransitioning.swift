@@ -48,6 +48,11 @@ final class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
     toVC.configureTransition(with: fromVC.getTransitionProperties())
     transitionContext.containerView.addSubview(toVC.view)
     
+    
+//    _ = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) {
+//      fromVC.view.alpha = 0
+//    }.startAnimation()
+    
     toVC.animatePresentation(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
                                                                      damping: Constants.damping,
                                                                      initialVelocity: Constants.initialVelocity),
@@ -61,7 +66,7 @@ final class WWDCAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
       let toVC = dismissingViewController(to: transitionContext.viewController(forKey: .to)) else {
         return
     }
-//    toVC.imageView.alpha = 0
+//    toVC..alpha = 0
     fromVC.animateDismissal(options: WWDCTransitionAnimationOptions(duration: transitionDuration(using: transitionContext),
                                                                     damping: Constants.damping,
                                                                     initialVelocity: Constants.initialVelocity)) {

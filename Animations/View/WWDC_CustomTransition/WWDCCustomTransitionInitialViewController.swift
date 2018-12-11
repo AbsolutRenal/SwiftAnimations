@@ -41,19 +41,12 @@ final class WWDCCustomTransitionInitialViewController: UIViewController {
     collectionView.delegate = self
   }
   
-  // MARK: - IBActions
-  @objc private func didTapPhoto() {
-    let controller = UIStoryboard(name: "WWDCCustomTransition", bundle: nil)
-      .instantiateViewController(withIdentifier: "WWDCCustomTransitionFinalViewController")
-    controller.transitioningDelegate = customTransitioningDelegate
-    controller.modalPresentationStyle = .custom
-    present(controller, animated: true, completion: nil)
-  }
-  
   // MARK: - Public
   func getTransitionProperties() -> WWDCTransitionProperties {
     return WWDCTransitionProperties(cornerRadius: Constants.cornerRadius,
-                                    frame: view.convert(selectedCell?.frame ?? .zero, to: UIApplication.shared.keyWindow))
+                                    frame: view.convert(selectedCell?.frame.offsetBy(dx: -collectionView.contentOffset.x,
+                                                                                     dy: -collectionView.contentOffset.y) ?? .zero,
+                                                        to: UIApplication.shared.keyWindow))
   }
 }
 
@@ -78,6 +71,20 @@ extension WWDCCustomTransitionInitialViewController: UICollectionViewDelegateFlo
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return UIEdgeInsets(top: Constants.inset, left: Constants.inset, bottom: Constants.inset, right: Constants.inset)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? WWDCCollectionViewCell,
+      let controller = UIStoryboard(name: "WWDCCustomTransition", bundle: nil)
+        .instantiateViewController(withIdentifier: "WWDCCustomTransitionFinalViewController") as? WWDCCustomTransitionFinalViewController
+      else {
+        return
+    }
+    selectedCell = cell
+    controller.configure(with: UIImage(named: images[indexPath.row]))
+    controller.transitioningDelegate = customTransitioningDelegate
+    controller.modalPresentationStyle = .custom
+    present(controller, animated: true, completion: nil)
   }
   
   // MARK: - UICollectionViewDataSource
