@@ -14,6 +14,7 @@
 		E22E606E21B7F40700197B24 /* WWDCTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E606D21B7F40700197B24 /* WWDCTransitioningDelegate.swift */; };
 		E22E607021B7F43F00197B24 /* WWDCTransitionAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E606F21B7F43F00197B24 /* WWDCTransitionAnimationOptions.swift */; };
 		E22E607221B7F47100197B24 /* WWDCTransitionProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E607121B7F47100197B24 /* WWDCTransitionProperties.swift */; };
+		E232931A21BFEE2D005D4D35 /* WWDCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E232931921BFEE2D005D4D35 /* WWDCCollectionViewCell.swift */; };
 		E2573BDA1E89133500F5B329 /* MorphReplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573BD91E89133500F5B329 /* MorphReplicator.swift */; };
 		E276F79621B6DD2100DA7D20 /* WWDCCustomTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E276F79521B6DD2100DA7D20 /* WWDCCustomTransition.storyboard */; };
 		E276F79821B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E276F79721B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift */; };
@@ -80,6 +81,7 @@
 		E22E606D21B7F40700197B24 /* WWDCTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCTransitioningDelegate.swift; sourceTree = "<group>"; };
 		E22E606F21B7F43F00197B24 /* WWDCTransitionAnimationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCTransitionAnimationOptions.swift; sourceTree = "<group>"; };
 		E22E607121B7F47100197B24 /* WWDCTransitionProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCTransitionProperties.swift; sourceTree = "<group>"; };
+		E232931921BFEE2D005D4D35 /* WWDCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2573BD91E89133500F5B329 /* MorphReplicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorphReplicator.swift; sourceTree = "<group>"; };
 		E276F79521B6DD2100DA7D20 /* WWDCCustomTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WWDCCustomTransition.storyboard; sourceTree = "<group>"; };
 		E276F79721B6DD5D00DA7D20 /* WWDCCustomTransitionInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCCustomTransitionInitialViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				E22E606D21B7F40700197B24 /* WWDCTransitioningDelegate.swift */,
 				E22E606F21B7F43F00197B24 /* WWDCTransitionAnimationOptions.swift */,
 				E22E607121B7F47100197B24 /* WWDCTransitionProperties.swift */,
+				E232931921BFEE2D005D4D35 /* WWDCCollectionViewCell.swift */,
 			);
 			path = WWDC_CustomTransition;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				E22E606E21B7F40700197B24 /* WWDCTransitioningDelegate.swift in Sources */,
 				E277254B219B32D5007D85C8 /* AtomLikeViewController.swift in Sources */,
 				E2772528219AE404007D85C8 /* AnimationsListDataSource.swift in Sources */,
+				E232931A21BFEE2D005D4D35 /* WWDCCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

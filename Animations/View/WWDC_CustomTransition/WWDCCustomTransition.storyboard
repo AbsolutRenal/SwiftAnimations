@@ -18,23 +18,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TKm-Qa-c6P">
-                                <rect key="frame" x="16" y="226.5" width="343" height="214"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="TKm-Qa-c6P" secondAttribute="height" multiplier="16:10" id="OaQ-F6-b5Q"/>
-                                </constraints>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JDv-0b-rJN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vbu-qD-PaT">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="wwdcCell" id="Ezb-pY-FQp" customClass="WWDCCollectionViewCell" customModule="Animations" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Mg-Eu-mHu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="4Mg-Eu-mHu" firstAttribute="top" secondItem="Ezb-pY-FQp" secondAttribute="top" id="Fcy-Lo-Fuf"/>
+                                            <constraint firstItem="4Mg-Eu-mHu" firstAttribute="leading" secondItem="Ezb-pY-FQp" secondAttribute="leading" id="RDF-E8-7li"/>
+                                            <constraint firstAttribute="bottom" secondItem="4Mg-Eu-mHu" secondAttribute="bottom" id="SIL-6e-Eed"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Mg-Eu-mHu" secondAttribute="trailing" id="qpN-Kt-HhM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="4Mg-Eu-mHu" id="RID-vl-f8V"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="TKm-Qa-c6P" firstAttribute="centerY" secondItem="BHl-88-PXr" secondAttribute="centerY" id="6Tm-zt-fmC"/>
-                            <constraint firstItem="TKm-Qa-c6P" firstAttribute="leading" secondItem="i1R-eX-181" secondAttribute="leading" constant="16" id="Jc8-jh-QMn"/>
-                            <constraint firstItem="TKm-Qa-c6P" firstAttribute="centerX" secondItem="BHl-88-PXr" secondAttribute="centerX" id="Sxp-YZ-pP9"/>
+                            <constraint firstItem="JDv-0b-rJN" firstAttribute="leading" secondItem="i1R-eX-181" secondAttribute="leading" id="NW1-nk-SGk"/>
+                            <constraint firstItem="JDv-0b-rJN" firstAttribute="centerX" secondItem="BHl-88-PXr" secondAttribute="centerX" id="Rv0-Gh-UEe"/>
+                            <constraint firstItem="JDv-0b-rJN" firstAttribute="top" secondItem="BHl-88-PXr" secondAttribute="top" id="hOR-kg-654"/>
+                            <constraint firstItem="JDv-0b-rJN" firstAttribute="centerY" secondItem="BHl-88-PXr" secondAttribute="centerY" id="sH0-e5-Ocn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i1R-eX-181"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="TKm-Qa-c6P" id="LL9-2k-Ns3"/>
+                        <outlet property="collectionView" destination="JDv-0b-rJN" id="jox-Lz-cma"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VTb-Et-RoX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -53,18 +82,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9q-uo-hfj">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1330.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="566"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFj-jP-xbl">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="562.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="HFj-jP-xbl" secondAttribute="height" multiplier="828:1242" id="vHt-Bb-iVr"/>
+                                                    <constraint firstAttribute="height" constant="500" id="JgQ-uT-f2b"/>
                                                 </constraints>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtC-Fg-8ZT">
-                                                <rect key="frame" x="12" y="578.5" width="351" height="736"/>
+                                                <rect key="frame" x="12" y="516" width="351" height="34"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -102,6 +131,7 @@
                         <viewLayoutGuide key="safeArea" id="grT-0l-ers"/>
                     </view>
                     <connections>
+                        <outlet property="heightConstraint" destination="JgQ-uT-f2b" id="OBM-dk-CVI"/>
                         <outlet property="imageView" destination="HFj-jP-xbl" id="bHA-Hs-x29"/>
                         <outlet property="scrollView" destination="zE4-ch-1dV" id="r8c-A7-yqZ"/>
                     </connections>

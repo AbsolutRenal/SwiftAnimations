@@ -12,48 +12,83 @@ final class WWDCCustomTransitionInitialViewController: UIViewController {
   // MARK: - Constants
   private enum Constants {
     static let cornerRadius: CGFloat = 12
+    static let aspectRatio: CGFloat = 16/10
+    static let inset: CGFloat = 12
+    static let lineSpacing: CGFloat = 20
   }
   
   // MARK: - IBOutlets
-  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var collectionView: UICollectionView!
   
   // MARK: - Properties
-  private lazy var  tapGesture: UITapGestureRecognizer = {
-    return UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
-  }()
+  var selectedCell: WWDCCollectionViewCell?
+  private let images = ["image0",
+                        "image1",
+                        "image2",
+                        "image3",
+                        "image4",
+                        "image5",
+                        "image6",
+                        "image7",
+                        "image8",
+                        "image9"]
   private let customTransitioningDelegate = WWDCTransitioningDelegate()
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
-    imageView.image = UIImage(named: "LandscapePhoto")
-    imageView.layer.cornerRadius = Constants.cornerRadius
-    imageView.layer.masksToBounds = true
+    super.viewDidLoad()
+    collectionView.dataSource = self
+    collectionView.delegate = self
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    imageView.isUserInteractionEnabled = true
-    imageView.addGestureRecognizer(tapGesture)
+  // MARK: - Public
+  func getTransitionProperties() -> WWDCTransitionProperties {
+    return WWDCTransitionProperties(cornerRadius: Constants.cornerRadius,
+                                    frame: view.convert(selectedCell?.frame.offsetBy(dx: -collectionView.contentOffset.x,
+                                                                                     dy: -collectionView.contentOffset.y) ?? .zero,
+                                                        to: UIApplication.shared.keyWindow))
+  }
+}
+
+extension WWDCCustomTransitionInitialViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wwdcCell", for: indexPath) as? WWDCCollectionViewCell else {
+      return UICollectionViewCell()
+    }
+    cell.configure(withImage: UIImage(named: images[indexPath.row]), cornerRadius: Constants.cornerRadius)
+    return cell
   }
   
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    imageView.isUserInteractionEnabled = false
-    imageView.removeGestureRecognizer(tapGesture)
+  // MARK: - UICollectionViewDelegateFlowLayout
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let width = view.bounds.width - (Constants.inset * 2)
+    return CGSize(width: width, height: width / Constants.aspectRatio)
   }
   
-  // MARK: - IBActions
-  @objc private func didTapPhoto() {
-    let controller = UIStoryboard(name: "WWDCCustomTransition", bundle: nil)
-      .instantiateViewController(withIdentifier: "WWDCCustomTransitionFinalViewController")
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return Constants.lineSpacing
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: Constants.inset, left: Constants.inset, bottom: Constants.inset, right: Constants.inset)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? WWDCCollectionViewCell,
+      let controller = UIStoryboard(name: "WWDCCustomTransition", bundle: nil)
+        .instantiateViewController(withIdentifier: "WWDCCustomTransitionFinalViewController") as? WWDCCustomTransitionFinalViewController
+      else {
+        return
+    }
+    selectedCell = cell
+    controller.configure(with: UIImage(named: images[indexPath.row]))
     controller.transitioningDelegate = customTransitioningDelegate
     controller.modalPresentationStyle = .custom
     present(controller, animated: true, completion: nil)
   }
   
-  // MARK: - Public
-  func getTransitionProperties() -> WWDCTransitionProperties {
-    return WWDCTransitionProperties(cornerRadius: imageView.layer.cornerRadius,
-                                    frame: view.convert(imageView.frame, to: UIApplication.shared.keyWindow))
+  // MARK: - UICollectionViewDataSource
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return images.count
   }
 }

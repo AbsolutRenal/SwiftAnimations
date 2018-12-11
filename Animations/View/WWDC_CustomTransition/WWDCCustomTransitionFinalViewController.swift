@@ -9,21 +9,34 @@
 import UIKit
 
 final class WWDCCustomTransitionFinalViewController: UIViewController {
+  // MARK: - Constants
+  private enum Constants {
+    static let minScrollOffsetBeforeDismiss: CGFloat = -200
+  }
+  
   // MARK: - IBOutlets
   @IBOutlet private weak var imageView: UIImageView!
   @IBOutlet private weak var scrollView: UIScrollView!
-  @IBOutlet private weak var contentView: UIView!
+  @IBOutlet private var heightConstraint: NSLayoutConstraint!
   
   // MARK: - Properties
   private lazy var  tapGesture: UITapGestureRecognizer = {
     return UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
   }()
   private var transitionProperties: WWDCTransitionProperties?
+  private var image: UIImage?
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
     imageView.image = UIImage(named: "LandscapePhoto")
     imageView.layer.masksToBounds = true
+    scrollView.delegate = self
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    heightConstraint.constant = image?.size.height ?? 0
+    imageView.image = image
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +57,10 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
   }
   
   // MARK: - Public
+  func configure(with image: UIImage?) {
+    self.image = image
+  }
+  
   func configureTransition(with properties: WWDCTransitionProperties) {
     transitionProperties = properties
     scrollView.isScrollEnabled = false
@@ -78,12 +95,21 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
                    usingSpringWithDamping: options.damping, initialSpringVelocity: options.initialVelocity,
                    options: .curveEaseInOut,
                    animations: {
+                    self.scrollView.bounces = false
                     self.scrollView.contentOffset = .zero
                     self.view.layer.cornerRadius = properties.cornerRadius
                     self.view.frame = properties.frame
     }) { _ in
       self.transitionProperties = nil
       completion()
+    }
+  }
+}
+
+extension WWDCCustomTransitionFinalViewController: UIScrollViewDelegate {
+  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    if scrollView.contentOffset.y <= Constants.minScrollOffsetBeforeDismiss {
+      dismiss(animated: true, completion: nil)
     }
   }
 }
