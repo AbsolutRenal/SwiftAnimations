@@ -77,6 +77,7 @@ final class WWDCCustomTransitionFinalViewController: UIViewController {
                    animations: {
                     self.view.layer.cornerRadius = 0
                     self.view.frame = finalFrame
+                    self.view.layoutIfNeeded()
     }) { _ in
       self.scrollView.isScrollEnabled = true
       self.view.layer.masksToBounds = false
