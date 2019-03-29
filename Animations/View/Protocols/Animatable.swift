@@ -15,14 +15,14 @@ protocol Animatable: CAAnimationDelegate {
                               keyTimes: [NSNumber]?,
                               duration: CFTimeInterval,
                               repeatDuration: CFTimeInterval,
-                              fillMode: String?,
+                              fillMode: CAMediaTimingFillMode?,
                               beginTime: CFTimeInterval?,
                               delegate: CAAnimationDelegate?,
                               timingFunctions: [CAMediaTimingFunction]?) -> CAKeyframeAnimation
   func buildAnimationGroup(animations: [CAAnimation],
                            duration: CFTimeInterval,
                            repeatDuration: CFTimeInterval,
-                           fillMode: String?,
+                           fillMode: CAMediaTimingFillMode?,
                            beginTime: CFTimeInterval?,
                            delegate: CAAnimationDelegate?) -> CAAnimationGroup
 }
@@ -33,7 +33,7 @@ extension Animatable {
                               keyTimes: [NSNumber]?,
                               duration: CFTimeInterval = 0,
                               repeatDuration: CFTimeInterval = 0,
-                              fillMode: String? = nil,
+                              fillMode: CAMediaTimingFillMode? = nil,
                               beginTime: CFTimeInterval? = nil,
                               delegate: CAAnimationDelegate? = nil,
                               timingFunctions: [CAMediaTimingFunction]? = nil) -> CAKeyframeAnimation {
@@ -42,7 +42,7 @@ extension Animatable {
     anim.keyTimes = keyTimes
     anim.delegate = delegate
     anim.beginTime = beginTime ?? 0.0
-    anim.fillMode = fillMode ?? kCAFillModeForwards
+    anim.fillMode = fillMode ?? .forwards
     anim.timingFunctions = timingFunctions
     anim.duration = duration
     anim.repeatDuration = repeatDuration
@@ -52,7 +52,7 @@ extension Animatable {
   func buildAnimationGroup(animations: [CAAnimation],
                            duration: CFTimeInterval,
                            repeatDuration: CFTimeInterval = 0,
-                           fillMode: String? = nil,
+                           fillMode: CAMediaTimingFillMode? = nil,
                            beginTime: CFTimeInterval? = nil,
                            delegate: CAAnimationDelegate? = nil) -> CAAnimationGroup {
     let anim = CAAnimationGroup()
@@ -61,7 +61,7 @@ extension Animatable {
     anim.repeatDuration = repeatDuration
     anim.delegate = delegate
     anim.beginTime = beginTime ?? 0.0
-    anim.fillMode = fillMode ?? kCAFillModeForwards
+    anim.fillMode = fillMode ?? .forwards
     return anim
   }
 }

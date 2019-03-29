@@ -50,7 +50,7 @@ class AppLoaderView: UIView, Animatable {
                                                                  Constants.KeyTimes.startsBottom,
                                                                  Constants.KeyTimes.endsTop,
                                                                  1],
-                                                      timingFunctions: [CAMediaTimingFunction(name: "linear"),
+                                                      timingFunctions: [CAMediaTimingFunction(name: .linear),
                                                                         Constants.Easing.easeInOut,
                                                                         Constants.Easing.easeIn])
     let colorAnimation = buildKeyFrameAnimation(keyPath: "backgroundColor",
@@ -62,7 +62,7 @@ class AppLoaderView: UIView, Animatable {
                                                            Constants.KeyTimes.startsBottom,
                                                            Constants.KeyTimes.endsTop,
                                                            1],
-                                                timingFunctions: [CAMediaTimingFunction(name: "linear"),
+                                                timingFunctions: [CAMediaTimingFunction(name: .linear),
                                                                   Constants.Easing.easeOut,
                                                                   Constants.Easing.easeIn])
     let heightAnimation = buildKeyFrameAnimation(keyPath: "bounds.size.height",
@@ -78,7 +78,7 @@ class AppLoaderView: UIView, Animatable {
                                                             Constants.KeyTimes.endsTop,
                                                             NSNumber(value: Constants.KeyTimes.endsTop.floatValue + (1 - Constants.KeyTimes.endsTop.floatValue) * 0.5),
                                                             1],
-                                                 timingFunctions: [CAMediaTimingFunction(name: "linear"),
+                                                 timingFunctions: [CAMediaTimingFunction(name: .linear),
                                                                    Constants.Easing.easeInOutSlow,
                                                                    Constants.Easing.easeOut])
     let animation = buildAnimationGroup(animations: [translationAnimation, colorAnimation, heightAnimation],

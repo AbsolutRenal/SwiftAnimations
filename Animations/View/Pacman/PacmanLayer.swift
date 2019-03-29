@@ -55,7 +55,7 @@ class PacmanLayer: CAShapeLayer, Animatable {
     let anim = buildAnimationGroup(animations: [translation, fadeIn],
                                    duration: kGumAnimtionDuration,
                                    repeatDuration: 0,
-                                   fillMode: kCAFillModeForwards,
+                                   fillMode: .forwards,
                                    beginTime: nil,
                                    delegate: nil)
     anim.repeatCount = .greatestFiniteMagnitude

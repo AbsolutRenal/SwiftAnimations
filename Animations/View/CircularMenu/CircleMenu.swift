@@ -44,8 +44,8 @@ class CircleMenu: UIView, Animatable {
     l.strokeColor = UIColor.white.cgColor
     l.strokeEnd = 0.0
     l.lineWidth = 1.0
-    l.lineCap = kCALineCapRound
-    l.lineJoin = kCALineJoinRound
+    l.lineCap = .round
+    l.lineJoin = .round
     l.fillColor = UIColor(red: 58/255.0, green: 175/255.0, blue: 251/255.0, alpha: 1.0).cgColor
     self.mainButton.layer.addSublayer(l)
     return l
@@ -57,7 +57,7 @@ class CircleMenu: UIView, Animatable {
     path.move(to: CGPoint(x: -kCrossHDisplayWidth, y: 0))
     path.addLine(to: CGPoint(x: kCrossHDisplayWidth, y: 0))
     l.strokeColor = UIColor.white.cgColor
-    l.lineCap = kCALineCapRound
+    l.lineCap = .round
     l.lineWidth = kCrossHDisplayLineWidth
     l.strokeStart = 0.5
     l.strokeEnd = 0.5
@@ -73,7 +73,7 @@ class CircleMenu: UIView, Animatable {
     path.move(to: CGPoint(x: 0, y: -kCrossHDisplayWidth))
     path.addLine(to: CGPoint(x: 0, y: kCrossHDisplayWidth))
     l.strokeColor = UIColor.white.cgColor
-    l.lineCap = kCALineCapRound
+    l.lineCap = .round
     l.lineWidth = kCrossHDisplayLineWidth
     l.strokeStart = 0.5
     l.strokeEnd = 0.5
@@ -173,7 +173,7 @@ class CircleMenu: UIView, Animatable {
                                                    values: [start(!down), destStrokeStart],
                                                    keyTimes: [0.0, 1.0],
                                                    duration: 0.0,
-                                                   fillMode: kCAFillModeForwards,
+                                                   fillMode: .forwards,
                                                    beginTime: nil,
                                                    delegate: nil,
                                                    timingFunctions: [kTimingFunctionEaseOut])
@@ -181,7 +181,7 @@ class CircleMenu: UIView, Animatable {
                                                  values: [end(!down), destStrokeEnd],
                                                  keyTimes: [0.0, 1.0],
                                                  duration: 0.0,
-                                                 fillMode: kCAFillModeForwards,
+                                                 fillMode: .forwards,
                                                  beginTime: nil,
                                                  delegate: nil,
                                                  timingFunctions: [kTimingFunctionEaseOut])
@@ -296,7 +296,7 @@ class CircleMenu: UIView, Animatable {
                                              values: [0.0, 1.0],
                                              keyTimes: [0.0, 1.0],
                                              duration: kDisplayAnimDuration,
-                                             fillMode: kCAFillModeForwards,
+                                             fillMode: .forwards,
                                              beginTime: nil,
                                              delegate: self,
                                              timingFunctions: nil)
@@ -314,7 +314,7 @@ class CircleMenu: UIView, Animatable {
                                                       values: [0.5, 0.0],
                                                       keyTimes: [0.0, 1.0],
                                                       duration: kCrossDisplayAnimDuration,
-                                                      fillMode: kCAFillModeForwards,
+                                                      fillMode: .forwards,
                                                       beginTime: nil,
                                                       delegate: nil,
                                                       timingFunctions: nil)
@@ -322,13 +322,13 @@ class CircleMenu: UIView, Animatable {
                                                     values: [0.5, 1.0],
                                                     keyTimes: [0.0, 1.0],
                                                     duration: kCrossDisplayAnimDuration - 0.2,
-                                                    fillMode: kCAFillModeForwards,
+                                                    fillMode: .forwards,
                                                     beginTime: nil,
                                                     delegate: nil,
                                                     timingFunctions: nil)
     let crossAnimationGroup = buildAnimationGroup(animations: [crossAnimStrokeStart, crossAnimStrokeEnd],
                                                   duration: kCrossDisplayAnimDuration,
-                                                  fillMode: kCAFillModeBackwards,
+                                                  fillMode: .backwards,
                                                   beginTime: CACurrentMediaTime() + 0.1,
                                                   delegate: self)
     crossAnimationGroup.timingFunction = kTimingFunctionEaseOut
@@ -374,7 +374,7 @@ class CircleMenu: UIView, Animatable {
                                         values: [positionZero, finalPosition],
                                         keyTimes: [0.0, 1.0],
                                         duration: 1.0,
-                                        fillMode: kCAFillModeForwards,
+                                        fillMode: .forwards,
                                         beginTime: nil,
                                         delegate: delegate,
                                         timingFunctions: nil)
@@ -409,7 +409,7 @@ class CircleMenu: UIView, Animatable {
                                         values: [$0.position, positionZero],
                                         keyTimes: [0.0, 1.0],
                                         duration: 0.5,
-                                        fillMode: kCAFillModeForwards,
+                                        fillMode: .forwards,
                                         beginTime: nil,
                                         delegate: delegate,
                                         timingFunctions: nil)
@@ -431,26 +431,26 @@ class CircleMenu: UIView, Animatable {
                                                    values: [0.3, 0.3, 0.0],
                                                    keyTimes: [0.0, 0.67, 1.0],
                                                    duration: 0.0,
-                                                   fillMode: kCAFillModeForwards,
+                                                   fillMode: .forwards,
                                                    beginTime: nil,
                                                    delegate: nil,
-                                                   timingFunctions: [CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault), kTimingFunctionEaseOut])
+                                                   timingFunctions: [CAMediaTimingFunction(name: .default), kTimingFunctionEaseOut])
     let shrinkEndCross = buildKeyFrameAnimation(keyPath: "strokeEnd",
                                                  values: [0.7, 0.7, 1.0],
                                                  keyTimes: [0.0, 0.67, 1.0],
                                                  duration: 0.0,
-                                                 fillMode: kCAFillModeForwards,
+                                                 fillMode: .forwards,
                                                  beginTime: nil,
                                                  delegate: nil,
-                                                 timingFunctions: [CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault), kTimingFunctionEaseOut])
+                                                 timingFunctions: [CAMediaTimingFunction(name: .default), kTimingFunctionEaseOut])
     let rotateCross = buildKeyFrameAnimation(keyPath: "transform.rotation.z",
                                               values: [startAngle, endAngle, endAngle],
                                               keyTimes: [0.0, 0.67, 1.0],
                                               duration: 0.0,
-                                              fillMode: kCAFillModeForwards,
+                                              fillMode: .forwards,
                                               beginTime: nil,
                                               delegate: nil,
-                                              timingFunctions: [kTimingFunctionEaseInOutBounce, CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)])
+                                              timingFunctions: [kTimingFunctionEaseInOutBounce, CAMediaTimingFunction(name: .default)])
     let crossAnims = buildAnimationGroup(animations: [shrinkStartCross, shrinkEndCross, rotateCross],
                                           duration: kCrossTransformAnimDuration)
     crossAnims.delegate = self
@@ -489,9 +489,9 @@ class CircleMenu: UIView, Animatable {
     buttons.forEach {
       p2 = $0.layer.position.applying(CGAffineTransform(translationX: 120 * cos(CGFloat(i) * angle),
                                                   y: 120 * sin(CGFloat(i) * angle)))
-      let fillMode = i == 0
-          ? kCAFillModeForwards
-          : kCAFillModeBackwards
+        let fillMode: CAMediaTimingFillMode = i == 0
+          ? .forwards
+          : .backwards
       let end = display
         ? p2!
         : p1

@@ -62,7 +62,7 @@ class SquareReplicatorLoaderView: UIView, Animatable {
                                       keyTimes: [0.0, 0.35, 1.0],
                                       duration: kAnimationDuration,
                                       repeatDuration: 0,
-                                      fillMode: kCAFillModeForwards,
+                                      fillMode: .forwards,
                                       beginTime: nil,
                                       delegate: nil,
                                       timingFunctions: nil)
@@ -90,7 +90,7 @@ class SquareReplicatorLoaderView: UIView, Animatable {
                                         keyTimes: [0.0, 1.0],
                                         duration: kFadeDuration,
                                         repeatDuration: 0,
-                                        fillMode: kCAFillModeForwards,
+                                        fillMode: .forwards,
                                         beginTime: nil,
                                         delegate: nil,
                                         timingFunctions: nil)
@@ -104,7 +104,7 @@ class SquareReplicatorLoaderView: UIView, Animatable {
                                          keyTimes: [0.0, 1.0],
                                          duration: kFadeDuration,
                                          repeatDuration: 0,
-                                         fillMode: kCAFillModeForwards,
+                                         fillMode: .forwards,
                                          beginTime: nil,
                                          delegate: self,
                                          timingFunctions: nil)

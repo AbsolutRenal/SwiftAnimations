@@ -13,7 +13,7 @@ final class ZoomAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransit
   private enum Constants {
     static let offsetX: CGFloat = 120
     static let animDuration: TimeInterval = 0.3
-    static let ease: UIViewAnimationOptions = .curveEaseInOut
+    static let ease: UIView.AnimationOptions = .curveEaseInOut
     static let scaleOffset: CGFloat = 0.5
   }
   

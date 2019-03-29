@@ -159,7 +159,7 @@ class CircleMenuActionButton: UIButton, Animatable {
                                            values: [1.2, 1.0],
                                            keyTimes: [0.0, 1.0],
                                            duration: 0.0,
-                                           fillMode: kCAFillModeForwards,
+                                           fillMode: .forwards,
                                            beginTime: nil,
                                            delegate: nil,
                                            timingFunctions: nil)
@@ -167,7 +167,7 @@ class CircleMenuActionButton: UIButton, Animatable {
                                            values: [kLayerBackgroundSelectedOpacity, kLayerBackgroundOpacity],
                                            keyTimes: [0.0, 1.0],
                                            duration: 0.0,
-                                           fillMode: kCAFillModeForwards,
+                                           fillMode: .forwards,
                                            beginTime: nil,
                                            delegate: nil,
                                            timingFunctions: nil)
@@ -175,13 +175,13 @@ class CircleMenuActionButton: UIButton, Animatable {
                                             values: [3.0, 0.0],
                                             keyTimes: [0.0, 1.0],
                                             duration: 0.0,
-                                            fillMode: kCAFillModeForwards,
+                                            fillMode: .forwards,
                                             beginTime: nil,
                                             delegate: nil,
                                             timingFunctions: nil)
     let tapAnim = buildAnimationGroup(animations: [scaleAnim, alphaAnim, strokeAnim],
                                       duration: 0.3,
-                                      fillMode: kCAFillModeForwards,
+                                      fillMode: .forwards,
                                       beginTime: nil,
                                       delegate: self)
     tapAnim.timingFunction = kTimingFunctionEaseInOut

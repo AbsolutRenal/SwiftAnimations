@@ -106,7 +106,7 @@ class AtomLikeView: UIView, Animatable {
                                            keyTimes: [0.0, 0.25, 0.5, 0.75, 1.0])
     let rotationAnim = buildAnimationGroup(animations: [xRotation, yRotation],
                                            duration: kDuration,
-                                           fillMode: kCAFillModeForwards,
+                                           fillMode: .forwards,
                                            beginTime: nil,
                                            delegate: nil)
     rotationAnim.timingFunction = kEasing
@@ -126,7 +126,7 @@ class AtomLikeView: UIView, Animatable {
                                            keyTimes: [0.0, 0.25, 0.5, 0.75, 1.0])
     let rotationAnim = buildAnimationGroup(animations: [xRotation, yRotation],
                                            duration: kDuration,
-                                           fillMode: kCAFillModeForwards,
+                                           fillMode: .forwards,
                                            beginTime: nil,
                                            delegate: nil)
     rotationAnim.timingFunction = kEasing
