@@ -371,7 +371,7 @@ class NotifyButton: UIView, UITextFieldDelegate, Animatable {
   // MARK: - UITextFieldDelegate Methods
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     let email = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-    placeholder.isHidden = email.characters.count > 0
+    placeholder.isHidden = email.count > 0
     activateSendButton(activate: isValidEmail(email))
     return true
   }

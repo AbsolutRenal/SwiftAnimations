@@ -15,6 +15,7 @@ final class CustomNavigationControlerDelegate: NSObject, UINavigationControllerD
     switch operation {
     case .push, .pop: return ZoomAnimatedTransitioning(forOperation: operation)
     case .none: return nil
+    default: return nil
     }
   }
   

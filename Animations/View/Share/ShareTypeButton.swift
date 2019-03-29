@@ -98,7 +98,7 @@ class ShareTypeButton: UIButton, Animatable {
     if delay > 0.0 {
       let animDelay = CACurrentMediaTime() + delay
       display.beginTime = animDelay
-      display.fillMode = kCAFillModeBackwards
+      display.fillMode = .backwards
     }
     layer.add(display, forKey: kDisplayAnimationKey)
     layer.frame = endFrame
@@ -115,7 +115,7 @@ class ShareTypeButton: UIButton, Animatable {
     if delay > 0.0 {
       let animDelay = CACurrentMediaTime() + delay
       move.beginTime = animDelay
-      move.fillMode = kCAFillModeBackwards
+      move.fillMode = .backwards
     }
     move.isRemovedOnCompletion = completion == nil
     layer.add(move, forKey: kDisappearAnimationKey)

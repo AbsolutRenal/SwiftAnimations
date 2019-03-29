@@ -58,7 +58,7 @@ class InfiniteSpinnerView: UIView, Animatable {
     layer.path = bezierPath(centered: CGPoint(x: x, y: bounds.midY), clockwise: clockwise)
     layer.strokeColor = UIColor.white.cgColor
     layer.lineWidth = 16
-    layer.lineCap = kCALineCapRound
+    layer.lineCap = .round
     layer.fillColor = UIColor.clear.cgColor
     layer.strokeStart = 0
     layer.strokeEnd = 0

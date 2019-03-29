@@ -60,7 +60,7 @@ final class ConnectionSearchView: UIView, Animatable {
     static let needleRotationDuration: CFTimeInterval = 0.5
     static let signalRotationDelay: Double = 0.2
     static let needleRotationDelayBeforeNext: Double = 0.4
-    static let needleRotationEase: CAMediaTimingFunction = CAMediaTimingFunction(name: "easeInEaseOut")
+    static let needleRotationEase: CAMediaTimingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
     static let exclamationMarkFadeInDuration: CFTimeInterval = 0.4
     static let exclamationMarkFadeOutDuration: CFTimeInterval = 0.4
   }
@@ -180,7 +180,7 @@ final class ConnectionSearchView: UIView, Animatable {
     pathLayer.path = bezierPath(at: position, radius: radius).cgPath
     pathLayer.fillColor = UIColor.clear.cgColor
     pathLayer.strokeColor = color.cgColor
-    pathLayer.lineCap = kCALineCapSquare
+    pathLayer.lineCap = .square
     pathLayer.lineWidth = Constants.signalThickness
     return pathLayer
   }
@@ -219,7 +219,7 @@ final class ConnectionSearchView: UIView, Animatable {
     needleLayer.setValueDiscreetly(value: CATransform3DMakeRotation(Constants.signalStartAngle, 0, 0, 1), forKeyPath: "transform")
     let fadeInAnimation = buildKeyFrameAnimation(keyPath: "opacity",
                                                  values: [0, 1], keyTimes: [0, 1],
-                                                 duration: 0.3, fillMode: kCAFillModeForwards,
+                                                 duration: 0.3, fillMode: .forwards,
                                                  delegate: nil, timingFunctions: nil)
     dot.add(fadeInAnimation, forKey: "fadeIn")
     fadeInAnimation.delegate = self
@@ -239,7 +239,7 @@ final class ConnectionSearchView: UIView, Animatable {
                                                          values: [startAngle, endAngle],
                                                          keyTimes: [0, endTime],
                                                          duration: duration,
-                                                         fillMode: kCAFillModeForwards,
+                                                         fillMode: .forwards,
                                                          delegate: self,
                                                          timingFunctions: [Constants.needleRotationEase])
     needleLayer.add(needleRotationAnimation, forKey: "rotation")
@@ -261,7 +261,7 @@ final class ConnectionSearchView: UIView, Animatable {
                                                        timingFunctions: [Constants.needleRotationEase])
     let layerMaskAnimation = buildAnimationGroup(animations: [layerMaskAnimationStart, layerMaskAnimationEnd],
                                                  duration: duration,
-                                                 fillMode: kCAFillModeForwards,
+                                                 fillMode: .forwards,
                                                  delegate: nil)
     maskLayer.add(layerMaskAnimation, forKey: "animateStroke")
     
@@ -276,7 +276,7 @@ final class ConnectionSearchView: UIView, Animatable {
                                                          values: [Constants.signalEndAngle, endAngle],
                                                          keyTimes: [0, 1],
                                                          duration: Constants.needleRotationDuration * 0.5,
-                                                         fillMode: kCAFillModeForwards,
+                                                         fillMode: .forwards,
                                                          delegate: self,
                                                          timingFunctions: [Constants.needleRotationEase])
     needleLayer.add(needleRotationAnimation, forKey: "rotation")
@@ -286,14 +286,14 @@ final class ConnectionSearchView: UIView, Animatable {
   private func displayExclamationMark() {
     let fadeOutAnimation = buildKeyFrameAnimation(keyPath: "opacity",
                                                  values: [1, 0], keyTimes: [0, 1],
-                                                 duration: Constants.exclamationMarkFadeInDuration, fillMode: kCAFillModeForwards,
+                                                 duration: Constants.exclamationMarkFadeInDuration, fillMode: .forwards,
                                                  delegate: nil, timingFunctions: nil)
     needleLayer.add(fadeOutAnimation, forKey: "fadeOut")
     needleLayer.setValueDiscreetly(value: 0, forKeyPath: "opacity")
     
     let fadeInAnimation = buildKeyFrameAnimation(keyPath: "opacity",
                                                  values: [0, 1], keyTimes: [0, 1],
-                                                 duration: Constants.exclamationMarkFadeInDuration, fillMode: kCAFillModeForwards,
+                                                 duration: Constants.exclamationMarkFadeInDuration, fillMode: .forwards,
                                                  delegate: self, timingFunctions: nil)
     exclamationMarkLayer.add(fadeInAnimation, forKey: "fadeIn")
     exclamationMarkLayer.setValueDiscreetly(value: 1, forKeyPath: "opacity")
@@ -302,7 +302,7 @@ final class ConnectionSearchView: UIView, Animatable {
   private func fadeOut() {
     let fadeOutAnimation = buildKeyFrameAnimation(keyPath: "opacity",
                                                   values: [1, 0], keyTimes: [0, 1],
-                                                  duration: Constants.exclamationMarkFadeOutDuration, fillMode: kCAFillModeForwards,
+                                                  duration: Constants.exclamationMarkFadeOutDuration, fillMode: .forwards,
                                                   delegate: self, timingFunctions: nil)
     exclamationMarkLayer.add(fadeOutAnimation, forKey: "fadeOut")
     exclamationMarkLayer.setValueDiscreetly(value: 0, forKeyPath: "opacity")
